@@ -1,0 +1,41 @@
+<IfModule mod_rewrite.c>
+  ServerTokens Prod
+  ServerSignature Off
+  RewriteEngine on
+  RewriteBase /
+  Options +FollowSymLinks -Indexes
+
+  # Reenable after getting ssl cert
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+
+  # Enable WWW
+  # RewriteCond %{HTTP_HOST} ^www.pwl-amikom.rhcloud.com [nocase]
+  # RewriteRule ^(.*) https://pwl-amikom.rhcloud.com/$1 [last,redirect=301]
+
+  # Disable WWW
+  RewriteCond %{HTTP_HOST} ^www.pwl-amikom.rhcloud.com [NC]
+  RewriteRule (.*) https://pwl-amikom.rhcloud.com/$1 [L,R=301]
+
+  # removes trailing slashes
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+  # Removes access to the system folder by users
+  RewriteCond %{REQUEST_URI} ^system.*
+  RewriteRule ^(.*)$ /index.php/$1 [L]
+
+  # When your application folder isn't in the system folder This snippet prevents user access to the application folder
+  RewriteCond %{REQUEST_URI} ^application.*
+  RewriteRule ^(.*)$ /index.php/$1 [L]
+
+  # Checks to see if the user is attempting to access a valid file, such as an image or css document, if this isn't true it sends the request to index.php
+  RewriteCond $1 !^(index\.php|assets|robots\.txt)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
