@@ -1,0 +1,32 @@
+#!/bin/bash
+# The pre_start_cartridge and pre_stop_cartridge hooks are *SOURCED*
+# immediately before (re)starting or stopping the specified cartridge.
+# They are able to make any desired environment variable changes as
+# well as other adjustments to the application environment.
+
+# The post_start_cartridge and post_stop_cartridge hooks are executed
+# immediately after (re)starting or stopping the specified cartridge.
+
+# Exercise caution when adding commands to these hooks.  They can
+# prevent your application from stopping cleanly or starting at all.
+# Application start and stop is subject to different timeouts
+# throughout the system.
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+set -e
+
+echo 1>&2
+echo "Setting environment variables..." 1>&2
+
+export CI_ENV="${APPLICATION_ENV:-production}"
+if [ "$(type -t set_env_var)" == "function" ]; then
+  set_env_var 'CI_ENV' $CI_ENV $OPENSHIFT_HOMEDIR/.env/user_vars  
+fi
+
+if [ ! -z "$OPENSHIFT_SECRET_TOKEN" ]; then
+  export CI_KEY=${OPENSHIFT_SECRET_TOKEN:0:31}
+  if [ "$(type -t set_env_var)" == "function" ]; then
+    set_env_var 'CI_KEY' $CI_KEY $OPENSHIFT_HOMEDIR/.env/user_vars
+  fi
+fi
