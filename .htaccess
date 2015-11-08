@@ -1,17 +1,8 @@
 <IfModule mod_rewrite.c>
-  ServerTokens Prod
   ServerSignature Off
   RewriteEngine on
   RewriteBase /
   Options +FollowSymLinks -Indexes
-
-  # Reenable after getting ssl cert
-  RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
-
-  # Enable WWW
-  # RewriteCond %{HTTP_HOST} ^www.pwl-amikom.rhcloud.com [nocase]
-  # RewriteRule ^(.*) https://pwl-amikom.rhcloud.com/$1 [last,redirect=301]
 
   # Disable WWW
   RewriteCond %{HTTP_HOST} ^www.pwl-amikom.rhcloud.com [NC]
