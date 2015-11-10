@@ -1,2 +1,3 @@
 projectPWL.sh
-application/config/development/database.php.origin
+application/config/development/config.php
+application/config/development/database.php
