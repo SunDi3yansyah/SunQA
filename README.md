@@ -1,9 +1,9 @@
-# Project PWL
+# Final Project Pemrograman Web Lanjut
 
 Tugas Final Project Pemrograman Web Lanjut, dosen __M. Rudyanto Arief, MT__
 
 #### Mahasiswa
-- Nama : Cahyadi Triyansyah - [cahyadi.t@students.amikom.ac.id](mailto:cahyadi.t@students.amikom.ac.id)
+- Nama : Cahyadi Triyansyah | [cahyadi.t@students.amikom.ac.id](mailto:cahyadi.t@students.amikom.ac.id)
 - NIM : 10.11.3735
 
 #### Synopsis Project
