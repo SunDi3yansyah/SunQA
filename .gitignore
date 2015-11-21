@@ -1,5 +1,4 @@
-projectPWL.sh
-dumpSQL.sh
-.travis.yml
+openshift.sh
+push.sh
 app/config/development/config.php
 app/config/development/database.php

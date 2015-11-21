@@ -35,7 +35,7 @@ $config['base_url'] = 'https://' . getenv('OPENSHIFT_APP_DNS') . '/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -368,9 +368,9 @@ $config['encryption_key'] = getenv('CI_KEY');
 |
 */
 $config['sess_driver'] = 'database';
-$config['sess_cookie_name'] = 'pwl_session';
+$config['sess_cookie_name'] = 'cookie_PWL';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+$config['sess_save_path'] = 'session';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
