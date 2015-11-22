@@ -11,6 +11,7 @@
 
 
 <link rel="stylesheet" href="<?php echo base_url('assets/css/pure/pure-min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
 
 
 

@@ -1,0 +1,6 @@
+.pure-menu-selected a.pure-menu-link {
+	color: #6FBEF3 !important;
+}
+.pure-menu-selected a.pure-menu-link:hover {
+    color: #AECFE5 !important;
+}
