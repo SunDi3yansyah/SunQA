@@ -4,18 +4,19 @@ __PERANCANGAN WEBSITE SISTEM TANYA JAWAB__
 
 Final Project Pemrograman Web Lanjut
 
-#### Rincian Mahasiswa
-Nama | NIM | Email | Dosen
------------- | -------------
-Cahyadi Triyansyah | 10.11.3735 | [cahyadi.t@students.amikom.ac.id](mailto:cahyadi.t@students.amikom.ac.id) | M. Rudyanto Arief, MT
+### Rincian Mahasiswa
 
-#### Synopsis Project
+Nama | NIM | Email | Dosen
+------------ | ------------- | ------------- | -------------
+Cahyadi Triyansyah | 10.11.3735 | [![email](https://lh5.googleusercontent.com/-zu90QT4iXGA/VlT0XTODSaI/AAAAAAAABGU/1Fho2lUhHM4/s20-no/email-github-20.png)](mailto:cahyadi.t@students.amikom.ac.id) | M. Rudyanto Arief, MT 
+
+### Synopsis Project
 
 Aplikasi ini dibuat untuk memenuhi matakuliah Pemrograman Web Lanjut. Saya disini membuat aplikasi sistem Tanya Jawab (Question Answer) kurang lebih seperti Stackoverflow atau sejenisnya. Dibangun dengan CodeIgniter versi 3 dan sudah ditambah konfigursi [deploy hooks](https://developers.openshift.com/en/managing-modifying-applications.html) sehingga membentuk sedemikian rupa. Aplikasi ini di testing / demo pada hosting [OpenShift](https://www.openshift.com/) Online (Server: AWS) yang bisa anda lihat di [https://pwl-cahyadi3yansyah.rhcloud.com](https://pwl-cahyadi3yansyah.rhcloud.com).
 
-#### Struckture Database
+### Structure Database
 
-##### Tables
+#### Tables
 
 ```
 +------------------+
@@ -34,7 +35,7 @@ Aplikasi ini dibuat untuk memenuhi matakuliah Pemrograman Web Lanjut. Saya disin
 +------------------+
 ```
 
-##### Structure in Table
+#### Structure in Table
 __pwl_answer__
 ```
 +--------------------+---------+------+-----+---------+----------------+
@@ -154,8 +155,8 @@ __pwl_vote__
 +-------------+---------------------------+------+-----+---------+----------------+
 ```
 
-#### Thanks to
+### Thanks to
 [![Amikom](https://lh5.googleusercontent.com/-NWphcCvKD3E/VlTt7f15FLI/AAAAAAAABEA/JDH5QDSPLmc/w148-h150-no/logo_amikom_cover150.jpg)](http://amikom.ac.id) [![CodeIgniter](http://www.codeigniter.com/assets/images/ci-logo-big.png)](http://www.codeigniter.com/) [![Openshift online](https://lh3.googleusercontent.com/-YeznvYHUBis/VlTv1qUeUiI/AAAAAAAABFY/Sm65sUeiB-M/w160-h150-no/redhat_reverse.png)](https://www.openshift.com) [![github](https://lh3.googleusercontent.com/-Icom7BsPUc8/VlTvLZ9L0SI/AAAAAAAABEw/kUWn7MCjhJ4/s150-no/GitHub-Mark150.png)](https://github.com)
 
-#### License
+### License
 [![MIT License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)
