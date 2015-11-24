@@ -30,8 +30,8 @@ CREATE TABLE `pwl_answer` (
   PRIMARY KEY (`id_answer`),
   KEY `user_id` (`user_id`),
   KEY `question_id` (`question_id`),
-  CONSTRAINT `pwl_answer_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `pwl_question` (`id_question`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pwl_answer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `pwl_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `pwl_answer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `pwl_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `pwl_answer_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `pwl_question` (`id_question`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -147,8 +147,8 @@ CREATE TABLE `pwl_question_tag` (
   PRIMARY KEY (`id_qc`),
   KEY `question_id` (`question_id`),
   KEY `tag_id` (`tag_id`),
-  CONSTRAINT `pwl_question_tag_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `pwl_tag` (`id_tag`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pwl_question_tag_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `pwl_question` (`id_question`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `pwl_question_tag_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `pwl_question` (`id_question`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `pwl_question_tag_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `pwl_tag` (`id_tag`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -311,4 +311,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-23  0:55:20
+-- Dump completed on 2015-11-25  6:18:46
