@@ -114,10 +114,6 @@ a.pure-button-primary {
     font-size: 120%;
 }
 
-.home-menu .pure-menu-selected a {
-    color: white;
-}
-
 .home-menu a {
     color: #6FBEF3;
 }
@@ -189,11 +185,14 @@ a.pure-button-primary {
 .content-wrapper {
     /* These styles are required for the "scroll-over" effect */
     position: absolute;
-    top: 87%;
     width: 100%;
     min-height: 12%;
     z-index: 2;
     background: white;
+}
+
+.content-wrapper.on-top {
+    top: 87%;
 }
 
 /* This is the class used for the main content headers (<h2>) */

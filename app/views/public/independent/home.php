@@ -1,90 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example that shows off a responsive product landing page.">
-
-    <title>Landing Page &ndash; Layout Examples &ndash; Pure</title>
-
-    
-
-
-<link rel="stylesheet" href="<?php echo base_url('assets/css/pure/pure-min.css'); ?>">
-<link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
-
-
-
-<!--[if lte IE 8]>
-  
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/pure/grids-responsive-old-ie-min.css'); ?>">
-  
-<![endif]-->
-<!--[if gt IE 8]><!-->
-  
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/pure/grids-responsive-min.css'); ?>">
-  
-<!--<![endif]-->
-
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-
-
-  
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/pure/marketing-old-ie.css'); ?>">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/pure/marketing.css'); ?>">
-    <!--<![endif]-->
-  
-
-
-    
-
-    
-
+<?php $this->load->view('public/must/head'); ?>
+<title>Welcome to <?php echo $this->config->item('web_name'); ?></title>
 </head>
 <body>
-
-
-
-
-
-
-
-
-
-<div class="header">
-    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="">Your Site</a>
-
-        <ul class="pure-menu-list">
-            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tour</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sign Up</a></li>
-        </ul>
-    </div>
-</div>
+<?php $this->load->view('public/must/menu'); ?>
 
 <div class="splash-container">
     <div class="splash">
-        <h1 class="splash-head">Big Bold Text</h1>
+        <h1 class="splash-head">Welcome to <?php echo $this->config->item('web_name'); ?></h1>
         <p class="splash-subhead">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         </p>
         <p>
-            <a href="#" class="pure-button pure-button-primary">Get Started</a>
+            <a href="#" class="pure-button pure-button-primary">getting started question</a>
         </p>
     </div>
 </div>
 
-<div class="content-wrapper">
+<div class="content-wrapper on-top">
     <div class="content">
         <h2 class="content-head is-center">Excepteur sint occaecat cupidatat.</h2>
-
         <div class="pure-g">
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
 
@@ -128,12 +62,10 @@
 
     <div class="ribbon l-box-lrg pure-g">
         <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-            <img class="pure-img-responsive" alt="File Icons" width="300" src="<?php echo base_url('assets/images/common/file-icons.png'); ?>">
+            <img class="pure-img-responsive" alt="File Icons" width="300" src="<?php echo base_url('assets/images/common/qa.png'); ?>">
         </div>
         <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
-
             <h2 class="content-head content-head-ribbon">Laboris nisi ut aliquip.</h2>
-
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -145,23 +77,17 @@
 
     <div class="content">
         <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
-
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
                 <form class="pure-form pure-form-stacked">
                     <fieldset>
-
                         <label for="name">Your Name</label>
                         <input id="name" type="text" placeholder="Your Name">
-
-
                         <label for="email">Your Email</label>
                         <input id="email" type="email" placeholder="Your Email">
-
                         <label for="password">Your Password</label>
                         <input id="password" type="password" placeholder="Your Password">
-
-                        <button type="submit" class="pure-button">Sign Up</button>
+                        <button type="submit" class="pure-button button-secondary">Sign Up</button>
                     </fieldset>
                 </form>
             </div>
@@ -174,7 +100,6 @@
                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                     consequat.
                 </p>
-
                 <h4>More Information</h4>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -182,19 +107,11 @@
                 </p>
             </div>
         </div>
-
     </div>
 
     <div class="footer l-box is-center">
-        View the source of this layout to learn more. Made with love by the YUI Team.
+        Copyright &copy; <?php echo date('Y'); ?> <?php echo $this->config->item('web_name'); ?>, All Right Reserved.
     </div>
 
 </div>
-
-
-
-
-
-
-</body>
-</html>
+<?php $this->load->view('public/must/footer'); ?>
