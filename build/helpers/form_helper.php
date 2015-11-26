@@ -769,11 +769,12 @@ if ( ! function_exists('set_checkbox'))
 		{
 			return $CI->form_validation->set_checkbox($field, $value, $default);
 		}
+		elseif (($input = $CI->input->post($field, FALSE)) === NULL)
+		{
+			return ($default === TRUE) ? ' checked="checked"' : '';
+		}
 
-		// Form inputs are always strings ...
 		$value = (string) $value;
-		$input = $CI->input->post($field, FALSE);
-
 		if (is_array($input))
 		{
 			// Note: in_array('', array(0)) returns TRUE, do not use it
@@ -788,13 +789,7 @@ if ( ! function_exists('set_checkbox'))
 			return '';
 		}
 
-		// Unchecked checkbox and radio inputs are not even submitted by browsers ...
-		if ($CI->input->method() === 'post')
-		{
-			return ($input === 'value') ? ' checked="checked"' : '';
-		}
-
-		return ($default === TRUE) ? ' checked="checked"' : '';
+		return ($input === $value) ? ' checked="checked"' : '';
 	}
 }
 
@@ -821,32 +816,12 @@ if ( ! function_exists('set_radio'))
 		{
 			return $CI->form_validation->set_radio($field, $value, $default);
 		}
-
-		// Form inputs are always strings ...
-		$value = (string) $value;
-		$input = $CI->input->post($field, FALSE);
-
-		if (is_array($input))
+		elseif (($input = $CI->input->post($field, FALSE)) === NULL)
 		{
-			// Note: in_array('', array(0)) returns TRUE, do not use it
-			foreach ($input as &$v)
-			{
-				if ($value === $v)
-				{
-					return ' checked="checked"';
-				}
-			}
-
-			return '';
+			return ($default === TRUE) ? ' checked="checked"' : '';
 		}
 
-		// Unchecked checkbox and radio inputs are not even submitted by browsers ...
-		if ($CI->input->method() === 'post')
-		{
-			return ($input === 'value') ? ' checked="checked"' : '';
-		}
-
-		return ($default === TRUE) ? ' checked="checked"' : '';
+		return ($input === (string) $value) ? ' checked="checked"' : '';
 	}
 }
 
