@@ -1,5 +1,8 @@
 openshift.sh
 push.sh
+commit.sh
 app/config/development/config.php
 app/config/development/database.php
 app/logs/*.php
+user_guide
+admin

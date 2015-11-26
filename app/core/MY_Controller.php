@@ -6,6 +6,11 @@ class CI_Publics extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+
+		$array = array(
+			'current_url' => $this->uri->uri_string(),
+		);		
+		$this->session->set_userdata($array);
 	}
 }
 

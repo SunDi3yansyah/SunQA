@@ -1,13 +1,25 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Qa extends CI_Model
+class Qa_model extends CI_Model
 {
 	function __construct()
 	{
 		parent::__construct();
 		
 	}
+
+    function all($table, $order)
+    {
+        $this->db->from($table);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
 
     function get($table, $where) {
         $this->db->select('*');
@@ -55,5 +67,35 @@ class Qa extends CI_Model
         }
         $this->db->delete($table, $where);
         return $this->db->affected_rows();
+    }
+
+    function login($table, $where1, $where2)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where($where1);
+        $this->db->where($where2);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    function looping_login($table, $where1, $where2)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where($where1);
+        $this->db->where($where2);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) {
+            return $query->result();
+        } else {
+            return FALSE;
+        }
     }
 }

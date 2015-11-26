@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'email', 'session', 'pagination', 'email', 'form_validation', 'qa_libs');
+$autoload['libraries'] = array('database', 'session', 'pagination', 'email', 'form_validation', 'qa_libs', 'phpass');
 
 /*
 | -------------------------------------------------------------------
@@ -83,7 +83,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'html', 'form', 'text', 'captcha', 'security', 'email', 'qa_helper');
+$autoload['helper'] = array('url', 'file', 'html', 'form', 'text', 'captcha', 'security', 'qa_helper');
 
 /*
 | -------------------------------------------------------------------
@@ -126,4 +126,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('qa');
+$autoload['model'] = array('qa_model');

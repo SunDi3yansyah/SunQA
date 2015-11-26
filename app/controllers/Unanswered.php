@@ -5,6 +5,5 @@ class Unanswered extends CI_Publics
 {
 	function index()
 	{
-		$this->load->view('public/activities');
 	}
 }

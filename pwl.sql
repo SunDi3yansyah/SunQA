@@ -55,7 +55,7 @@ CREATE TABLE `pwl_category` (
   `id_category` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +64,7 @@ CREATE TABLE `pwl_category` (
 
 LOCK TABLES `pwl_category` WRITE;
 /*!40000 ALTER TABLE `pwl_category` DISABLE KEYS */;
+INSERT INTO `pwl_category` VALUES (1,'Programming');
 /*!40000 ALTER TABLE `pwl_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +114,7 @@ CREATE TABLE `pwl_question` (
   `subject` varchar(100) NOT NULL,
   `category_id` int(11) NOT NULL,
   `description_question` text NOT NULL,
-  `answer_id` int(11) NOT NULL,
+  `answer_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_question`),
   KEY `user_id` (`user_id`),
   KEY `category_id` (`category_id`),
@@ -121,7 +122,7 @@ CREATE TABLE `pwl_question` (
   CONSTRAINT `pwl_question_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `pwl_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `pwl_question_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `pwl_category` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `pwl_question_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `pwl_answer` (`id_answer`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,6 +131,7 @@ CREATE TABLE `pwl_question` (
 
 LOCK TABLES `pwl_question` WRITE;
 /*!40000 ALTER TABLE `pwl_question` DISABLE KEYS */;
+INSERT INTO `pwl_question` VALUES (1,1,'Lorem ipsum dolor sit amet',1,'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.',NULL);
 /*!40000 ALTER TABLE `pwl_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +174,7 @@ CREATE TABLE `pwl_role` (
   `id_role` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(25) NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,6 +183,7 @@ CREATE TABLE `pwl_role` (
 
 LOCK TABLES `pwl_role` WRITE;
 /*!40000 ALTER TABLE `pwl_role` DISABLE KEYS */;
+INSERT INTO `pwl_role` VALUES (1,'Administrator'),(2,'User');
 /*!40000 ALTER TABLE `pwl_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +223,7 @@ CREATE TABLE `pwl_tag` (
   `id_tag` int(11) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,6 +232,7 @@ CREATE TABLE `pwl_tag` (
 
 LOCK TABLES `pwl_tag` WRITE;
 /*!40000 ALTER TABLE `pwl_tag` DISABLE KEYS */;
+INSERT INTO `pwl_tag` VALUES (1,'PHP');
 /*!40000 ALTER TABLE `pwl_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,8 +246,8 @@ DROP TABLE IF EXISTS `pwl_user`;
 CREATE TABLE `pwl_user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(25) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `activated` tinyint(4) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `activated` tinyint(4) NOT NULL DEFAULT '0',
   `nama` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `bio` text NOT NULL,
@@ -256,9 +260,10 @@ CREATE TABLE `pwl_user` (
   `modified` datetime NOT NULL,
   `lost_password` varchar(50) NOT NULL,
   PRIMARY KEY (`id_user`),
+  UNIQUE KEY `username` (`username`),
   KEY `role` (`role_id`),
   CONSTRAINT `pwl_user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `pwl_role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,6 +272,7 @@ CREATE TABLE `pwl_user` (
 
 LOCK TABLES `pwl_user` WRITE;
 /*!40000 ALTER TABLE `pwl_user` DISABLE KEYS */;
+INSERT INTO `pwl_user` VALUES (1,'SunDi3yansyah','d015cc465bdb4e51987df7fb870472d3fb9a3505',1,'Cahyadi Triyansyah','sundi3yansyah@gmail.com','Nothing else','sundi3yansyah.com','Yogyakarta',1,'2015-11-25 00:00:00','2015-11-25 00:00:00','127.0.0.1','2015-11-25 00:00:00','');
 /*!40000 ALTER TABLE `pwl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,4 +317,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-25  9:45:39
+-- Dump completed on 2015-11-26 13:24:32
