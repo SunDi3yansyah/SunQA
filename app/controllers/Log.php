@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+/**
+ * @package		Question Answer (https://github.com/SunDi3yansyah/FinalProjectPWL)
+ * @author		Cahyadi Triyansyah (https://sundi3yansyah.com)
+ * @version		1.0
+ * @license		MIT
+ * @copyright	Copyright (c) 2015 SunDi3yansyah
+ */
 class Log extends CI_Controller
 {
 	function __construct()
@@ -76,6 +82,6 @@ class Log extends CI_Controller
 		$data['head'] = $this->load->view('public/must/head', $data, TRUE);
 		$data['content'] = $this->load->view($content, $data, TRUE);
 		$data['foot'] = $this->load->view('public/must/foot', $data, TRUE);
-		$this->load->view('public/boot', $data);
+		$this->load->view('public/main', $data);
     }
 }

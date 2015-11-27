@@ -360,6 +360,6 @@ ul#side-menu li h4 {
     font-weight: bolder;
 }
 
-h3.page-header {
+h3.page-header, .panel-heading {
     text-transform: capitalize !important;
 }

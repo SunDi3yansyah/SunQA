@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+/**
+ * @package		Question Answer (https://github.com/SunDi3yansyah/FinalProjectPWL)
+ * @author		Cahyadi Triyansyah (https://sundi3yansyah.com)
+ * @version		1.0
+ * @license		MIT
+ * @copyright	Copyright (c) 2015 SunDi3yansyah
+ */
 define('STATUS_ACTIVATED', '1');
 define('STATUS_NOT_ACTIVATED', '0');
 
@@ -33,14 +39,20 @@ class CI_Privates extends CI_Controller
 	{
 		parent::__construct();
 
-		if ($this->qa_libs->logged_in()) {
-			if ($this->qa_libs->is_admin()) {
+		if ($this->qa_libs->logged_in())
+		{
+			if ($this->qa_libs->is_admin())
+			{
 				return TRUE;
-			} else {
+			}
+			else
+			{
 				show_404();
 				return FALSE;
 			}
-		} else {
+		}
+		else
+		{
 			show_404();
 			return FALSE;
 		}
