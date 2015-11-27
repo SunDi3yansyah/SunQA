@@ -1,0 +1,2 @@
+<li class="pure-menu-item"><a href="<?php echo base_url('auth/sign_up'); ?>" class="pure-menu-link">Sign up</a></li>
+<li class="pure-menu-item"><a href="<?php echo base_url('log/in'); ?>" class="pure-menu-link">Log in</a></li>

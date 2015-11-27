@@ -1,0 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+$config['web_name'] = '';
+
+$config['iteration_count'] = 8;
+$config['portable_hashes'] = FALSE;
