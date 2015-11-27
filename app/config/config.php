@@ -518,5 +518,5 @@ $config['proxy_ips'] = getenv('OPENSHIFT_HAPROXY_IP') ?: '';
 |--------------------------------------------------------------------------
 */
 $config['modules_locations'] = array(
-    APPPATH.'modular/' => '../modular/',
+    APPPATH.'mod_ext/' => '../mod_ext/',
 );
