@@ -45,6 +45,20 @@ class Qa_model extends CI_Model
         }
     }
 
+    function join_where($table1, $table2, $join, $where, $order)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join);
+        $this->db->where($where);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
     function insert($table, $data) {
         if ($this->db->insert($table, $data)) {
             return $this->db->insert_id();
@@ -69,16 +83,38 @@ class Qa_model extends CI_Model
         return $this->db->affected_rows();
     }
 
-    function login($table, $where1, $where2)
+    function count($table)
+    {
+        $this->db->from($table);
+        $count = $this->db->count_all_results();
+        if ($count == 0) {
+            return FALSE;
+        } else {
+            return $count;
+        }
+    }
+
+    function count_where($table, $where)
+    {
+        $this->db->from($table);
+        $this->db->where($where);
+        $count = $this->db->count_all_results();
+        if ($count == 0) {
+            return FALSE;
+        } else {
+            return $count;
+        }
+    }
+
+    function login($table, $where)
     {
         $this->db->select('*');
         $this->db->from($table);
-        $this->db->where($where1);
-        $this->db->where($where2);
+        $this->db->where($where);
         $this->db->limit(1);
         $query = $this->db->get();
         if ($query->num_rows() == 1) {
-            return TRUE;
+            return $query->result();
         } else {
             return FALSE;
         }
