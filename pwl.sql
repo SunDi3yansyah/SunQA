@@ -67,7 +67,7 @@ CREATE TABLE `pwl_category` (
 
 LOCK TABLES `pwl_category` WRITE;
 /*!40000 ALTER TABLE `pwl_category` DISABLE KEYS */;
-INSERT INTO `pwl_category` VALUES (1,'Programming'),(2,'UI'),(3,'UX'),(4,'Design');
+INSERT INTO `pwl_category` VALUES (1,'Programming'),(2,'UI Design'),(3,'UX'),(4,'Design');
 /*!40000 ALTER TABLE `pwl_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +102,7 @@ CREATE TABLE `pwl_comment` (
 
 LOCK TABLES `pwl_comment` WRITE;
 /*!40000 ALTER TABLE `pwl_comment` DISABLE KEYS */;
-INSERT INTO `pwl_comment` VALUES (1,1,1,NULL,'Answer','Comment ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2015-11-26 00:00:00');
+INSERT INTO `pwl_comment` VALUES (1,1,NULL,1,'Answer','Comment ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2015-11-26 00:00:00');
 /*!40000 ALTER TABLE `pwl_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,7 +233,7 @@ CREATE TABLE `pwl_tag` (
   `id_tag` int(11) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_tag`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,7 +283,7 @@ CREATE TABLE `pwl_user` (
 
 LOCK TABLES `pwl_user` WRITE;
 /*!40000 ALTER TABLE `pwl_user` DISABLE KEYS */;
-INSERT INTO `pwl_user` VALUES (1,'SunDi3yansyah','$2a$08$ZQx0L7fF1nxBD7PdonVUreg3TUBRM9cO5T4QjJvF7LswP6pYq6VVW',1,'Cahyadi Triyansyah','sundi3yansyah@gmail.com','Nothing else','sundi3yansyah.com','Yogyakarta',1,'2015-11-25 00:00:00','2015-11-28 06:07:29','127.0.0.1','2015-11-27 23:07:29','');
+INSERT INTO `pwl_user` VALUES (1,'SunDi3yansyah','$2a$08$ZQx0L7fF1nxBD7PdonVUreg3TUBRM9cO5T4QjJvF7LswP6pYq6VVW',1,'Cahyadi Triyansyah','sundi3yansyah@gmail.com','Nothing else','sundi3yansyah.com','Yogyakarta',1,'2015-11-25 00:00:00','2015-11-28 09:53:12','127.0.0.1','2015-11-28 02:53:12','');
 /*!40000 ALTER TABLE `pwl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,4 +329,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-28  8:38:59
+-- Dump completed on 2015-11-28 11:56:24

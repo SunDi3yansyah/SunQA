@@ -46,16 +46,14 @@ class Comment extends CI_Privates
             if (!empty($data['record'])) {
                 foreach ($data['record'] as $get) {
                     if ($get->comment_in == 'Question') {
-                        $data['record_Question'] = $this->qa_model->join2_where('comment', 'user', 'question', 'comment.user_id=user.id_user', 'comment.question_id=question.id_question', array('comment.id_comment' => $get->id_comment), 'comment.id_comment');
-                        foreach ($data['record_Question'] as $row) {
-                            echo 'question/' . $row->url_question . '#comment-' . $row->id_comment;
-                            // redirect('question/' . $row->url_question . '#comment-' . $row->id_comment);
+                        $data['record_join'] = $this->qa_model->join2_where('comment', 'user', 'question', 'comment.user_id=user.id_user', 'comment.question_id=question.id_question', array('comment.id_comment' => $str), 'comment.id_comment');
+                        foreach ($data['record_join'] as $row) {
+                            redirect('question/' . $row->url_question . '#comment-' . $row->id_comment);
                         }
                     } else {
-                        $data['record_Answer'] = $this->qa_model->join4_where('comment', 'user', 'question', 'answer', 'comment.user_id=user.id_user', 'comment.question_id=question.id_question', 'answer.question_id=question.id_question', array('comment.id_comment' => $get->id_comment), 'comment.id_comment');
-                        foreach ($data['record_Answer'] as $row) {
-                            echo 'question/' . $row->url_question . '#comment-' . $row->id_comment;
-                            // redirect('question/' . $row->url_question . '#comment-' . $row->id_comment);
+                        $data['record_join'] = $this->qa_model->join3_where('comment', 'user', 'answer', 'question', 'comment.user_id=user.id_user', 'comment.answer_id=answer.id_answer', 'answer.question_id=question.id_question', array('comment.id_comment' => $str), 'comment.id_comment');
+                        foreach ($data['record_join'] as $row) {
+                            redirect('question/' . $row->url_question . '#comment-' . $row->id_comment);
                         }
                     }
                 }
@@ -76,25 +74,24 @@ class Comment extends CI_Privates
                 'record' => $this->_get($str),
                 );
             if (!empty($data['record'])) {
-                $this->form_validation->set_rules('description_answer', 'Description', 'trim|required|min_length[25]|max_length[5000]|xss_clean');
+                $this->form_validation->set_rules('description_comment', 'Description', 'trim|required|min_length[25]|max_length[5000]|xss_clean');
                 $this->form_validation->set_error_delimiters('', '<br>');
                 if ($this->form_validation->run() == TRUE) {
                     $update = array(
-                        'description_answer' => $this->input->post('description_answer'),
-                        'answer_update' => date('Y-m-d H:i:s'),
+                        'description_comment' => $this->input->post('description_comment'),
                         );
-                    $this->qa_model->update('comment', $update, array('id_answer' => $str));
+                    $this->qa_model->update('comment', $update, array('id_comment' => $str));
                     redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
                 } else {
                     foreach ($data['record'] as $get) {
                         if ($get->comment_in === 'Question') {
-                            $data['record_Question'] = $this->qa_model->join2_where('comment', 'user', 'question', 'comment.user_id=user.id_user', 'comment.question_id=question.id_question', array('comment.question_id' => $str), 'comment.id_comment');
+                            $data['record_join'] = $this->qa_model->join2_where('comment', 'user', 'question', 'comment.user_id=user.id_user', 'comment.question_id=question.id_question', array('comment.id_comment' => $str), 'comment.id_comment');
+                            $this->_render('comment/update', $data);
                         } else {
-                            $data['record_Answer'] = $this->qa_model->join2_where('comment', 'user', 'answer', 'comment.user_id=user.id_user', 'comment.answer_id=answer.id_answer', array('comment.answer_id' => $str), 'comment.id_comment');
-                            redirect('question/' . $get->url_question . '#comment' . $get->id_comment);
+                            $data['record_join'] = $this->qa_model->join3_where('comment', 'user', 'answer', 'question', 'comment.user_id=user.id_user', 'comment.answer_id=answer.id_answer', 'answer.question_id=question.id_question', array('comment.id_comment' => $str), 'comment.id_comment');
+                            $this->_render('comment/update', $data);
                         }
                     }
-                    $this->_render('comment/update', $data);
                 }
             } else {
                 show_404();

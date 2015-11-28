@@ -33,4 +33,78 @@ class Category extends CI_Privates
             echo $this->datatables->generate();
         }
 	}
+
+    function view($str=NULL)
+    {
+        if (isset($str)) {
+            $data = array(
+                'record' => $this->_get($str)
+                );
+            if (!empty($data['record'])) {
+                foreach ($data['record'] as $get) {
+                    redirect('category/' . uri_encode($get->category_name));
+                }
+            } else {
+                show_404();
+                return FALSE;
+            }
+        } else {
+            show_404();
+            return FALSE;
+        }
+    }
+
+    function update($str=NULL)
+    {
+        if (isset($str)) {
+            $data = array(
+                'record' => $this->_get($str),
+                );
+            if (!empty($data['record'])) {
+                $this->form_validation->set_rules('category_name', 'Category', 'trim|required|min_length[1]|max_length[50]|xss_clean');
+                $this->form_validation->set_error_delimiters('', '<br>');
+                if ($this->form_validation->run() == TRUE) {
+                    $update = array(
+                        'category_name' => $this->input->post('category_name'),
+                        );
+                    $this->qa_model->update('category', $update, array('id_category' => $str));
+                    redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+                } else {
+                    $data['count_question'] = $this->qa_model->count_where('question', array('category_id' => $str));
+                    $this->_render('category/update', $data);
+                }
+            } else {
+                show_404();
+                return FALSE;
+            }
+        } else {
+            show_404();
+            return FALSE;
+        }
+    }
+
+    function delete($str=NULL)
+    {
+        if (isset($str)) {
+            $data = array(
+                'record' => $this->_get($str)
+                );
+            if (!empty($data['record'])) {
+                $this->qa_model->delete('category', array('id_category' => $str));
+                redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+            } else {
+                show_404();
+                return FALSE;
+            }
+        } else {
+            show_404();
+            return FALSE;
+        }
+    }
+
+    function _get($str)
+    {
+        $var = $this->qa_model->get('category', array('id_category' => $str));
+        return ($var == FALSE)?array():$var;
+    }
 }

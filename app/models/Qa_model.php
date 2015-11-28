@@ -169,4 +169,17 @@ class Qa_model extends CI_Model
             return $count;
         }
     }
+
+    function count_join_where($table1, $table2, $join, $where)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join);
+        $this->db->where($where);
+        $count = $this->db->count_all_results();
+        if ($count == 0) {
+            return FALSE;
+        } else {
+            return $count;
+        }
+    }
 }
