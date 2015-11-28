@@ -78,7 +78,7 @@ class Comment extends CI_Privates
                 $this->form_validation->set_error_delimiters('', '<br>');
                 if ($this->form_validation->run() == TRUE) {
                     $update = array(
-                        'description_comment' => $this->input->post('description_comment'),
+                        'description_comment' => $this->input->post('description_comment', TRUE),
                         );
                     $this->qa_model->update('comment', $update, array('id_comment' => $str));
                     redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));

@@ -251,21 +251,6 @@ if (!function_exists('qa_str_limit'))
 	}
 }
 
-if (!function_exists('qa_domain'))
-{
-	function qa_domain($str)
-	{
-        $host = @parse_url($url, PHP_URL_HOST);
-        if (!$host)
-            $host = $url;
-        if (substr($host, 0, 4) == "www.")
-            $host = substr($host, 4);
-        if (strlen($host) > 50)
-            $host = substr($host, 0, 47) . '...';
-        return $host;
-	}
-}
-
 if (!function_exists('qa_remove_html'))
 {
 	function qa_remove_html($str, $number)
@@ -276,5 +261,20 @@ if (!function_exists('qa_remove_html'))
 		} else {
 			return $var;
 		}		
+	}
+}
+
+if (!function_exists('qa_domain'))
+{
+	function qa_domain($str)
+	{
+        $host = @parse_url($str, PHP_URL_HOST);
+        if (!$host)
+            $host = $str;
+        if (substr($host, 0, 4) == "www.")
+            $host = substr($host, 4);
+        if (strlen($host) > 50)
+            $host = substr($host, 0, 47) . '...';
+        return $host;
 	}
 }

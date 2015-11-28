@@ -6,4 +6,4 @@ app/config/development/database.php
 app/logs/*.php
 planning.notes
 user_guide
-admin
+design

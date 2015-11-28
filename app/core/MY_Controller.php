@@ -31,6 +31,16 @@ class CI_Publics extends CI_Controller
 			);
 		$this->load->view('public/main', $data);
     }
+	
+	function _AlphaNumberSpace($str)
+	{
+		if (preg_match('/^[a-zA-Z0-9\s]+$/', $str)) {
+			return TRUE;
+		} else {
+			$this->form_validation->set_message('_AlphaNumberSpace', 'Error!');
+			return FALSE;
+		}
+	}
 }
 
 class CI_Privates extends CI_Controller
@@ -67,4 +77,14 @@ class CI_Privates extends CI_Controller
 			);
 		$this->load->view('main', $data);
     }
+	
+	function _AlphaNumberSpace($str)
+	{
+		if (preg_match('/^[a-zA-Z0-9\s]+$/', $str)) {
+			return TRUE;
+		} else {
+			$this->form_validation->set_message('_AlphaNumberSpace', 'Error!');
+			return FALSE;
+		}
+	}
 }

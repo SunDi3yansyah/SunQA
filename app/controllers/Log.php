@@ -25,10 +25,10 @@ class Log extends CI_Controller
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[200]|xss_clean');
 			$this->form_validation->set_error_delimiters('<p>', '</p>');
 			if ($this->form_validation->run() == TRUE) {
-				$check_username = $this->qa_model_login->login('user', array('username' => $this->input->post('username')));
+				$check_username = $this->qa_model_login->login('user', array('username' => $this->input->post('username', TRUE)));
 				if ($check_username == TRUE) {
 					foreach ($check_username as $check_hash) {
-						$check_password = $this->phpass->check_password($this->input->post('password'), $check_hash->password);
+						$check_password = $this->phpass->check_password($this->input->post('password', TRUE), $check_hash->password);
 						if ($check_password == TRUE) {
 							$looping_user = $this->qa_model_login->looping_login('user', array('username' => $check_hash->username), array('password' => $check_hash->password));
 							foreach ($looping_user as $user) {

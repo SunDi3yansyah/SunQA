@@ -8,7 +8,9 @@
 <title>Administrator - <?php echo $this->config->item('web_name'); ?></title>
 <link href="<?php echo base_url($this->config->item('private_css') . 'bootstrap.min.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url($this->config->item('private_css') . 'metisMenu.min.css'); ?>" rel="stylesheet">
+<?php if (isset($timelineCSS) == TRUE): ?>
 <link href="<?php echo base_url($this->config->item('private_css') . 'timeline.css'); ?>" rel="stylesheet">
+<?php endif ?>
 <?php if (isset($dataTables) == TRUE): ?>
 <link href="<?php echo base_url($this->config->item('private_css') . 'dataTables.bootstrap.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url($this->config->item('private_css') . 'dataTables.responsive.css'); ?>" rel="stylesheet">
@@ -17,8 +19,8 @@
 <link href="<?php echo base_url($this->config->item('private_css') . 'morris.css'); ?>" rel="stylesheet">
 <?php endif ?>
 <link href="<?php echo base_url($this->config->item('private_css') . 'font-awesome.min.css'); ?>" rel="stylesheet">
-<link href="<?php echo base_url($this->config->item('private_css') . 'style.css'); ?>" rel="stylesheet">
 <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/css/select2.min.css" rel="stylesheet">
+<link href="<?php echo base_url($this->config->item('private_css') . 'style.css'); ?>" rel="stylesheet">
 <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>

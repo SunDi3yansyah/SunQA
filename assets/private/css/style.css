@@ -396,3 +396,7 @@ strong.select2-results__group {
 .select2-container .select2-selection--single .select2-selection__rendered {
     padding-left: 12px !important;
 }
+
+a.btn {
+    text-transform: capitalize !important;
+}

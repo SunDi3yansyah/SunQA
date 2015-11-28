@@ -70,7 +70,7 @@ class Answer extends CI_Privates
                 $this->form_validation->set_error_delimiters('', '<br>');
                 if ($this->form_validation->run() == TRUE) {
                     $update = array(
-                        'description_answer' => $this->input->post('description_answer'),
+                        'description_answer' => $this->input->post('description_answer', TRUE),
                         'answer_update' => date('Y-m-d H:i:s'),
                         );
                     $this->qa_model->update('answer', $update, array('id_answer' => $str));

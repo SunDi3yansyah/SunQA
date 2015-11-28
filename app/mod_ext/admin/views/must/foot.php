@@ -3,7 +3,6 @@
 <script src="<?php echo base_url($this->config->item('private_js') . 'bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url($this->config->item('private_js') . 'metisMenu.min.js'); ?>"></script>
 <script src="<?php echo base_url($this->config->item('private_js') . 'raphael-min.js'); ?>"></script>
-<script src="<?php echo base_url($this->config->item('private_js') . 'script.js'); ?>"></script>
 <?php if (isset($dataTables) == TRUE): ?>
 <script src="<?php echo base_url($this->config->item('private_js') . 'jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url($this->config->item('private_js') . 'dataTables.bootstrap.min.js'); ?>"></script>
@@ -25,7 +24,7 @@ $(document).ready(function() {
         "responsive": true,
         "processing": true,
         "serverSide": true,
-        "ajax": "<?php echo base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/ajax'); ?>",
+        "ajax": "<?php echo base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/'.(isset($param_ajax)?$param_ajax:'ajax')); ?>",
         "columns": [
 <?php for ($i=0; $i < count($dtFields); $i++): ?>
             { "data": "<?php echo $dtFields[$i] ?>" },
@@ -47,15 +46,16 @@ $(document).ready(function() {
 });
 </script>
 <?php endif ?>
-<?php if (isset($morrisjs) == TRUE): ?>
-<script src="<?php echo base_url($this->config->item('private_js') . 'morris.min.js'); ?>"></script>
-<script src="<?php echo base_url($this->uri->segment(1) . '/javascript/jsmorris_data'); ?>"></script>
-<?php endif ?>
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/js/select2.min.js"></script>
 <script>
 $(document).ready(function() {
     $("select").select2();
 });
 </script>
+<?php if (isset($morrisjs) == TRUE): ?>
+<script src="<?php echo base_url($this->config->item('private_js') . 'morris.min.js'); ?>"></script>
+<script src="<?php echo base_url($this->uri->segment(1) . '/javascript/jsmorris_data'); ?>"></script>
+<?php endif ?>
+<script src="<?php echo base_url($this->config->item('private_js') . 'script.js'); ?>"></script>
 </body>
 </html>

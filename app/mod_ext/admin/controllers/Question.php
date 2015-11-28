@@ -74,10 +74,10 @@ class Question extends CI_Privates
                 $this->form_validation->set_error_delimiters('', '<br>');
                 if ($this->form_validation->run() == TRUE) {
                     $update = array(
-                        'subject' => $this->input->post('subject'),
-                        'category_id' => $this->input->post('category_id'),
-                        'description_question' => $this->input->post('description_question'),
-                        'answer_id' => $this->input->post('answer_id'),
+                        'subject' => $this->input->post('subject', TRUE),
+                        'category_id' => $this->input->post('category_id', TRUE),
+                        'description_question' => $this->input->post('description_question', TRUE),
+                        'answer_id' => $this->input->post('answer_id', TRUE),
                         'question_update' => date('Y-m-d H:i:s'),
                         );
                     $this->qa_model->update('question', $update, array('id_question' => $str));

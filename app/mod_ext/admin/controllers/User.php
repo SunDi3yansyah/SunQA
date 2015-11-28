@@ -39,6 +39,57 @@ class User extends CI_Privates
         }
 	}
 
+    function create()
+    {
+        $data = array(
+            'role' => $this->qa_model->all('role', 'id_role ASC'),
+            );
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|max_length[25]|xss_clean');
+        $this->form_validation->set_rules('role_id', 'role_id', 'trim|required|min_length[1]|max_length[11]|xss_clean');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[200]|xss_clean');
+        $this->form_validation->set_rules('email', 'E-mail', 'trim|required|min_length[6]|max_length[100]|xss_clean|valid_email');
+        $this->form_validation->set_rules('nama', 'nama', 'trim|required|min_length[5]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('activated', 'activated', 'trim|required|min_length[1]|max_length[4]|xss_clean');
+        $this->form_validation->set_rules('web', 'web', 'trim|required|min_length[5]|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('lokasi', 'lokasi', 'trim|required|min_length[3]|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('bio', 'bio', 'trim|required|min_length[1]|max_length[500]|xss_clean');
+        $this->form_validation->set_error_delimiters('', '<br>');
+        if ($this->form_validation->run() == TRUE) {
+            $username = array(
+                'username' => $this->input->post('username', TRUE)
+                );
+            $email = array(
+                'email' => $this->input->post('email', TRUE)
+                );
+            $check_username = $this->qa_model->get('user', $username);
+            $check_email = $this->qa_model->get('user', $email);
+            if ($check_username != FALSE) {
+                $data['errors'] = 'Error! Username <b>'. $this->input->post('username', TRUE) .'</b> sudah ada sebelumnya dalam basis data.';
+                $this->_render('user/create', $data);
+            } elseif ($check_email != FALSE) {
+                $data['errors'] = 'Error! E-mail <b>'. $this->input->post('email', TRUE) .'</b> sudah ada sebelumnya dalam basis data.';
+                $this->_render('user/create', $data);
+            } else {
+                $insert = array(
+                    'username' => $this->input->post('username', TRUE),
+                    'bio' => $this->input->post('bio', TRUE),
+                    'password' => $this->phpass->hash_password($this->input->post('password', TRUE)),
+                    'email' => $this->input->post('email', TRUE),
+                    'nama' => $this->input->post('nama', TRUE),
+                    'activated' => $this->input->post('activated', TRUE),
+                    'web' => qa_domain($this->input->post('web', TRUE)),
+                    'lokasi' => $this->input->post('lokasi', TRUE),
+                    'role_id' => $this->input->post('role_id', TRUE),
+                    'user_date' => date('Y-m-d H:i:s'),
+                    );
+                $this->qa_model->insert('user', $insert);
+                redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+            }
+        } else {
+            $this->_render('user/create', $data);
+        }
+    }
+
     function view($str=NULL)
     {
         if (isset($str)) {
@@ -64,22 +115,26 @@ class User extends CI_Privates
         if (isset($str)) {
             $data = array(
                 'record' => $this->_get($str),
+                'role' => $this->qa_model->all('role', 'id_role ASC'),
+                'record_join' => $this->qa_model->join_where('user', 'role', 'user.role_id=role.id_role', array('user.id_user' => $str), 'user.id_user'),
                 );
             if (!empty($data['record'])) {
-                foreach ($data['record'] as $get) {                    
+                foreach ($data['record'] as $get) {
                     $this->form_validation->set_rules('nama', 'nama', 'trim|required|min_length[5]|max_length[100]|xss_clean');
                     $this->form_validation->set_rules('activated', 'activated', 'trim|required|min_length[1]|max_length[4]|xss_clean');
                     $this->form_validation->set_rules('web', 'web', 'trim|required|min_length[5]|max_length[50]|xss_clean');
+                    $this->form_validation->set_rules('lokasi', 'lokasi', 'trim|required|min_length[3]|max_length[50]|xss_clean');
                     $this->form_validation->set_rules('role_id', 'role_id', 'trim|required|min_length[1]|max_length[11]|xss_clean');
                     $this->form_validation->set_rules('bio', 'bio', 'trim|required|min_length[1]|max_length[500]|xss_clean');
                     $this->form_validation->set_error_delimiters('', '<br>');
                     if ($this->form_validation->run() == TRUE) {
                         $update = array(
-                            'nama' => $this->input->post('nama'),
-                            'activated' => $this->input->post('activated'),
-                            'web' => $this->input->post('web'),
-                            'role_id' => $this->input->post('role_id'),
-                            'bio' => $this->input->post('bio'),
+                            'nama' => $this->input->post('nama', TRUE),
+                            'activated' => $this->input->post('activated', TRUE),
+                            'web' => qa_domain($this->input->post('web', TRUE)),
+                            'lokasi' => $this->input->post('lokasi', TRUE),
+                            'role_id' => $this->input->post('role_id', TRUE),
+                            'bio' => $this->input->post('bio', TRUE),
                             );
                         $this->qa_model->update('user', $update, array('id_user' => $str));
                         if ($get->activated != $update['activated'] || $get->role_id != $update['role_id']) {
@@ -89,8 +144,6 @@ class User extends CI_Privates
                             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
                         }
                     } else {
-                        $data['role'] = $this->qa_model->all('role', 'id_role ASC');
-                        $data['record_join'] = $this->qa_model->join_where('user', 'role', 'user.role_id=role.id_role', array('user.id_user' => $str), 'user.id_user');
                         $this->_render('user/update', $data);
                     }
                 }

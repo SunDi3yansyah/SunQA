@@ -22,7 +22,27 @@ class Dashboard extends CI_Privates
 			'count_tag' => $this->qa_model->count('tag'),
 			'count_vote' => $this->qa_model->count('vote'),
 			'morrisjs' => TRUE,
+            'dataTables' => TRUE,
+            'dtFields' => array(
+                'id',
+                'ip_address',
+                'timestamp',
+                ),
+            'param_ajax' => 'ajax_session',
 			);
 		$this->_render('dashboard/index', $data);
+	}
+
+	function ajax_session()
+	{
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        } else {
+            $this->load->library('datatables');
+            $this->datatables->from('session')
+                             ->select('id, ip_address, timestamp')
+                             ->add_column('action', '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete') . '/$1" class="btn btn-danger btn-sm">Delete</a>', 'id');
+            echo $this->datatables->generate();
+        }
 	}
 }

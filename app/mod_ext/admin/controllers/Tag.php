@@ -36,14 +36,25 @@ class Tag extends CI_Privates
 
     function create()
     {
-        $this->form_validation->set_rules('tag_name', 'Tag', 'trim|required|min_length[2]|max_length[50]|xss_clean|is_unique');
+        $this->form_validation->set_rules('tag_name', 'Tag', 'trim|required|min_length[2]|max_length[50]|xss_clean|callback__AlphaNumberSpace');
         $this->form_validation->set_error_delimiters('', '<br>');
         if ($this->form_validation->run() == TRUE) {
-            $insert = array(
-                'tag_name' => $this->input->post('tag_name'),
+            $tag_name = array(
+                'tag_name' => $this->input->post('tag_name', TRUE)
                 );
-            $this->qa_model->insert('tag', $insert);
-            redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+            $check = $this->qa_model->get('tag', $tag_name);
+            if ($check != FALSE) {
+                $data = array(
+                    'errors' => 'Error! Nama Tag <b>'. $this->input->post('tag_name', TRUE) .'</b> sudah ada sebelumnya dalam basis data.',
+                    );
+                $this->_render('tag/create', $data);
+            } else {
+                $insert = array(
+                    'tag_name' => $this->input->post('tag_name', TRUE),
+                    );
+                $this->qa_model->insert('tag', $insert);
+                redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+            }
         } else {
             $this->_render('tag/create');
         }
@@ -77,7 +88,7 @@ class Tag extends CI_Privates
                 'count_question' => $this->qa_model->count_join_where('question_tag', 'question', 'question_tag.question_id=question.id_question', array('tag_id' => $str)),
                 );
             if (!empty($data['record'])) {
-                $this->form_validation->set_rules('tag_name', 'Tag', 'trim|required|min_length[2]|max_length[50]|xss_clean');
+                $this->form_validation->set_rules('tag_name', 'Tag', 'trim|required|min_length[2]|max_length[50]|xss_clean|callback__AlphaNumberSpace');
                 $this->form_validation->set_error_delimiters('', '<br>');
                 if ($this->form_validation->run() == TRUE) {
                     foreach ($data['record'] as $row) {
@@ -87,16 +98,16 @@ class Tag extends CI_Privates
                         $check = $this->qa_model->get('tag', $tag_name);
                         if ($row->tag_name === $tag_name['tag_name']) {
                             $update = array(
-                                'tag_name' => $this->input->post('tag_name'),
+                                'tag_name' => $this->input->post('tag_name', TRUE),
                                 );
                             $this->qa_model->update('tag', $update, array('id_tag' => $str));
                             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
                         } elseif ($check != FALSE) {
-                            $data['errors'] = 'Error! '. $this->uri->segment(2) .' '. $this->input->post('tag_name') .' sudah ada sebelumnya dalam basis data.';
+                            $data['errors'] = 'Error! Nama Tag <b>'. $this->input->post('tag_name', TRUE) .'</b> sudah ada sebelumnya dalam basis data.';
                             $this->_render('tag/update', $data);
                         } else {
                             $update = array(
-                                'tag_name' => $this->input->post('tag_name'),
+                                'tag_name' => $this->input->post('tag_name', TRUE),
                                 );
                             $this->qa_model->update('tag', $update, array('id_tag' => $str));
                             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));

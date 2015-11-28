@@ -23,7 +23,7 @@
                                     <th>Username</th>
                                     <th>Role</th>
                                     <th>Nama</th>
-                                    <th>Email</th>
+                                    <th>E-mail</th>
                                     <th>Lokasi</th>
                                     <th>Action</th>
                                 </tr>
