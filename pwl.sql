@@ -86,7 +86,7 @@ CREATE TABLE `pwl_comment` (
   `comment_in` enum('Question','Answer') NOT NULL,
   `description_comment` text NOT NULL,
   `comment_date` datetime NOT NULL,
-  `comment_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `comment_update` datetime DEFAULT NULL,
   PRIMARY KEY (`id_comment`),
   KEY `user_id` (`user_id`),
   KEY `question_id` (`question_id`),
@@ -103,7 +103,7 @@ CREATE TABLE `pwl_comment` (
 
 LOCK TABLES `pwl_comment` WRITE;
 /*!40000 ALTER TABLE `pwl_comment` DISABLE KEYS */;
-INSERT INTO `pwl_comment` VALUES (1,1,NULL,1,'Answer','Comment ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2015-11-26 00:00:00','2015-11-28 12:59:07');
+INSERT INTO `pwl_comment` VALUES (1,1,NULL,1,'Answer','Comment ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2015-11-26 00:00:00','2015-11-28 19:59:07');
 /*!40000 ALTER TABLE `pwl_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +284,7 @@ CREATE TABLE `pwl_user` (
 
 LOCK TABLES `pwl_user` WRITE;
 /*!40000 ALTER TABLE `pwl_user` DISABLE KEYS */;
-INSERT INTO `pwl_user` VALUES (1,'SunDi3yansyah','$2a$08$ZQx0L7fF1nxBD7PdonVUreg3TUBRM9cO5T4QjJvF7LswP6pYq6VVW',1,'Cahyadi Triyansyah','sundi3yansyah@gmail.com','Nothing else','sundi3yansyah.com','Yogyakarta',1,'2015-11-25 00:00:00','2015-11-28 17:04:47','127.0.0.1','2015-11-28 10:04:47','');
+INSERT INTO `pwl_user` VALUES (1,'SunDi3yansyah','$2a$08$ZQx0L7fF1nxBD7PdonVUreg3TUBRM9cO5T4QjJvF7LswP6pYq6VVW',1,'Cahyadi Triyansyah','sundi3yansyah@gmail.com','Nothing else','sundi3yansyah.com','Yogyakarta',1,'2015-11-25 00:00:00','2015-11-28 20:07:28','127.0.0.1','2015-11-28 13:07:28','');
 /*!40000 ALTER TABLE `pwl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,4 +330,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-28 20:04:05
+-- Dump completed on 2015-11-28 20:21:48
