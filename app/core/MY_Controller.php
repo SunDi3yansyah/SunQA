@@ -87,4 +87,22 @@ class CI_Privates extends CI_Controller
 			return FALSE;
 		}
 	}
+
+	function generator()
+	{
+		$count = 100;
+		for ($i=0; $i < $count; $i++) { 
+			$insert = array(
+				'user_id' => 1,
+				'subject' => ''.$i.' Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+				'category_id' => 1,
+				'description_question' => ''.$i.'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+				'question_date' => date('Y-m-d H:i:s'),
+				'question_update' => date('Y-m-d H:i:s'),
+
+				);
+			$insert['url_question'] = qa_url($i, $insert['subject']);
+			$this->qa_model->insert('question', $insert);
+		}
+	}
 }

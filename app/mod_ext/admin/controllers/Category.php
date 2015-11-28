@@ -36,25 +36,14 @@ class Category extends CI_Privates
 
     function create()
     {
-        $this->form_validation->set_rules('category_name', 'Tag', 'trim|required|min_length[2]|max_length[50]|xss_clean|callback__AlphaNumberSpace');
+        $this->form_validation->set_rules('category_name', 'Category', 'trim|required|min_length[2]|max_length[50]|xss_clean|is_unique[category.category_name]|callback__AlphaNumberSpace');
         $this->form_validation->set_error_delimiters('', '<br>');
         if ($this->form_validation->run() == TRUE) {
-            $category_name = array(
-                'category_name' => $this->input->post('category_name', TRUE)
+            $insert = array(
+                'category_name' => $this->input->post('category_name', TRUE),
                 );
-            $check = $this->qa_model->get('category', $category_name);
-            if ($check != FALSE) {
-                $data = array(
-                    'errors' => 'Error! Nama Category <b>'. $this->input->post('category_name', TRUE) .'</b> sudah ada sebelumnya dalam basis data.',
-                    );
-                $this->_render('category/create', $data);
-            } else {
-                $insert = array(
-                    'category_name' => $this->input->post('category_name', TRUE),
-                    );
-                $this->qa_model->insert('category', $insert);
-                redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
-            }
+            $this->qa_model->insert('category', $insert);
+            redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
         } else {
             $this->_render('category/create');
         }

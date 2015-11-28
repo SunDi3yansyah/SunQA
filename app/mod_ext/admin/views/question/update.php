@@ -75,11 +75,13 @@
                                     <li>Submited <b><?php echo dateHourStripe($data->question_date) ?></b></li>
                                     <li><b><?php echo $count_answer ?> Jawaban</b></li>
                                     <li><b><?php echo $count_comment ?> Komentar</b></li>
+                                    <?php if (!empty($qt_current)): ?>
                                     <li><b>Tags : </b>
                                         <?php foreach ($qt_current as $qt): ?>
                                             <button type="button" class="btn btn-default btn-xs"><?php echo $qt->tag_name ?></button>
                                         <?php endforeach ?>
                                     </li>
+                                    <?php endif ?>
                                 </ul>
                             </div>
                             <div class="fc">

@@ -34,7 +34,7 @@ class Log extends CI_Controller
 							foreach ($looping_user as $user) {
 								if ($user->activated === STATUS_NOT_ACTIVATED) {
 									$data = array(
-										'error' => 'Status akun anda belum aktif, silakan periksa alamat email anda.'
+										'errors' => 'Status akun anda belum aktif, silakan periksa alamat email anda.'
 										);
 									$this->_render('public/auth/log_in', $data);
 								} else {
@@ -55,14 +55,14 @@ class Log extends CI_Controller
 							}
 						} else {
 							$data = array(
-								'error' => 'Password yang anda masukkan salah.'
+								'errors' => 'Password yang anda masukkan salah.'
 								);
 							$this->_render('public/auth/log_in', $data);
 						}						
 					}
 				} else {
 					$data = array(
-						'error' => 'Username tidak ada dalam database.'
+						'errors' => 'Username tidak ada dalam database.'
 						);
 					$this->_render('public/auth/log_in', $data);
 				}

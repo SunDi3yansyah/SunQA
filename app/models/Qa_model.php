@@ -39,6 +39,18 @@ class Qa_model extends CI_Model
         }
     }
 
+    function get_result_array($table, $field)
+    {
+        $this->db->from($table);
+        $this->db->where($field);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return FALSE;
+        } 
+    }
+
     function get_array($table, $where)
     {
         $this->db->select('*');
