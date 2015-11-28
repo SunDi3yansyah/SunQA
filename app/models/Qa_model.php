@@ -27,12 +27,25 @@ class Qa_model extends CI_Model
         }
     }
 
-    function get($table, $where) {
+    function get($table, $where)
+    {
+        $this->db->from($table);
+        $this->db->where($where);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
+    function get_array($table, $where)
+    {
         $this->db->select('*');
         $this->db->from($table);
         if ($where !== NULL) {
             if (is_array($where)) {
-                foreach ($where as $field=>$value) {
+                foreach ($where as $field => $value) {
                     $this->db->where($field, $value);
                 }
             } else {
@@ -65,26 +78,71 @@ class Qa_model extends CI_Model
         }
     }
 
-    function insert($table, $data) {
+    function join2_where($table1, $table2, $table3, $join1, $join2, $where, $order)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join1);
+        $this->db->join($table3, $join2);
+        $this->db->where($where);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
+    function join3_where($table1, $table2, $table3, $table4, $join1, $join2, $join3, $where, $order)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join1);
+        $this->db->join($table3, $join2);
+        $this->db->join($table4, $join3);
+        $this->db->where($where);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
+    function join4_where($table1, $table2, $table3, $table4, $table5, $join1, $join2, $join3, $join4, $where, $order)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join1);
+        $this->db->join($table3, $join2);
+        $this->db->join($table4, $join3);
+        $this->db->join($table5, $join4);
+        $this->db->where($where);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
+    function insert($table, $data)
+    {
         if ($this->db->insert($table, $data)) {
-            return $this->db->insert_id();
+            $this->db->insert_id();
+            return $this->db->affected_rows();
         } else {
             return FALSE;
         }
     }
 
-    function update($table, $data, $where) {
-            if (!is_array($where)) {
-                $where = array($where);
-            }
+    function update($table, $data, $where)
+    {
         $this->db->update($table, $data, $where);
         return $this->db->affected_rows();
     }
 
     function delete($table, $where) {
-        if (!is_array()) {
-            $where = array($where);
-        }
         $this->db->delete($table, $where);
         return $this->db->affected_rows();
     }
@@ -109,35 +167,6 @@ class Qa_model extends CI_Model
             return FALSE;
         } else {
             return $count;
-        }
-    }
-
-    function login($table, $where)
-    {
-        $this->db->select('*');
-        $this->db->from($table);
-        $this->db->where($where);
-        $this->db->limit(1);
-        $query = $this->db->get();
-        if ($query->num_rows() == 1) {
-            return $query->result();
-        } else {
-            return FALSE;
-        }
-    }
-
-    function looping_login($table, $where1, $where2)
-    {
-        $this->db->select('*');
-        $this->db->from($table);
-        $this->db->where($where1);
-        $this->db->where($where2);
-        $this->db->limit(1);
-        $query = $this->db->get();
-        if ($query->num_rows() == 1) {
-            return $query->result();
-        } else {
-            return FALSE;
         }
     }
 }

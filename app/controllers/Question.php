@@ -11,7 +11,7 @@ class Question extends CI_Publics
 {
 	function index($str=NULL, $answer=NULL)
 	{
-		$this->_render('public/question/talk');
+		$this->_render('public/question/index');
 	}
 
 	function create()

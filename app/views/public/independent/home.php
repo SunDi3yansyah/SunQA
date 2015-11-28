@@ -6,10 +6,10 @@
     <div class="splash">
         <h1 class="splash-head">Welcome to <?php echo $this->config->item('web_name'); ?></h1>
         <p class="splash-subhead">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Temukan masalah anda disini karena kesempatan dua kali sulit didapatkan, jangan sampai masalah anda semakin menumpuk dan menundanya dimudian hari hanya karena masalah sepele.
         </p>
         <p>
-            <a href="#" class="pure-button pure-button-primary">Getting Started Question</a>
+            <a href="<?php echo base_url('question/create'); ?>" class="pure-button pure-button-primary">Getting Started Question</a>
         </p>
     </div>
 </div>

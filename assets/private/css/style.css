@@ -363,3 +363,36 @@ ul#side-menu li h4 {
 h3.page-header, .panel-heading {
     text-transform: capitalize !important;
 }
+
+.page-header {
+    padding: 0 0 15px 0 !important;
+}
+
+/* select2 */
+
+strong.select2-results__group {
+  display: none !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 34px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 34px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    margin-top: 1px !important;
+}
+
+/* end select2 */
+
+.fc {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 12px !important;
+}

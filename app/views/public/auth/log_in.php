@@ -38,9 +38,9 @@
 			<?php endif ?>
 				<fieldset>
 					<legend>Log in</legend>
-						<label for="username">Your Username</label>
-						<?php echo form_input('username', set_value('username'), 'placeholder="Your Username"'); ?>
-						<label for="password">Your Password</label>
+						<label for="username">Username</label>
+						<?php echo form_input('username', set_value('username'), 'placeholder="Your Username" autocomplete="off"'); ?>
+						<label for="password">Password</label>
 						<?php echo form_password('password', '', 'placeholder="Your Password"'); ?>
 						<div class="fc">
 							<button class="pure-button button-secondary">Log in</button>

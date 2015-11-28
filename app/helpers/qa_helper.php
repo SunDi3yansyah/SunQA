@@ -230,11 +230,11 @@ if (!function_exists('uri_decode'))
 
 if (!function_exists('qa_url'))
 {
-	function qa_url($title)
+	function qa_url($id, $title)
 	{
 		$character = array('{','}',')','(','|','`','~','!','@','%','$','^','&','*','=','?','+','-','/','\\',',','.','#',':',';','\'','"','[',']');
 		$remove_char_strange = strtolower(str_replace($character, '', $title));
-		$end_link = strtolower(str_replace(' ', '-', $remove_char_strange));
+		$end_link = strtolower(str_replace(' ', '-', $id .'-'. $remove_char_strange));
 		return $end_link;
 	}
 }

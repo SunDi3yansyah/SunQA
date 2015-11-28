@@ -28,6 +28,7 @@ CREATE TABLE `pwl_answer` (
   `question_id` int(11) NOT NULL,
   `description_answer` text NOT NULL,
   `answer_date` datetime NOT NULL,
+  `answer_update` datetime DEFAULT NULL,
   PRIMARY KEY (`id_answer`),
   KEY `user_id` (`user_id`),
   KEY `question_id` (`question_id`),
@@ -42,7 +43,7 @@ CREATE TABLE `pwl_answer` (
 
 LOCK TABLES `pwl_answer` WRITE;
 /*!40000 ALTER TABLE `pwl_answer` DISABLE KEYS */;
-INSERT INTO `pwl_answer` VALUES (1,1,1,'Answer ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2015-11-27 00:00:00');
+INSERT INTO `pwl_answer` VALUES (1,1,1,'Answer ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2015-11-27 00:00:00',NULL);
 /*!40000 ALTER TABLE `pwl_answer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +58,7 @@ CREATE TABLE `pwl_category` (
   `id_category` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +67,7 @@ CREATE TABLE `pwl_category` (
 
 LOCK TABLES `pwl_category` WRITE;
 /*!40000 ALTER TABLE `pwl_category` DISABLE KEYS */;
-INSERT INTO `pwl_category` VALUES (1,'Programming');
+INSERT INTO `pwl_category` VALUES (1,'Programming'),(2,'UI'),(3,'UX'),(4,'Design');
 /*!40000 ALTER TABLE `pwl_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +83,7 @@ CREATE TABLE `pwl_comment` (
   `user_id` int(11) NOT NULL,
   `question_id` int(11) DEFAULT NULL,
   `answer_id` int(11) DEFAULT NULL,
-  `comment_in` enum('question','answer') NOT NULL,
+  `comment_in` enum('Question','Answer') NOT NULL,
   `description_comment` text NOT NULL,
   `comment_date` datetime NOT NULL,
   PRIMARY KEY (`id_comment`),
@@ -101,7 +102,7 @@ CREATE TABLE `pwl_comment` (
 
 LOCK TABLES `pwl_comment` WRITE;
 /*!40000 ALTER TABLE `pwl_comment` DISABLE KEYS */;
-INSERT INTO `pwl_comment` VALUES (1,1,1,NULL,'question','Comment ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2015-11-26 00:00:00');
+INSERT INTO `pwl_comment` VALUES (1,1,1,NULL,'Answer','Comment ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2015-11-26 00:00:00');
 /*!40000 ALTER TABLE `pwl_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,6 +121,9 @@ CREATE TABLE `pwl_question` (
   `description_question` text NOT NULL,
   `answer_id` int(11) DEFAULT NULL,
   `question_date` datetime NOT NULL,
+  `question_update` datetime DEFAULT NULL,
+  `viewers` int(11) DEFAULT NULL,
+  `url_question` varchar(250) NOT NULL,
   PRIMARY KEY (`id_question`),
   KEY `user_id` (`user_id`),
   KEY `category_id` (`category_id`),
@@ -136,7 +140,7 @@ CREATE TABLE `pwl_question` (
 
 LOCK TABLES `pwl_question` WRITE;
 /*!40000 ALTER TABLE `pwl_question` DISABLE KEYS */;
-INSERT INTO `pwl_question` VALUES (1,1,'Lorem ipsum dolor sit amet',1,'Question ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.',NULL,'2015-11-25 00:00:00');
+INSERT INTO `pwl_question` VALUES (1,1,'Lorem ipsum dolor sit amet',1,'Question ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.',NULL,'2015-11-25 00:00:00','2015-11-28 07:38:52',NULL,'1-lorem-ipsum-dolor-sit-amet');
 /*!40000 ALTER TABLE `pwl_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,15 +152,15 @@ DROP TABLE IF EXISTS `pwl_question_tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pwl_question_tag` (
-  `id_qc` int(11) NOT NULL AUTO_INCREMENT,
+  `id_qt` int(11) NOT NULL AUTO_INCREMENT,
   `question_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL,
-  PRIMARY KEY (`id_qc`),
+  PRIMARY KEY (`id_qt`),
   KEY `question_id` (`question_id`),
   KEY `tag_id` (`tag_id`),
   CONSTRAINT `pwl_question_tag_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `pwl_question` (`id_question`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `pwl_question_tag_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `pwl_tag` (`id_tag`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,7 +169,7 @@ CREATE TABLE `pwl_question_tag` (
 
 LOCK TABLES `pwl_question_tag` WRITE;
 /*!40000 ALTER TABLE `pwl_question_tag` DISABLE KEYS */;
-INSERT INTO `pwl_question_tag` VALUES (1,1,1);
+INSERT INTO `pwl_question_tag` VALUES (9,1,3),(10,1,4);
 /*!40000 ALTER TABLE `pwl_question_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +233,7 @@ CREATE TABLE `pwl_tag` (
   `id_tag` int(11) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_tag`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,7 +242,7 @@ CREATE TABLE `pwl_tag` (
 
 LOCK TABLES `pwl_tag` WRITE;
 /*!40000 ALTER TABLE `pwl_tag` DISABLE KEYS */;
-INSERT INTO `pwl_tag` VALUES (1,'PHP');
+INSERT INTO `pwl_tag` VALUES (1,'PHP'),(2,'MySQL'),(3,'HTML'),(4,'CSS');
 /*!40000 ALTER TABLE `pwl_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,10 +267,11 @@ CREATE TABLE `pwl_user` (
   `user_date` datetime NOT NULL,
   `last_login` datetime NOT NULL,
   `last_ip` varchar(50) NOT NULL,
-  `modified` datetime NOT NULL,
-  `lost_password` varchar(50) NOT NULL,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `lost_password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`),
   KEY `role` (`role_id`),
   CONSTRAINT `pwl_user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `pwl_role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -278,7 +283,7 @@ CREATE TABLE `pwl_user` (
 
 LOCK TABLES `pwl_user` WRITE;
 /*!40000 ALTER TABLE `pwl_user` DISABLE KEYS */;
-INSERT INTO `pwl_user` VALUES (1,'SunDi3yansyah','$2a$08$ZQx0L7fF1nxBD7PdonVUreg3TUBRM9cO5T4QjJvF7LswP6pYq6VVW',1,'Cahyadi Triyansyah','sundi3yansyah@gmail.com','Nothing else','sundi3yansyah.com','Yogyakarta',1,'2015-11-25 00:00:00','2015-11-25 00:00:00','127.0.0.1','2015-11-25 00:00:00','');
+INSERT INTO `pwl_user` VALUES (1,'SunDi3yansyah','$2a$08$ZQx0L7fF1nxBD7PdonVUreg3TUBRM9cO5T4QjJvF7LswP6pYq6VVW',1,'Cahyadi Triyansyah','sundi3yansyah@gmail.com','Nothing else','sundi3yansyah.com','Yogyakarta',1,'2015-11-25 00:00:00','2015-11-28 06:07:29','127.0.0.1','2015-11-27 23:07:29','');
 /*!40000 ALTER TABLE `pwl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,7 +299,7 @@ CREATE TABLE `pwl_vote` (
   `user_id` int(11) NOT NULL,
   `question_id` int(11) DEFAULT NULL,
   `answer_id` int(11) DEFAULT NULL,
-  `vote_in` enum('question','answer') NOT NULL,
+  `vote_in` enum('Question','Answer') NOT NULL,
   PRIMARY KEY (`id_vote`),
   KEY `user_id` (`user_id`),
   KEY `question_id` (`question_id`),
@@ -311,7 +316,7 @@ CREATE TABLE `pwl_vote` (
 
 LOCK TABLES `pwl_vote` WRITE;
 /*!40000 ALTER TABLE `pwl_vote` DISABLE KEYS */;
-INSERT INTO `pwl_vote` VALUES (1,1,NULL,1,'answer');
+INSERT INTO `pwl_vote` VALUES (1,1,NULL,1,'Answer');
 /*!40000 ALTER TABLE `pwl_vote` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -324,4 +329,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-27 19:56:18
+-- Dump completed on 2015-11-28  8:38:59

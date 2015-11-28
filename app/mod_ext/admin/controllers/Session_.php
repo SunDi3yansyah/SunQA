@@ -17,7 +17,6 @@ class Session_ extends CI_Privates
                 'id',
                 'ip_address',
                 'timestamp',
-                'data',
                 ),
             );
 		$this->_render('session/index', $data);
@@ -30,9 +29,34 @@ class Session_ extends CI_Privates
         } else {
             $this->load->library('datatables');
             $this->datatables->from('session')
-                             ->select('id, ip_address, timestamp, data')
+                             ->select('id, ip_address, timestamp')
                              ->add_column('action', '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete') . '/$1" class="btn btn-danger btn-sm">Delete</a>', 'id');
             echo $this->datatables->generate();
         }
 	}
+
+    function delete($str=NULL)
+    {
+        if (isset($str)) {
+            $data = array(
+                'record' => $this->_get($str)
+                );
+            if (!empty($data['record'])) {
+                $this->qa_model->delete('session', array('id' => $str));
+                redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+            } else {
+                show_404();
+                return FALSE;
+            }
+        } else {
+            show_404();
+            return FALSE;
+        }
+    }
+
+    function _get($str)
+    {
+        $var = $this->qa_model->get('session', array('id' => $str));
+        return ($var == FALSE)?array():$var;
+    }
 }
