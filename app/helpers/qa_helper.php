@@ -243,9 +243,12 @@ if (!function_exists('qa_str_limit'))
 {
 	function qa_str_limit($str, $number)
 	{
-		if (strlen($str) >= $number) {
+		if (strlen($str) >= $number)
+		{
 			return substr($str, 0, $number) . ' ...';
-		} else {
+		}
+		else
+		{
 			return $str;
 		}		
 	}
@@ -256,9 +259,12 @@ if (!function_exists('qa_remove_html'))
 	function qa_remove_html($str, $number)
 	{
 		$var = strip_tags(str_replace(array('\'', '"'), '', $str));
-		if (strlen($var) >= $number) {
+		if (strlen($var) >= $number)
+		{
 			return substr($var, 0, $number) . ' ...';
-		} else {
+		}
+		else
+		{
 			return $var;
 		}		
 	}

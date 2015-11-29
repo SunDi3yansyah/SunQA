@@ -27,52 +27,89 @@ class Question extends CI_Privates
 
     function ajax()
     {
-        if (!$this->input->is_ajax_request()) {
+        if (!$this->input->is_ajax_request())
+        {
             exit('No direct script access allowed');
-        } else {
-            $this->load->library('datatables');
-            $this->datatables->from('question')
-                             ->join('user', 'question.user_id=user.id_user')
-                             ->join('category', 'question.category_id=category.id_category')
-                             ->select('id_question, username, subject, category_name, answer_id, question_date')
-                             ->add_column('action', '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view') . '/$1" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update') . '/$1" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete') . '/$1" class="btn btn-danger btn-sm">Delete</a>', 'id_question');
-            echo $this->datatables->generate();
+        }
+        else
+        {
+            $table = 'pwl_question';
+
+            $primaryKey = 'id_question';
+
+            $columns = array(
+                array('db' => 'id_question', 'dt' => 'id_question'),
+                array('db' => 'username', 'dt' => 'username'),
+                array('db' => 'subject', 'dt' => 'subject'),
+                array('db' => 'category_name', 'dt' => 'category_name'),
+                array('db' => 'answer_id', 'dt' => 'answer_id'),
+                array('db' => 'question_date', 'dt' => 'question_date'),
+                array(
+                    'db' => 'id_question',
+                    'dt' => 'action',
+                    'formatter' => function($id)
+                    {
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update/' . $id) . '" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                    }
+                ),
+            );
+
+            $joinQuery = "FROM `pwl_question` JOIN `pwl_user` ON `pwl_question`.`user_id`=`pwl_user`.`id_user` JOIN `pwl_category` ON `pwl_question`.`category_id`=`pwl_category`.`id_category`";
+
+            $sql_details = array(
+                'user' => $this->db->username,
+                'pass' => $this->db->password,
+                'db' => $this->db->database,
+                'host' => $this->db->hostname
+                );
+
+            $this->output
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(Datatables_join::simple($_GET, $sql_details, $table, $primaryKey, $columns, $joinQuery), JSON_PRETTY_PRINT));
         }
     }
 
-    function view($str=NULL)
+    function view($str = NULL)
     {
-        if (isset($str)) {
-            $data = array(
-                'record' => $this->_get($str)
-                );
-            if (!empty($data['record'])) {
-                foreach ($data['record'] as $get) {
+        if (isset($str))
+        {
+            $data = $this->_get($str);
+            if (!empty($data))
+            {
+                foreach ($data as $get)
+                {
                     redirect('question/' . $get->url_question);
                 }
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }
     }
 
-    function update($str=NULL)
+    function update($str = NULL)
     {
-        if (isset($str)) {
+        if (isset($str))
+        {
             $data = array(
                 'record' => $this->_get($str),
                 );
-            if (!empty($data['record'])) {
+            if (!empty($data['record']))
+            {
                 $this->form_validation->set_rules('subject', 'Subject', 'trim|required|min_length[10]|max_length[100]|xss_clean');
                 $this->form_validation->set_rules('category_id', 'Category', 'trim|required|min_length[1]|max_length[11]|xss_clean');
                 $this->form_validation->set_rules('description_question', 'Description', 'trim|required|min_length[25]|max_length[5000]|xss_clean');
                 $this->form_validation->set_rules('answer_id', 'Answer', 'trim|min_length[1]|max_length[11]|xss_clean');
                 $this->form_validation->set_error_delimiters('', '<br>');
-                if ($this->form_validation->run() == TRUE) {
+                if ($this->form_validation->run() == TRUE)
+                {
                     $update = array(
                         'subject' => $this->input->post('subject', TRUE),
                         'category_id' => $this->input->post('category_id', TRUE),
@@ -82,7 +119,8 @@ class Question extends CI_Privates
                         );
                     $this->qa_model->update('question', $update, array('id_question' => $str));
                     $this->qa_model->delete('question_tag', array('question_id' => $str));
-                    foreach ($this->input->post('question_tag', TRUE) as $qt) {
+                    foreach ($this->input->post('question_tag', TRUE) as $qt)
+                    {
                         $update_qt = array(
                             'question_id' => $str,
                             'tag_id' => $qt
@@ -90,17 +128,23 @@ class Question extends CI_Privates
                         $this->qa_model->insert('question_tag', $update_qt);
                     }
                     redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
-                } else {
+                }
+                else
+                {
                     $data['category'] = $this->qa_model->all('category', 'id_category ASC');
-                    foreach ($data['record'] as $row) {
+                    foreach ($data['record'] as $row)
+                    {
                         $data['qt_current'] = $this->qa_model->join2_where('question_tag', 'question', 'tag', 'question_tag.question_id=question.id_question', 'question_tag.tag_id=tag.id_tag', array('question_tag.question_id' => $row->id_question), 'question_tag.id_qt');
                         $data['qt_all'] = $this->qa_model->all('tag', 'id_tag ASC');
-                        if ($row->answer_id != NULL) {
+                        if ($row->answer_id != NULL)
+                        {
                             $data['record_join'] = $this->qa_model->join3_where('question', 'user', 'category', 'answer', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.answer_id=answer.id_answer', array('question.id_question' => $str), 'question.id_question');
                             $data['count_answer'] = $this->qa_model->count_where('answer', array('question_id' => $row->id_question));
                             $data['count_comment'] = $this->qa_model->count_where('comment', array('question_id' => $row->id_question));
                             $this->_render('question/update', $data);
-                        } else {
+                        }
+                        else
+                        {
                             $data['record_join'] = $this->qa_model->join2_where('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', array('question.id_question' => $str), 'question.id_question');
                             $data['count_answer'] = $this->qa_model->count_where('answer', array('question_id' => $row->id_question));
                             $data['count_comment'] = $this->qa_model->count_where('comment', array('question_id' => $row->id_question));
@@ -108,30 +152,38 @@ class Question extends CI_Privates
                         }
                     }
                 }
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }
     }
 
-    function delete($str=NULL)
+    function delete($str = NULL)
     {
-        if (isset($str)) {
-            $data = array(
-                'record' => $this->_get($str)
-                );
-            if (!empty($data['record'])) {
+        if (isset($str))
+        {
+            $data = $this->_get($str);
+            if (!empty($data))
+            {
                 $this->qa_model->delete('question', array('id_question' => $str));
                 redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }

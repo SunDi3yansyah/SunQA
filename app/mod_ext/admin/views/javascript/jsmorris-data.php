@@ -1,5 +1,5 @@
-$(function() {
-
+$(function()
+{
     Morris.Area({
         element: 'morris-area-chart',
         data: [{

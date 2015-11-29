@@ -12,7 +12,6 @@ class Qa_model extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-		
 	}
 
     function all($table, $order)
@@ -44,7 +43,8 @@ class Qa_model extends CI_Model
         $this->db->from($table);
         $this->db->where($field);
         $query = $this->db->get();
-        if ($query->num_rows() > 0) {
+        if ($query->num_rows() > 0)
+        {
             return $query->result_array();
         } else {
             return FALSE;
@@ -55,9 +55,12 @@ class Qa_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from($table);
-        if ($where !== NULL) {
-            if (is_array($where)) {
-                foreach ($where as $field => $value) {
+        if ($where !== NULL)
+        {
+            if (is_array($where))
+            {
+                foreach ($where as $field => $value)
+                {
                     $this->db->where($field, $value);
                 }
             } else {
@@ -65,13 +68,19 @@ class Qa_model extends CI_Model
             }
         }
         $result = $this->db->get()->result();
-        if ($result) {
-            if ($where !== NULL) {
+        if ($result)
+        {
+            if ($where !== NULL)
+            {
                 return array_shift($result);
-            } else {
+            }
+            else
+            {
                 return $result;
             }
-        } else {
+        }
+        else
+        {
             return FALSE;
         }
     }
@@ -140,10 +149,13 @@ class Qa_model extends CI_Model
 
     function insert($table, $data)
     {
-        if ($this->db->insert($table, $data)) {
+        if ($this->db->insert($table, $data))
+        {
             $this->db->insert_id();
             return $this->db->affected_rows();
-        } else {
+        }
+        else
+        {
             return FALSE;
         }
     }
@@ -154,7 +166,8 @@ class Qa_model extends CI_Model
         return $this->db->affected_rows();
     }
 
-    function delete($table, $where) {
+    function delete($table, $where)
+    {
         $this->db->delete($table, $where);
         return $this->db->affected_rows();
     }
@@ -163,9 +176,12 @@ class Qa_model extends CI_Model
     {
         $this->db->from($table);
         $count = $this->db->count_all_results();
-        if ($count == 0) {
+        if ($count == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $count;
         }
     }
@@ -175,9 +191,28 @@ class Qa_model extends CI_Model
         $this->db->from($table);
         $this->db->where($where);
         $count = $this->db->count_all_results();
-        if ($count == 0) {
+        if ($count == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
+            return $count;
+        }
+    }
+
+    function count_where2($table, $where1, $where2)
+    {
+        $this->db->from($table);
+        $this->db->where($where1);
+        $this->db->where($where2);
+        $count = $this->db->count_all_results();
+        if ($count == 0)
+        {
+            return FALSE;
+        }
+        else
+        {
             return $count;
         }
     }
@@ -188,9 +223,12 @@ class Qa_model extends CI_Model
         $this->db->join($table2, $join);
         $this->db->where($where);
         $count = $this->db->count_all_results();
-        if ($count == 0) {
+        if ($count == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $count;
         }
     }

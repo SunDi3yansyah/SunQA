@@ -27,15 +27,45 @@ class User extends CI_Privates
 
 	function ajax()
 	{
-        if (!$this->input->is_ajax_request()) {
+        if (!$this->input->is_ajax_request())
+        {
             exit('No direct script access allowed');
-        } else {
-            $this->load->library('datatables');
-            $this->datatables->from('user')
-                             ->join('role', 'user.role_id=role.id_role')
-                             ->select('id_user, username, role_name, nama, email, lokasi')
-                             ->add_column('action', '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view') . '/$1" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update') . '/$1" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete') . '/$1" class="btn btn-danger btn-sm">Delete</a>', 'id_user');
-            echo $this->datatables->generate();
+        }
+        else
+        {
+            $table = 'pwl_user';
+
+            $primaryKey = 'id_user';
+
+            $columns = array(
+                array('db' => 'id_user', 'dt' => 'id_user'),
+                array('db' => 'username', 'dt' => 'username'),
+                array('db' => 'role_name', 'dt' => 'role_name'),
+                array('db' => 'nama', 'dt' => 'nama'),
+                array('db' => 'email', 'dt' => 'email'),
+                array('db' => 'lokasi', 'dt' => 'lokasi'),
+                array(
+                    'db' => 'id_user',
+                    'dt' => 'action',
+                    'formatter' => function($id)
+                    {
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update/' . $id) . '" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                    }
+                ),
+            );
+
+            $joinQuery = "FROM `pwl_user` JOIN `pwl_role` ON `pwl_user`.`role_id`=`pwl_role`.`id_role`";
+
+            $sql_details = array(
+                'user' => $this->db->username,
+                'pass' => $this->db->password,
+                'db' => $this->db->database,
+                'host' => $this->db->hostname
+                );
+
+            $this->output
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(Datatables_join::simple($_GET, $sql_details, $table, $primaryKey, $columns, $joinQuery), JSON_PRETTY_PRINT));
         }
 	}
 
@@ -54,7 +84,9 @@ class User extends CI_Privates
         $this->form_validation->set_rules('lokasi', 'lokasi', 'trim|required|min_length[3]|max_length[50]|xss_clean');
         $this->form_validation->set_rules('bio', 'bio', 'trim|required|min_length[1]|max_length[500]|xss_clean');
         $this->form_validation->set_error_delimiters('', '<br>');
-        if ($this->form_validation->run() == TRUE) {
+        if ($this->form_validation->run() == TRUE)
+        {
+            $this->load->library('phpass');
             $insert = array(
                 'username' => $this->input->post('username', TRUE),
                 'bio' => $this->input->post('bio', TRUE),
@@ -69,41 +101,51 @@ class User extends CI_Privates
                 );
             $this->qa_model->insert('user', $insert);
             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
-        } else {
+        }
+        else
+        {
             $this->_render('user/create', $data);
         }
     }
 
-    function view($str=NULL)
+    function view($str = NULL)
     {
-        if (isset($str)) {
-            $data = array(
-                'record' => $this->_get($str)
-                );
-            if (!empty($data['record'])) {
-                foreach ($data['record'] as $get) {
+        if (isset($str))
+        {
+            $data = $this->_get($str);
+            if (!empty($data))
+            {
+                foreach ($data as $get)
+                {
                     redirect('user/' . $get->username);
                 }
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }
     }
 
-    function update($str=NULL)
+    function update($str = NULL)
     {
-        if (isset($str)) {
+        if (isset($str))
+        {
             $data = array(
                 'record' => $this->_get($str),
                 'role' => $this->qa_model->all('role', 'id_role ASC'),
                 'record_join' => $this->qa_model->join_where('user', 'role', 'user.role_id=role.id_role', array('user.id_user' => $str), 'user.id_user'),
                 );
-            if (!empty($data['record'])) {
-                foreach ($data['record'] as $get) {
+            if (!empty($data['record']))
+            {
+                foreach ($data['record'] as $get)
+                {
                     $this->form_validation->set_rules('nama', 'nama', 'trim|required|min_length[5]|max_length[100]|xss_clean');
                     $this->form_validation->set_rules('activated', 'activated', 'trim|required|min_length[1]|max_length[4]|xss_clean');
                     $this->form_validation->set_rules('web', 'web', 'trim|required|min_length[5]|max_length[50]|xss_clean');
@@ -111,7 +153,8 @@ class User extends CI_Privates
                     $this->form_validation->set_rules('role_id', 'role_id', 'trim|required|min_length[1]|max_length[11]|xss_clean');
                     $this->form_validation->set_rules('bio', 'bio', 'trim|required|min_length[1]|max_length[500]|xss_clean');
                     $this->form_validation->set_error_delimiters('', '<br>');
-                    if ($this->form_validation->run() == TRUE) {
+                    if ($this->form_validation->run() == TRUE)
+                    {
                         $update = array(
                             'nama' => $this->input->post('nama', TRUE),
                             'activated' => $this->input->post('activated', TRUE),
@@ -121,40 +164,53 @@ class User extends CI_Privates
                             'bio' => $this->input->post('bio', TRUE),
                             );
                         $this->qa_model->update('user', $update, array('id_user' => $str));
-                        if ($get->activated != $update['activated'] || $get->role_id != $update['role_id']) {
+                        if ($get->activated != $update['activated'] || $get->role_id != $update['role_id'])
+                        {
                             $this->qa_libs->log_out();
                             redirect();
-                        } else {
+                        }
+                        else
+                        {
                             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
                         }
-                    } else {
+                    }
+                    else
+                    {
                         $this->_render('user/update', $data);
                     }
                 }
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }
     }
 
-    function delete($str=NULL)
+    function delete($str = NULL)
     {
-        if (isset($str)) {
-            $data = array(
-                'record' => $this->_get($str)
-                );
-            if (!empty($data['record'])) {
+        if (isset($str))
+        {
+            $data = $this->_get($str);
+            if (!empty($data))
+            {
                 $this->qa_model->delete('user', array('id_user' => $str));
                 redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }

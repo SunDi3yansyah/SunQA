@@ -34,9 +34,12 @@ class CI_Publics extends CI_Controller
 	
 	function _AlphaNumberSpace($str)
 	{
-		if (preg_match('/^[a-zA-Z0-9\s]+$/', $str)) {
+		if (preg_match('/^[a-zA-Z0-9\s]+$/', $str))
+		{
 			return TRUE;
-		} else {
+		}
+		else
+		{
 			$this->form_validation->set_message('_AlphaNumberSpace', 'Error!');
 			return FALSE;
 		}
@@ -80,9 +83,12 @@ class CI_Privates extends CI_Controller
 	
 	function _AlphaNumberSpace($str)
 	{
-		if (preg_match('/^[a-zA-Z0-9\s]+$/', $str)) {
+		if (preg_match('/^[a-zA-Z0-9\s]+$/', $str))
+		{
 			return TRUE;
-		} else {
+		}
+		else
+		{
 			$this->form_validation->set_message('_AlphaNumberSpace', 'Error!');
 			return FALSE;
 		}
@@ -91,7 +97,8 @@ class CI_Privates extends CI_Controller
 	function generator()
 	{
 		$count = 100;
-		for ($i=0; $i < $count; $i++) { 
+		for ($i=0; $i < $count; $i++)
+		{ 
 			$insert = array(
 				'user_id' => 1,
 				'subject' => ''.$i.' Lorem ipsum dolor sit amet, consectetur adipisicing elit.',

@@ -12,7 +12,6 @@ class Qa_model_login extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-		
 	}
 
     function login($table, $where)
@@ -22,9 +21,12 @@ class Qa_model_login extends CI_Model
         $this->db->where($where);
         $this->db->limit(1);
         $query = $this->db->get();
-        if ($query->num_rows() == 1) {
+        if ($query->num_rows() == 1)
+        {
             return $query->result();
-        } else {
+        }
+        else
+        {
             return FALSE;
         }
     }
@@ -37,9 +39,12 @@ class Qa_model_login extends CI_Model
         $this->db->where($where2);
         $this->db->limit(1);
         $query = $this->db->get();
-        if ($query->num_rows() == 1) {
+        if ($query->num_rows() == 1)
+        {
             return $query->result();
-        } else {
+        }
+        else
+        {
             return FALSE;
         }
     }

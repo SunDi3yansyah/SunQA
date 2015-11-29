@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'pagination', 'email', 'form_validation', 'qa_libs', 'phpass');
+$autoload['libraries'] = array('database', 'session', 'pagination', 'email', 'form_validation', 'qa_libs');
 
 /*
 | -------------------------------------------------------------------
@@ -111,7 +111,7 @@ $autoload['config'] = array('qa');
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array();
+$autoload['language'] = array('qa');
 
 /*
 | -------------------------------------------------------------------

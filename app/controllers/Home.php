@@ -11,9 +11,12 @@ class Home extends CI_Publics
 {
 	function index()
 	{
-		if ($this->qa_libs->logged_in()) {
+		if ($this->qa_libs->logged_in())
+		{
 			$this->_render('public/independent/home');
-		} else {
+		}
+		else
+		{
 			$this->_render('public/independent/home');
 		}		
 	}

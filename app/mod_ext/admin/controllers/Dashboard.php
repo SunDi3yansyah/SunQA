@@ -35,14 +35,40 @@ class Dashboard extends CI_Privates
 
 	function ajax_session()
 	{
-        if (!$this->input->is_ajax_request()) {
+        if (!$this->input->is_ajax_request())
+        {
             exit('No direct script access allowed');
-        } else {
-            $this->load->library('datatables');
-            $this->datatables->from('session')
-                             ->select('id, ip_address, timestamp')
-                             ->add_column('action', '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete') . '/$1" class="btn btn-danger btn-sm">Delete</a>', 'id');
-            echo $this->datatables->generate();
+        }
+        else
+        {
+            $table = 'pwl_session';
+
+            $primaryKey = 'id';
+
+            $columns = array(
+                array('db' => 'id', 'dt' => 'id'),
+                array('db' => 'ip_address', 'dt' => 'ip_address'),
+                array('db' => 'timestamp', 'dt' => 'timestamp'),
+                array(
+                    'db' => 'id',
+                    'dt' => 'action',
+                    'formatter' => function($id)
+                    {
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/session_/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                    }
+                ),
+            );
+
+            $sql_details = array(
+                'user' => $this->db->username,
+                'pass' => $this->db->password,
+                'db' => $this->db->database,
+                'host' => $this->db->hostname
+                );
+
+            $this->output
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(Datatables::simple($_GET, $sql_details, $table, $primaryKey, $columns), JSON_PRETTY_PRINT));
         }
 	}
 }

@@ -27,7 +27,8 @@
                                 <div class="form-group">
                                     <label>Category</label>
                                     <?php
-                                    foreach ($category as $cid) {
+                                    foreach ($category as $cid)
+                                    {
                                         $category_id[] = array(
                                             $cid->id_category => $cid->category_name,
                                             );
@@ -38,7 +39,8 @@
                                 <div class="form-group">
                                     <label>Tag</label>
                                     <?php
-                                    foreach ($qt_all as $qt_all) {
+                                    foreach ($qt_all as $qt_all)
+                                    {
                                         $question_tag[] = array(
                                             $qt_all->id_tag => $qt_all->tag_name,
                                             );

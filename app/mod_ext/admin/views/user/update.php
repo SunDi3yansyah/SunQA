@@ -27,7 +27,8 @@
                                 <div class="form-group">
                                     <label>Role</label>
                                     <?php
-                                    foreach ($role as $r) {
+                                    foreach ($role as $r)
+                                    {
                                         $role_id[] = array(
                                             $r->id_role => $r->role_name,
                                             );

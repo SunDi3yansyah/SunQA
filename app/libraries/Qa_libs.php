@@ -59,19 +59,25 @@ class Qa_libs
     function count_admin()
     {
     	$return = $this->ci->qa_model->count_where('user', array('role_id' => 1));
-    	if ($return == 0) {
+    	if ($return == 0)
+        {
     		return 0;
-    	} else {
+    	}
+        else
+        {
     		return $return;
     	}    	
     }
 
     function count_user()
     {
-    	$return = $this->ci->qa_model->count_where('user', array('role_id' => 2));
-    	if ($return == 0) {
+    	$return = $this->ci->qa_model->count_where2('user', array('activated' => STATUS_ACTIVATED), array('role_id' => 2));
+    	if ($return == 0)
+        {
     		return 0;
-    	} else {
+    	}
+        else
+        {
     		return $return;
     	}    
     }
@@ -79,9 +85,12 @@ class Qa_libs
     function count_not_activated()
     {
     	$return = $this->ci->qa_model->count_where('user', array('activated' => 0));
-    	if ($return == 0) {
+    	if ($return == 0)
+        {
     		return 0;
-    	} else {
+    	}
+        else
+        {
     		return $return;
     	}    
     }

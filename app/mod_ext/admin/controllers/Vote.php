@@ -24,15 +24,42 @@ class Vote extends CI_Privates
 
 	function ajax()
 	{
-        if (!$this->input->is_ajax_request()) {
+        if (!$this->input->is_ajax_request())
+        {
             exit('No direct script access allowed');
-        } else {
-            $this->load->library('datatables');
-            $this->datatables->from('vote')
-                             ->join('user', 'vote.user_id=user.id_user')
-                             ->select('id_vote, username, vote_in')
-                             ->add_column('action', '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete') . '/$1" class="btn btn-danger btn-sm">Delete</a>', 'id_vote');
-            echo $this->datatables->generate();
+        }
+        else
+        {
+            $table = 'pwl_vote';
+
+            $primaryKey = 'id_vote';
+
+            $columns = array(
+                array('db' => 'id_vote', 'dt' => 'id_vote'),
+                array('db' => 'username', 'dt' => 'username'),
+                array('db' => 'vote_in', 'dt' => 'vote_in'),
+                array(
+                    'db' => 'id_vote',
+                    'dt' => 'action',
+                    'formatter' => function($id)
+                    {
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update/' . $id) . '" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                    }
+                ),
+            );
+
+            $joinQuery = "FROM `pwl_vote` JOIN `pwl_user` ON `pwl_vote`.`user_id`=`pwl_user`.`id_user`";
+
+            $sql_details = array(
+                'user' => $this->db->username,
+                'pass' => $this->db->password,
+                'db' => $this->db->database,
+                'host' => $this->db->hostname
+                );
+
+            $this->output
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(Datatables_join::simple($_GET, $sql_details, $table, $primaryKey, $columns, $joinQuery), JSON_PRETTY_PRINT));
         }
 	}
 }

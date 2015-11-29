@@ -24,31 +24,61 @@ class Session_ extends CI_Privates
 
 	function ajax()
 	{
-        if (!$this->input->is_ajax_request()) {
+        if (!$this->input->is_ajax_request())
+        {
             exit('No direct script access allowed');
-        } else {
-            $this->load->library('datatables');
-            $this->datatables->from('session')
-                             ->select('id, ip_address, timestamp')
-                             ->add_column('action', '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete') . '/$1" class="btn btn-danger btn-sm">Delete</a>', 'id');
-            echo $this->datatables->generate();
+        }
+        else
+        {
+            $table = 'pwl_session';
+
+            $primaryKey = 'id';
+
+            $columns = array(
+                array('db' => 'id', 'dt' => 'id'),
+                array('db' => 'ip_address', 'dt' => 'ip_address'),
+                array('db' => 'timestamp', 'dt' => 'timestamp'),
+                array(
+                    'db' => 'id',
+                    'dt' => 'action',
+                    'formatter' => function($id)
+                    {
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                    }
+                ),
+            );
+
+            $sql_details = array(
+                'user' => $this->db->username,
+                'pass' => $this->db->password,
+                'db' => $this->db->database,
+                'host' => $this->db->hostname
+                );
+
+            $this->output
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(Datatables::simple($_GET, $sql_details, $table, $primaryKey, $columns), JSON_PRETTY_PRINT));
         }
 	}
 
-    function delete($str=NULL)
+    function delete($str = NULL)
     {
-        if (isset($str)) {
-            $data = array(
-                'record' => $this->_get($str)
-                );
-            if (!empty($data['record'])) {
+        if (isset($str))
+        {
+            $data = $this->_get($str);
+            if (!empty($data))
+            {
                 $this->qa_model->delete('session', array('id' => $str));
                 redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }

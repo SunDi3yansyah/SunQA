@@ -23,14 +23,39 @@ class Category extends CI_Privates
 
 	function ajax()
 	{
-        if (!$this->input->is_ajax_request()) {
+        if (!$this->input->is_ajax_request())
+        {
             exit('No direct script access allowed');
-        } else {
-            $this->load->library('datatables');
-            $this->datatables->from('category')
-                             ->select('id_category, category_name')
-                             ->add_column('action', '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view') . '/$1" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update') . '/$1" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete') . '/$1" class="btn btn-danger btn-sm">Delete</a>', 'id_category');
-            echo $this->datatables->generate();
+        }
+        else
+        {
+            $table = 'pwl_category';
+
+            $primaryKey = 'id_category';
+
+            $columns = array(
+                array('db' => 'id_category', 'dt' => 'id_category'),
+                array('db' => 'category_name', 'dt' => 'category_name'),
+                array(
+                    'db' => 'id_category',
+                    'dt' => 'action',
+                    'formatter' => function($id)
+                    {
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update/' . $id) . '" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                    }
+                ),
+            );
+
+            $sql_details = array(
+                'user' => $this->db->username,
+                'pass' => $this->db->password,
+                'db' => $this->db->database,
+                'host' => $this->db->hostname
+                );
+
+            $this->output
+                 ->set_content_type('application/json')
+                 ->set_output(json_encode(Datatables::simple($_GET, $sql_details, $table, $primaryKey, $columns), JSON_PRETTY_PRINT));
         }
 	}
 
@@ -38,63 +63,80 @@ class Category extends CI_Privates
     {
         $this->form_validation->set_rules('category_name', 'Category', 'trim|required|min_length[2]|max_length[50]|xss_clean|is_unique[category.category_name]|callback__AlphaNumberSpace');
         $this->form_validation->set_error_delimiters('', '<br>');
-        if ($this->form_validation->run() == TRUE) {
+        if ($this->form_validation->run() == TRUE)
+        {
             $insert = array(
                 'category_name' => $this->input->post('category_name', TRUE),
                 );
             $this->qa_model->insert('category', $insert);
             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
-        } else {
+        }
+        else
+        {
             $this->_render('category/create');
         }
     }
 
-    function view($str=NULL)
+    function view($str = NULL)
     {
-        if (isset($str)) {
-            $data = array(
-                'record' => $this->_get($str)
-                );
-            if (!empty($data['record'])) {
-                foreach ($data['record'] as $get) {
+        if (isset($str))
+        {
+            $data = $this->_get($str);
+            if (!empty($data))
+            {
+                foreach ($data as $get)
+                {
                     redirect('category/' . uri_encode($get->category_name));
                 }
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }
     }
 
-    function update($str=NULL)
+    function update($str = NULL)
     {
-        if (isset($str)) {
+        if (isset($str))
+        {
             $data = array(
                 'record' => $this->_get($str),
                 'count_question' => $this->qa_model->count_where('question', array('category_id' => $str))
                 );
-            if (!empty($data['record'])) {
+            if (!empty($data['record']))
+            {
                 $this->form_validation->set_rules('category_name', 'Category', 'trim|required|min_length[2]|max_length[50]|xss_clean');
                 $this->form_validation->set_error_delimiters('', '<br>');
-                if ($this->form_validation->run() == TRUE) {
-                    foreach ($data['record'] as $row) {
+                if ($this->form_validation->run() == TRUE)
+                {
+                    foreach ($data['record'] as $row)
+                    {
                         $category_name = array(
                             'category_name' => $this->input->post('category_name', TRUE)
                             );
                         $check = $this->qa_model->get('category', $category_name);
-                        if ($row->category_name === $category_name['category_name']) {
+                        if ($row->category_name === $category_name['category_name'])
+                        {
                             $update = array(
                                 'category_name' => $this->input->post('category_name', TRUE),
                                 );
                             $this->qa_model->update('category', $update, array('id_category' => $str));
                             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
-                        } elseif ($check != FALSE) {
+                        }
+                        elseif ($check != FALSE)
+                        {
                             $data['errors'] = 'Error! Nama Category <b>'. $this->input->post('category_name', TRUE) .'</b> sudah ada sebelumnya dalam basis data.';
                             $this->_render('category/update', $data);
-                        } else {
+                        }
+                        else
+                        {
                             $update = array(
                                 'category_name' => $this->input->post('category_name', TRUE),
                                 );
@@ -102,33 +144,43 @@ class Category extends CI_Privates
                             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
                         }
                     }
-                } else {
+                }
+                else
+                {
                     $this->_render('category/update', $data);
                 }
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }
     }
 
-    function delete($str=NULL)
+    function delete($str = NULL)
     {
-        if (isset($str)) {
-            $data = array(
-                'record' => $this->_get($str)
-                );
-            if (!empty($data['record'])) {
+        if (isset($str))
+        {
+            $data = $this->_get($str);
+            if (!empty($data))
+            {
                 $this->qa_model->delete('category', array('id_category' => $str));
                 redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
-            } else {
+            }
+            else
+            {
                 show_404();
                 return FALSE;
             }
-        } else {
+        }
+        else
+        {
             show_404();
             return FALSE;
         }
