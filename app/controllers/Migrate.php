@@ -9,10 +9,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @copyright	Copyright (c) 2015 SunDi3yansyah
  */
 
-$config['web_name'] = '';
+class Migrate extends CI_Controller
+{
+	function index()
+	{
+		$this->load->library('migration');
 
-$config['private_css'] = 'assets/private/css/';
-$config['private_js'] = 'assets/private/js/';
-
-$config['iteration_count'] = 8;
-$config['portable_hashes'] = FALSE;
+		if ($this->migration->current() === FALSE)
+		{
+			show_error($this->migration->error_string());
+		}
+	}
+}

@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * @package		Question Answer (https://github.com/SunDi3yansyah/FinalProjectPWL)
  * @author		Cahyadi Triyansyah (https://sundi3yansyah.com)
@@ -7,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license		MIT
  * @copyright	Copyright (c) 2015 SunDi3yansyah
  */
+
 class Auth extends CI_Publics
 {
 	function sign_up()
@@ -18,6 +20,7 @@ class Auth extends CI_Publics
 		}
 		else
 		{
+			$this->session->unset_userdata('current_url');
 			$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|max_length[25]|xss_clean|is_unique[user.username]');
 			$this->form_validation->set_rules('email', 'E-Mail', 'trim|required|min_length[6]|max_length[100]|xss_clean|valid_email|is_unique[user.email]');
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[200]|xss_clean');

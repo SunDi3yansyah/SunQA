@@ -4,7 +4,7 @@
 <?php $this->load->view('public/must/menu'); ?>
 <div class="splash-container">
     <div class="splash">
-        <h1 class="splash-head">Welcome to <?php echo $this->config->item('web_name'); ?></h1>
+        <h1 class="splash-head"><?php echo $this->lang->line('welcome') . $this->config->item('web_name') ?></h1>
         <p class="splash-subhead">
             Temukan masalah anda disini karena kesempatan dua kali sulit didapatkan, jangan sampai masalah anda semakin menumpuk dan menundanya dimudian hari hanya karena masalah sepele.
         </p>

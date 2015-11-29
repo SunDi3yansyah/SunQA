@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * @package		Question Answer (https://github.com/SunDi3yansyah/FinalProjectPWL)
  * @author		Cahyadi Triyansyah (https://sundi3yansyah.com)
@@ -7,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license		MIT
  * @copyright	Copyright (c) 2015 SunDi3yansyah
  */
+
 class Log extends CI_Controller
 {
 	function __construct()
@@ -44,7 +46,7 @@ class Log extends CI_Controller
 								if ($user->activated === STATUS_NOT_ACTIVATED)
 								{
 									$data = array(
-										'errors' => 'Status akun anda belum aktif, silakan periksa alamat email anda.'
+										'errors' => '<p>Status akun anda belum aktif, silakan periksa alamat email anda.</p>'
 										);
 									$this->_render('public/auth/log_in', $data);
 								}
@@ -69,7 +71,7 @@ class Log extends CI_Controller
 						else
 						{
 							$data = array(
-								'errors' => 'Password yang anda masukkan salah.'
+								'errors' => '<p>Password yang anda masukkan salah.</p>'
 								);
 							$this->_render('public/auth/log_in', $data);
 						}						
@@ -78,7 +80,7 @@ class Log extends CI_Controller
 				else
 				{
 					$data = array(
-						'errors' => 'Username tidak ada dalam database.'
+						'errors' => '<p>Username tidak ada dalam database.</p>'
 						);
 					$this->_render('public/auth/log_in', $data);
 				}

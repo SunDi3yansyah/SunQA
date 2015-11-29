@@ -108,6 +108,28 @@ INSERT INTO `pwl_comment` VALUES (1,1,NULL,1,'Answer','Comment ... Lorem ipsum d
 UNLOCK TABLES;
 
 --
+-- Table structure for table `pwl_migrations`
+--
+
+DROP TABLE IF EXISTS `pwl_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pwl_migrations` (
+  `version` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pwl_migrations`
+--
+
+LOCK TABLES `pwl_migrations` WRITE;
+/*!40000 ALTER TABLE `pwl_migrations` DISABLE KEYS */;
+INSERT INTO `pwl_migrations` VALUES (20121031100537);
+/*!40000 ALTER TABLE `pwl_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pwl_question`
 --
 
@@ -270,12 +292,13 @@ CREATE TABLE `pwl_user` (
   `last_ip` varchar(50) DEFAULT NULL,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `lost_password` varchar(50) DEFAULT NULL,
+  `image` varchar(50) NOT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   KEY `role` (`role_id`),
   CONSTRAINT `pwl_user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `pwl_role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +307,7 @@ CREATE TABLE `pwl_user` (
 
 LOCK TABLES `pwl_user` WRITE;
 /*!40000 ALTER TABLE `pwl_user` DISABLE KEYS */;
-INSERT INTO `pwl_user` VALUES (1,'SunDi3yansyah','$2a$08$ZQx0L7fF1nxBD7PdonVUreg3TUBRM9cO5T4QjJvF7LswP6pYq6VVW',1,'Cahyadi Triyansyah','sundi3yansyah@gmail.com','Nothing else','sundi3yansyah.com','Yogyakarta',1,'2015-11-25 00:00:00','2015-11-29 16:07:12','127.0.0.1','2015-11-29 09:07:12',''),(2,'sundi3yansyahx','$2a$08$8CB2A7Q9sXnlEp9QJS4.vOMwJCOU/UrZxspsW.Ek4VoUqX2e87PeC',0,'asdsadsd','sasdsd@asdd.com','','','',2,'2015-11-28 21:36:32',NULL,'127.0.0.1','2015-11-28 14:36:32',NULL);
+INSERT INTO `pwl_user` VALUES (1,'SunDi3yansyah','$2a$08$EH8hiLzRcg/jpKUhkUyc7uIiyXbSC5YcNLhClbDJGojc4MpDgQ8Pu',1,'Cahyadi Triyansyah','sundi3yansyah@gmail.com','Nothing else','sundi3yansyah.com','Yogyakarta',1,'2015-11-25 00:00:00','2015-11-30 04:17:34','127.0.0.1','2015-11-29 21:21:48','',''),(2,'sundi3yansyahx','$2a$08$8CB2A7Q9sXnlEp9QJS4.vOMwJCOU/UrZxspsW.Ek4VoUqX2e87PeC',0,'asdsadsd','sasdsd@asdd.com','','','',2,'2015-11-28 21:36:32',NULL,'127.0.0.1','2015-11-28 14:36:32',NULL,''),(3,'anonim','$2a$08$FCThgSsRyZKywFu4QBuIHOBYjQpGmbiDTHyS/q/RS.yZYvqbtKeQ6',1,'anonim','anonim@google.com','','','',2,'2015-11-30 04:11:41','2015-11-30 04:12:11','127.0.0.1','2015-11-29 21:12:11',NULL,'');
 /*!40000 ALTER TABLE `pwl_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,4 +353,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-29 19:12:25
+-- Dump completed on 2015-11-30  4:35:25

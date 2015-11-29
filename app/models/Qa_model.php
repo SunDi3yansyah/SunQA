@@ -38,6 +38,19 @@ class Qa_model extends CI_Model
         }
     }
 
+    function get_two($table, $where1, $where2)
+    {
+        $this->db->from($table);
+        $this->db->where($where1);
+        $this->db->where($where2);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
     function get_result_array($table, $field)
     {
         $this->db->from($table);
@@ -90,6 +103,35 @@ class Qa_model extends CI_Model
         $this->db->from($table1);
         $this->db->join($table2, $join);
         $this->db->where($where);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
+    function join2($table1, $table2, $table3, $join1, $join2, $order)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join1);
+        $this->db->join($table3, $join2);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
+    function join2_ajax($table1, $table2, $table3, $join1, $join2, $order, $limit, $offset)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join1);
+        $this->db->join($table3, $join2);
+        $this->db->limit($limit, $offset);
         $this->db->order_by($order);
         $query = $this->db->get();
         if ($query->num_rows() == 0){
