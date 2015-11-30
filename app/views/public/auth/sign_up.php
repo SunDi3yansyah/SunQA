@@ -1,39 +1,15 @@
 <title>Sign Up - <?php echo $this->config->item('web_name'); ?></title>
-<style>
-.inner-screen {
-	background: #1abc9d;
-	margin: 0px auto;
-	padding: 8em 0;
-}
-.inner-screen .pure-form-stacked legend {
-	color: #AB1E1E;
-	text-align: center;
-	font-weight: normal;
-	font-size: xx-large;
-}
-.form {
-	width: 400px;
-	background: #edeff1;
-	margin: 0px auto;
-	padding: 20px;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
-.fc {
-		text-align: center;
-		margin: 0 auto;
-}
-</style>
 </head>
 <body>
 <?php $this->load->view('public/must/menu'); ?>
 <div class="content-wrapper">
 	<div class="inner-screen">
-		<div class="form">
+		<div class="open-form">
 			<?php echo form_open($this->uri->uri_string(), 'class="pure-form pure-form-stacked"'); ?>
 			<?php if (validation_errors()): ?>
-				<?php echo validation_errors(); ?>
+				<div class="errors">
+					<?php echo validation_errors(); ?>
+				</div>
 			<?php endif ?>
 				<fieldset>
 					<legend>Sign Up</legend>

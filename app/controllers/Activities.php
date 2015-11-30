@@ -13,6 +13,6 @@ class Activities extends CI_Publics
 {
 	function index()
 	{
-		$this->_render('public/independent/activities');
+		$this->_render('public/activities/index');
 	}
 }

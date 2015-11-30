@@ -1,9 +1,7 @@
     <div class="footer l-box is-center">
-        Copyright &copy; <?php echo date('Y'); ?> <?php echo $this->config->item('web_name'); ?>, All Right Reserved.
+        <?php echo $this->config->item('footer') ?>
     </div>
 </div>
-    <div class="footer l-box is-center">
-        View the source of this layout to learn more. Made with love by the YUI Team.
-    </div>
+<script src="<?php echo base_url($this->config->item('public_js') . 'jQuery.min.js'); ?>"></script>
 </body>
 </html>

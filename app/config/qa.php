@@ -10,6 +10,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 $config['web_name'] = 'Question Answer';
+$config['footer'] = 'Copyright &copy; '.date('Y').' '.$config['web_name'].', All Right Reserved.';
+
+$config['public_css'] = 'assets/css/';
+$config['public_js'] = 'assets/js/';
+$config['public_image'] = 'assets/images/';
+$config['public_font'] = 'assets/fonts/';
 
 $config['private_css'] = 'assets/private/css/';
 $config['private_js'] = 'assets/private/js/';

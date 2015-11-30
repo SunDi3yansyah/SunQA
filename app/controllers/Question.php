@@ -24,7 +24,7 @@ class Question extends CI_Publics
 		}
 		else
 		{
-			# code...
+			$this->_render('public/question/create');
 		}		
 	}
 }

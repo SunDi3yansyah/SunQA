@@ -4,6 +4,8 @@ __PERANCANGAN WEBSITE SISTEM TANYA JAWAB__
 
 Final Project Pemrograman Web Lanjut
 
+![Thanks to](https://raw.githubusercontent.com/SunDi3yansyah/FinalProjectPWL/master/assets/images/common/thanks-to.png)
+
 ### Rincian Mahasiswa
 
 Nama | NIM | Email | Dosen
@@ -158,9 +160,6 @@ __pwl_vote__
 | vote_in     | enum('question','answer') | NO   |     | NULL    |                |
 +-------------+---------------------------+------+-----+---------+----------------+
 ```
-
-### Thanks to
-[![Amikom](https://lh5.googleusercontent.com/-NWphcCvKD3E/VlTt7f15FLI/AAAAAAAABEA/JDH5QDSPLmc/w148-h150-no/logo_amikom_cover150.jpg)](http://amikom.ac.id) [![CodeIgniter](http://www.codeigniter.com/assets/images/ci-logo-big.png)](http://www.codeigniter.com/) [![Openshift online](https://lh3.googleusercontent.com/-YeznvYHUBis/VlTv1qUeUiI/AAAAAAAABFY/Sm65sUeiB-M/w160-h150-no/redhat_reverse.png)](https://www.openshift.com) [![github](https://lh3.googleusercontent.com/-Icom7BsPUc8/VlTvLZ9L0SI/AAAAAAAABEw/kUWn7MCjhJ4/s150-no/GitHub-Mark150.png)](https://github.com)
 
 ### License
 [![MIT License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)

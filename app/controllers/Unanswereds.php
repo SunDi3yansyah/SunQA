@@ -13,6 +13,6 @@ class Unanswereds extends CI_Publics
 {
 	function index()
 	{
-		$this->_render('public/independent/unanswered');
+		$this->_render('public/unanswereds/index');
 	}
 }

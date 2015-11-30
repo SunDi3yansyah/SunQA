@@ -37,6 +37,7 @@ class Auth extends CI_Publics
 					'nama' => $this->input->post('nama', TRUE),
 					'user_date' => date('Y-m-d H:i:s'),
 					'last_ip' => $this->input->ip_address(),
+					'activated_hash' => sha1(microtime()),
 					);
 				$this->qa_model->insert('user', $insert);
 				$this->_render('public/auth/sign_up_success');
@@ -46,6 +47,29 @@ class Auth extends CI_Publics
 				$this->_render('public/auth/sign_up');
 			}
 		}
+	}
+
+	function activated($str = NULL)
+	{
+		if (!empty($str)) {
+			$checking = $this->qa_model->get('user', array('activated_hash' => $str));
+			if ($checking != FALSE) {
+				foreach ($checking as $user) {
+					$update = array(
+						'activated' => 1,
+						'last_ip' => $this->input->ip_address(),
+						'activated_hash' => NULL
+						);
+					$this->_render('public/auth/activated');
+				}
+			} else {
+				show_404();
+				return FALSE;
+			}
+		} else {
+			show_404();
+			return FALSE;
+		}		
 	}
 
 	function forgot()
