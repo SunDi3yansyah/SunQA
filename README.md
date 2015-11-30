@@ -27,6 +27,7 @@ Aplikasi ini dibuat untuk memenuhi matakuliah Pemrograman Web Lanjut. Saya disin
 | pwl_answer       |
 | pwl_category     |
 | pwl_comment      |
+| pwl_migrations   |
 | pwl_question     |
 | pwl_question_tag |
 | pwl_role         |
@@ -48,6 +49,7 @@ __pwl_answer__
 | question_id        | int(11)  | NO   | MUL | NULL    |                |
 | description_answer | text     | NO   |     | NULL    |                |
 | answer_date        | datetime | NO   |     | NULL    |                |
+| answer_update      | datetime | YES  |     | NULL    |                |
 +--------------------+----------+------+-----+---------+----------------+
 ```
 __pwl_category__
@@ -68,11 +70,18 @@ __pwl_comment__
 | user_id             | int(11)                   | NO   | MUL | NULL    |                |
 | question_id         | int(11)                   | YES  | MUL | NULL    |                |
 | answer_id           | int(11)                   | YES  | MUL | NULL    |                |
-| comment_in          | enum('question','answer') | NO   |     | NULL    |                |
+| comment_in          | enum('Question','Answer') | NO   |     | NULL    |                |
 | description_comment | text                      | NO   |     | NULL    |                |
 | comment_date        | datetime                  | NO   |     | NULL    |                |
+| comment_update      | datetime                  | YES  |     | NULL    |                |
 +---------------------+---------------------------+------+-----+---------+----------------+
 ```
+__pwl_migrations__
++---------+------------+------+-----+---------+-------+
+| Field   | Type       | Null | Key | Default | Extra |
++---------+------------+------+-----+---------+-------+
+| version | bigint(20) | NO   |     | NULL    |       |
++---------+------------+------+-----+---------+-------+
 __pwl_question__
 ```
 +----------------------+--------------+------+-----+---------+----------------+
@@ -85,6 +94,9 @@ __pwl_question__
 | description_question | text         | NO   |     | NULL    |                |
 | answer_id            | int(11)      | YES  | MUL | NULL    |                |
 | question_date        | datetime     | NO   |     | NULL    |                |
+| question_update      | datetime     | YES  |     | NULL    |                |
+| viewers              | int(11)      | YES  |     | NULL    |                |
+| url_question         | varchar(250) | NO   |     | NULL    |                |
 +----------------------+--------------+------+-----+---------+----------------+
 ```
 __pwl_question_tag__
@@ -92,7 +104,7 @@ __pwl_question_tag__
 +-------------+---------+------+-----+---------+----------------+
 | Field       | Type    | Null | Key | Default | Extra          |
 +-------------+---------+------+-----+---------+----------------+
-| id_qc       | int(11) | NO   | PRI | NULL    | auto_increment |
+| id_qt       | int(11) | NO   | PRI | NULL    | auto_increment |
 | question_id | int(11) | NO   | MUL | NULL    |                |
 | tag_id      | int(11) | NO   | MUL | NULL    |                |
 +-------------+---------+------+-----+---------+----------------+
@@ -128,25 +140,27 @@ __pwl_tag__
 ```
 __pwl_user__
 ```
-+---------------+--------------+------+-----+---------+----------------+
-| Field         | Type         | Null | Key | Default | Extra          |
-+---------------+--------------+------+-----+---------+----------------+
-| id_user       | int(11)      | NO   | PRI | NULL    | auto_increment |
-| username      | varchar(25)  | NO   | UNI | NULL    |                |
-| password      | varchar(200) | NO   |     | NULL    |                |
-| activated     | tinyint(4)   | NO   |     | 0       |                |
-| nama          | varchar(100) | NO   |     | NULL    |                |
-| email         | varchar(100) | NO   |     | NULL    |                |
-| bio           | text         | NO   |     | NULL    |                |
-| web           | varchar(50)  | NO   |     | NULL    |                |
-| lokasi        | varchar(50)  | NO   |     | NULL    |                |
-| role_id       | int(11)      | NO   | MUL | NULL    |                |
-| user_date     | datetime     | NO   |     | NULL    |                |
-| last_login    | datetime     | NO   |     | NULL    |                |
-| last_ip       | varchar(50)  | NO   |     | NULL    |                |
-| modified      | datetime     | NO   |     | NULL    |                |
-| lost_password | varchar(50)  | NO   |     | NULL    |                |
-+---------------+--------------+------+-----+---------+----------------+
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| Field          | Type         | Null | Key | Default           | Extra                       |
++----------------+--------------+------+-----+-------------------+-----------------------------+
+| id_user        | int(11)      | NO   | PRI | NULL              | auto_increment              |
+| username       | varchar(25)  | NO   | UNI | NULL              |                             |
+| password       | varchar(200) | NO   |     | NULL              |                             |
+| activated      | tinyint(4)   | NO   |     | 0                 |                             |
+| nama           | varchar(100) | NO   |     | NULL              |                             |
+| email          | varchar(100) | NO   | UNI | NULL              |                             |
+| bio            | text         | NO   |     | NULL              |                             |
+| web            | varchar(50)  | NO   |     | NULL              |                             |
+| lokasi         | varchar(50)  | NO   |     | NULL              |                             |
+| role_id        | int(11)      | NO   | MUL | 2                 |                             |
+| user_date      | datetime     | NO   |     | NULL              |                             |
+| last_login     | datetime     | YES  |     | NULL              |                             |
+| last_ip        | varchar(50)  | YES  |     | NULL              |                             |
+| modified       | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| lost_password  | varchar(50)  | YES  |     | NULL              |                             |
+| image          | varchar(50)  | YES  |     | NULL              |                             |
+| activated_hash | varchar(40)  | YES  |     | NULL              |                             |
++----------------+--------------+------+-----+-------------------+-----------------------------+
 ```
 __pwl_vote__
 ```
@@ -157,7 +171,7 @@ __pwl_vote__
 | user_id     | int(11)                   | NO   | MUL | NULL    |                |
 | question_id | int(11)                   | YES  | MUL | NULL    |                |
 | answer_id   | int(11)                   | YES  | MUL | NULL    |                |
-| vote_in     | enum('question','answer') | NO   |     | NULL    |                |
+| vote_in     | enum('Question','Answer') | NO   |     | NULL    |                |
 +-------------+---------------------------+------+-----+---------+----------------+
 ```
 
