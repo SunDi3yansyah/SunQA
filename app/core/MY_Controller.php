@@ -24,7 +24,7 @@ class CI_Publics extends CI_Controller
 		$this->session->set_userdata($array);
 	}
 
-	function _render($content, $data=NULL)
+	function _render($content, $data = NULL)
 	{
 		$data = array(
 			'head'		=> $this->load->view('public/must/head', $data, TRUE),
@@ -73,7 +73,7 @@ class CI_Privates extends CI_Controller
 		}
 	}
 
-	function _render($content, $data=NULL)
+	function _render($content, $data = NULL)
 	{
 		$data = array(
 			'head'		=> $this->load->view('must/head', $data, TRUE),

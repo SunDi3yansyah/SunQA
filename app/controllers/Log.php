@@ -106,7 +106,7 @@ class Log extends CI_Controller
 		}		
 	}
 
-	function _render($content, $data=NULL)
+	function _render($content, $data = NULL)
 	{
 		$data['head'] = $this->load->view('public/must/head', $data, TRUE);
 		$data['content'] = $this->load->view($content, $data, TRUE);
