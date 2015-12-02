@@ -274,4 +274,17 @@ class Qa_model extends CI_Model
             return $count;
         }
     }
+
+    function viewers($table, $field, $where)
+    {
+        $this->db->from($table);
+        $this->db->set($field, "$field+1", FALSE);
+        $this->db->where($where);
+        $query = $this->db->update();
+        if ($query == 0){
+            return FALSE;
+        } else {
+            return $query;
+        }
+    }
 }

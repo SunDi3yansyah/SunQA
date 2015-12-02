@@ -6,13 +6,13 @@
 	<div class="inner-screen">
 		<div class="open-form">
 			<?php echo form_open($this->uri->uri_string(), 'class="pure-form pure-form-stacked"'); ?>
-			<?php if (validation_errors() || !empty($errors)): ?>
-				<div class="errors">
-					<?php echo validation_errors(); ?>
-					<?php echo (!empty($errors)?$errors:NULL); ?>
-				</div>
-			<?php endif ?>
 				<fieldset>
+				<?php if (validation_errors() || !empty($errors)): ?>
+					<div class="errors">
+						<?php echo validation_errors(); ?>
+						<?php echo (!empty($errors)?$errors:NULL); ?>
+					</div>
+				<?php endif ?>
 					<legend>Log In</legend>
 						<label for="username">Username</label>
 						<?php echo form_input('username', set_value('username'), 'placeholder="Your Username" autocomplete="off"'); ?>

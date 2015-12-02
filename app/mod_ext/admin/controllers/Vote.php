@@ -43,7 +43,7 @@ class Vote extends CI_Privates
                     'dt' => 'action',
                     'formatter' => function($id)
                     {
-                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update/' . $id) . '" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
                     }
                 ),
             );
@@ -62,4 +62,33 @@ class Vote extends CI_Privates
                  ->set_output(json_encode(Datatables_join::simple($_GET, $sql_details, $table, $primaryKey, $columns, $joinQuery), JSON_PRETTY_PRINT));
         }
 	}
+
+    function delete($str = NULL)
+    {
+        if (isset($str))
+        {
+            $data = $this->_get($str);
+            if (!empty($data))
+            {
+                $this->qa_model->delete('vote', array('id_vote' => $str));
+                redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+            }
+            else
+            {
+                show_404();
+                return FALSE;
+            }
+        }
+        else
+        {
+            show_404();
+            return FALSE;
+        }
+    }
+
+    function _get($str)
+    {
+        $var = $this->qa_model->get('vote', array('id_vote' => $str));
+        return ($var == FALSE)?array():$var;
+    }
 }

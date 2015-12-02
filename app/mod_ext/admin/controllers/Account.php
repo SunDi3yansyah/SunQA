@@ -20,11 +20,43 @@ class Account extends CI_Privates
     {
         if (!empty($str))
         {
-            if ($str == 'username')
+            if ($str === 'unique')
             {
-                $this->_render('account/username', $data);
+                $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|max_length[25]|xss_clean');
+                $this->form_validation->set_rules('email', 'E-Mail', 'trim|required|min_length[6]|max_length[100]|xss_clean|valid_email');
+                $this->form_validation->set_error_delimiters('', '<br>');
+                if ($this->form_validation->run() == TRUE)
+                {
+                    foreach ($this->qa_libs->user() as $user) {
+                        $username = $this->qa_model->get('user', array('username' => $this->input->post('username', TRUE)));
+                        $email = $this->qa_model->get('user', array('email' => $this->input->post('email', TRUE)));
+                        if (strtolower($user->username) == strtolower($this->input->post('username', TRUE)) || strtolower($user->email) == strtolower($this->input->post('email', TRUE)))
+                        {
+                            $update = array(
+                                'username' => $this->input->post('username', TRUE),
+                                'email' => $this->input->post('email', TRUE),
+                                );
+                            $this->qa_model->update('user', $update, array('id_user' => $this->qa_libs->id_user()));
+                            redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+                        }
+                        elseif ($username != FALSE)
+                        {
+                            $data['errors'] = 'Error! Username <b>'. $this->input->post('username', TRUE) .'</b> sudah ada sebelumnya dalam basis data.';
+                            $this->_render('account/unique', $data);
+                        }
+                        elseif ($email != FALSE)
+                        {
+                            $data['errors'] = 'Error! E-Mail <b>'. $this->input->post('email', TRUE) .'</b> sudah ada sebelumnya dalam basis data.';
+                            $this->_render('account/unique', $data);
+                        }
+                    }
+                }
+                else
+                {
+                    $this->_render('account/unique');
+                }
             }
-            elseif ($str == 'passwd')
+            elseif ($str === 'passwd')
             {
                 $this->form_validation->set_rules('old_passwd', 'Old Password', 'trim|required|min_length[6]|max_length[200]|xss_clean');
                 $this->form_validation->set_rules('new_passwd', 'New Password', 'trim|required|min_length[6]|max_length[200]|xss_clean');

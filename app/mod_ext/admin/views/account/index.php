@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings'); ?>" class="btn btn-outline btn-primary">Update Profile</a>
-                            <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/username'); ?>" class="btn btn-outline btn-info">Change Username or Email</a>
+                            <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/unique'); ?>" class="btn btn-outline btn-info">Change Username or Email</a>
                             <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/passwd'); ?>" class="btn btn-outline btn-warning">Change Password</a>
                         <?php endforeach ?>
                         </div>

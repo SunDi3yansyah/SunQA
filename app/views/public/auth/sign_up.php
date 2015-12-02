@@ -6,12 +6,12 @@
 	<div class="inner-screen">
 		<div class="open-form">
 			<?php echo form_open($this->uri->uri_string(), 'class="pure-form pure-form-stacked"'); ?>
-			<?php if (validation_errors()): ?>
-				<div class="errors">
-					<?php echo validation_errors(); ?>
-				</div>
-			<?php endif ?>
 				<fieldset>
+				<?php if (validation_errors()): ?>
+					<div class="errors">
+						<?php echo validation_errors(); ?>
+					</div>
+				<?php endif ?>
 					<legend>Sign Up</legend>
 						<label for="nama">Name</label>
 						<?php echo form_input('nama', set_value('nama'), 'placeholder="Your Full Name" autocomplete="off"'); ?>

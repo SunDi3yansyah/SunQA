@@ -33,7 +33,7 @@ class Auth extends CI_Publics
 				$insert = array(
 					'username' => $this->input->post('username', TRUE),
 					'email' => $this->input->post('email', TRUE),
-					'password' => $this->phpass->hash_password($this->input->post('password', TRUE)),
+					'password' => $this->phpass->hash_password($this->input->post('passconf', TRUE)),
 					'nama' => $this->input->post('nama', TRUE),
 					'user_date' => date('Y-m-d H:i:s'),
 					'last_ip' => $this->input->ip_address(),
