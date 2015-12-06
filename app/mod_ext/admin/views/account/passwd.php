@@ -42,7 +42,9 @@
                                     Other Informations
                                 </div>
                                 <div class="panel-body">
-                                    <!-- <ul>...</ul> -->
+                                    <ul>
+                                        <li>Gunakan kata sandi yang kuat sehingga mengurangi hal-hal yang tidak diinginkan.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

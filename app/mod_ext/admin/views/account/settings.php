@@ -81,6 +81,9 @@
                             </div>
                             <div class="fc">
                                 <a href="<?php echo base_url('user/' . $data->username) ?>" target="_blank" class="btn btn-primary btn-lg">See <?php echo $this->uri->segment(2) ?></a>
+                                <hr>
+                                <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/unique'); ?>" class="btn btn-outline btn-info">Change Username or Email</a>
+                                <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/passwd'); ?>" class="btn btn-outline btn-warning">Change Password</a>
                             </div>
                         </div>
                     </div>

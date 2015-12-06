@@ -241,6 +241,14 @@ if (!function_exists('qa_url'))
 	}
 }
 
+if (!function_exists('qa_remove_html'))
+{
+	function qa_remove_html($str)
+	{
+		return strip_tags(str_replace(array('\'', '"'), '', $str));
+	}
+}
+
 if (!function_exists('qa_str_limit'))
 {
 	function qa_str_limit($str, $number)
@@ -256,9 +264,9 @@ if (!function_exists('qa_str_limit'))
 	}
 }
 
-if (!function_exists('qa_remove_html'))
+if (!function_exists('qa_remove_html_limit'))
 {
-	function qa_remove_html($str, $number)
+	function qa_remove_html_limit($str, $number)
 	{
 		$var = strip_tags(str_replace(array('\'', '"'), '', $str));
 		if (strlen($var) >= $number)

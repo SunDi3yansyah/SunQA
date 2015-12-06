@@ -6,6 +6,7 @@
 <?php if (isset($dataTables) == TRUE): ?>
 <script src="<?php echo base_url($this->config->item('private_js') . 'jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url($this->config->item('private_js') . 'dataTables.bootstrap.min.js'); ?>"></script>
+<script src="http://cdn.datatables.net/plug-ins/1.10.10/api/fnReloadAjax.js"></script>
 <script>
 $(document).ready(function()
 {
@@ -23,7 +24,7 @@ $(document).ready(function()
     };
     $("#qa-dataTables").DataTable(
     {
-        // "responsive": true,
+        "responsive": true,
         "processing": true,
         "serverSide": true,
         "ajax": "<?php echo base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/'.(isset($param_ajax)?$param_ajax:'ajax')); ?>",
@@ -46,6 +47,11 @@ $(document).ready(function()
             var index = page * length + (iDisplayIndex + 1);
             $('td:eq(0)', row).html(index);
         }
+    });
+    $("#fnReloadAjax").click(function() {
+        var table = $("#qa-dataTables").dataTable();
+        table.fnReloadAjax("<?php echo base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/'.(isset($param_ajax)?$param_ajax:'ajax')); ?>");
+        table.fnReloadAjax();
     });
 });
 </script>

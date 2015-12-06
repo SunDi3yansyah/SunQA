@@ -19,7 +19,6 @@ class User extends CI_Privates
                 'role_name',
                 'nama',
                 'email',
-                'lokasi',
                 ),
             );
 		$this->_render('user/index', $data);
@@ -43,13 +42,12 @@ class User extends CI_Privates
                 array('db' => 'role_name', 'dt' => 'role_name'),
                 array('db' => 'nama', 'dt' => 'nama'),
                 array('db' => 'email', 'dt' => 'email'),
-                array('db' => 'lokasi', 'dt' => 'lokasi'),
                 array(
                     'db' => 'id_user',
                     'dt' => 'action',
                     'formatter' => function($id)
                     {
-                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update/' . $id) . '" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-xs">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update/' . $id) . '" class="btn btn-primary btn-xs">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-xs">Delete</a>';
                     }
                 ),
             );
@@ -200,8 +198,18 @@ class User extends CI_Privates
             $data = $this->_get($str);
             if (!empty($data))
             {
-                $this->qa_model->delete('user', array('id_user' => $str));
-                redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+                foreach ($data as $user) {
+                    if ($user->id_user == 1)
+                    {
+                        $data = array('message' => 'User ID ke 1 tidak dapat dihapus');
+                        $this->_render('dep/message', $data);
+                    }
+                    else
+                    {
+                        $this->qa_model->delete('user', array('id_user' => $str));
+                        redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+                    }
+                }
             }
             else
             {

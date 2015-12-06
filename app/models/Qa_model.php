@@ -26,6 +26,19 @@ class Qa_model extends CI_Model
         }
     }
 
+    function all_where($table, $where, $order)
+    {
+        $this->db->from($table);
+        $this->db->where($where);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0){
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
     function get($table, $where)
     {
         $this->db->from($table);

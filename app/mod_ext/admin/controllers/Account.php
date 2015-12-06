@@ -13,8 +13,44 @@ class Account extends CI_Privates
 {
 	function index()
 	{
-		$this->_render('account/index');
+        $data = array(
+            'question' => $this->_question(),
+            'question_tag' => $this->_question_tag(),
+            'answer' => $this->_answer(),
+            'vote' => $this->_vote(),
+            );
+            foreach ($this->_comment() as $c) {
+                if ($c->comment_in === 'Question')
+                {
+                    $comment = $this->qa_model->join_where('comment', 'question', 'comment.question_id=question.id_question', array('comment.user_id' => $this->qa_libs->id_user()), 'comment.id_comment DESC');
+                    $data['comment_question'] = ($comment == FALSE)?array():$comment;
+                }
+                else
+                {
+                    $comment = $this->qa_model->join2_where('comment', 'answer', 'question', 'comment.answer_id=answer.id_answer', 'answer.question_id=question.id_question', array('comment.user_id' => $this->qa_libs->id_user()), 'comment.id_comment DESC');
+                    $data['comment_answer'] = ($comment == FALSE)?array():$comment;
+                }
+            }
+            foreach ($this->_vote() as $v) {
+                if ($v->vote_in === 'Question')
+                {
+                    $vote = $this->qa_model->join_where('vote', 'question', 'vote.question_id=question.id_question', array('vote.user_id' => $this->qa_libs->id_user()), 'vote.id_vote DESC');
+                    $data['vote_question'] = ($vote == FALSE)?array():$vote;
+                }
+                else
+                {
+                    $vote = $this->qa_model->join2_where('vote', 'answer', 'question', 'vote.answer_id=answer.id_answer', 'answer.question_id=question.id_question', array('vote.user_id' => $this->qa_libs->id_user()), 'vote.id_vote DESC');
+                    $data['vote_answer'] = ($vote == FALSE)?array():$vote;
+                }
+            }
+        $this->_render('account/index', $data);
 	}
+
+    function message()
+    {
+        $data = array('message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+        $this->_render('dep/message', $data);
+    }
 
     function settings($str = NULL)
     {
@@ -144,23 +180,33 @@ class Account extends CI_Privates
         }
     }
 
-    function question()
+    function _question()
     {
-        // code
+        $var = $this->qa_model->join_where('question', 'category', 'question.category_id=category.id_category', array('question.user_id' => $this->qa_libs->id_user()), 'question.id_question DESC');
+        return ($var == FALSE)?array():$var;
     }
 
-    function answer()
+    function _question_tag()
     {
-        // code
+        $var = $this->qa_model->join2_where('question_tag', 'question', 'tag', 'question_tag.question_id=question.id_question', 'question_tag.tag_id=tag.id_tag', array('question.user_id' => $this->qa_libs->id_user()), 'question_tag.id_qt');
+        return ($var == FALSE)?array():$var;
     }
 
-    function comment()
+    function _answer()
     {
-        // code
+        $var = $this->qa_model->join_where('answer', 'question', 'answer.question_id=question.id_question', array('answer.user_id' => $this->qa_libs->id_user()), 'answer.id_answer DESC');
+        return ($var == FALSE)?array():$var;
     }
 
-    function vote()
+    function _comment()
     {
-        // code
+        $var = $this->qa_model->all_where('comment', array('comment.user_id' => $this->qa_libs->id_user()), 'comment.id_comment DESC');
+        return ($var == FALSE)?array():$var;
+    }
+
+    function _vote()
+    {
+        $var = $this->qa_model->all_where('vote', array('vote.user_id' => $this->qa_libs->id_user()), 'vote.id_vote DESC');
+        return ($var == FALSE)?array():$var;
     }
 }

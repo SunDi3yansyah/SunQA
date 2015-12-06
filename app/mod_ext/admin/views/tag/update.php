@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <p>
-                                        Question yang memiliki kategori <b><?php echo $data->tag_name ?></b> sebanyak
+                                        Question yang memiliki tag <b><?php echo $data->tag_name ?></b> sebanyak
                                         <b>
                                             <?php if ($count_question == FALSE): ?>
                                                 0

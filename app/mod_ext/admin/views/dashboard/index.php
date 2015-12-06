@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="panel panel-primary">
+            <div class="panel panel-random">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="panel panel-green">
+            <div class="panel panel-random">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="panel panel-yellow">
+            <div class="panel panel-random">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
+            <div class="panel panel-random">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
@@ -126,10 +126,122 @@
                 </a>
             </div>
         </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-random">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tag fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">
+                                <?php if ($count_categories == FALSE): ?>
+                                    0
+                                <?php else: ?>
+                                    <?php echo $count_categories; ?>
+                                <?php endif ?>
+                            </div>
+                            <div>Categories</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="<?php echo base_url(''.$this->uri->segment(1).'/category'); ?>">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-random">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tags fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">
+                                <?php if ($count_tags == FALSE): ?>
+                                    0
+                                <?php else: ?>
+                                    <?php echo $count_tags; ?>
+                                <?php endif ?>
+                            </div>
+                            <div>Tags</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="<?php echo base_url(''.$this->uri->segment(1).'/tag'); ?>">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-random">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-bar-chart-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">
+                                <?php if ($count_votes == FALSE): ?>
+                                    0
+                                <?php else: ?>
+                                    <?php echo $count_votes; ?>
+                                <?php endif ?>
+                            </div>
+                            <div>Votes</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="<?php echo base_url(''.$this->uri->segment(1).'/vote'); ?>">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-random">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-users fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">
+                                <?php if ($count_sessions == FALSE): ?>
+                                    0
+                                <?php else: ?>
+                                    <?php echo $count_sessions; ?>
+                                <?php endif ?>
+                            </div>
+                            <div>Session</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="<?php echo base_url(''.$this->uri->segment(1).'/sessions'); ?>">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
     <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
+        <div class="col-lg-12">
+            <div class="panel panel-green">
                 <div class="panel-heading">
                     <i class="fa fa-bar-chart-o fa-fw"></i> Statistics System Flow 
                     <div class="pull-right">
@@ -140,11 +252,15 @@
                     <div id="morris-area-chart"></div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="fa fa-bar-chart-o fa-fw"></i> Session Record
                     <div class="pull-right">
-                        <button type="button" class="btn btn-default btn-xs">Refresh</button>
+                        <button type="button" id="fnReloadAjax" class="btn btn-success btn-xs">Refresh</button>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -168,31 +284,7 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Another Count Table
-                </div>
-                <div class="panel-body">
-                    <div class="list-group">
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/category'); ?>" class="list-group-item">
-                            <i class="fa fa-comment fa-fw"></i> <?php echo $count_category; ?> Category
-                        </a>
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/role'); ?>" class="list-group-item">
-                            <i class="fa fa-group fa-fw"></i> There are only <?php echo $count_role; ?> roles
-                        </a>
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/session_'); ?>" class="list-group-item">
-                            <i class="fa fa-users fa-fw"></i> <?php echo $count_session; ?> Session
-                        </a>
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/tag'); ?>" class="list-group-item">
-                            <i class="fa fa-tags fa-fw"></i> <?php echo $count_tag; ?> Tag
-                        </a>
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/vote'); ?>" class="list-group-item">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $count_vote; ?> Vote
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-bar-chart-o fa-fw"></i> Statistics User
                 </div>

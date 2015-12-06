@@ -18,7 +18,6 @@ class Question extends CI_Privates
                 'username',
                 'subject',
                 'category_name',
-                'answer_id',
                 'question_date',
                 ),
             );
@@ -42,14 +41,13 @@ class Question extends CI_Privates
                 array('db' => 'username', 'dt' => 'username'),
                 array('db' => 'subject', 'dt' => 'subject'),
                 array('db' => 'category_name', 'dt' => 'category_name'),
-                array('db' => 'answer_id', 'dt' => 'answer_id'),
                 array('db' => 'question_date', 'dt' => 'question_date'),
                 array(
                     'db' => 'id_question',
                     'dt' => 'action',
                     'formatter' => function($id)
                     {
-                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-sm">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update/' . $id) . '" class="btn btn-primary btn-sm">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-xs">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/update/' . $id) . '" class="btn btn-primary btn-xs">Update</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-xs">Delete</a>';
                     }
                 ),
             );

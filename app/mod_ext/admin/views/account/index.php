@@ -9,6 +9,9 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     Data <?php echo $this->uri->segment(2) ?>
+                    <div class="pull-right">
+                        <button type="button" id="fnReloadAjax" class="btn btn-success btn-xs">Refresh</button>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <ul class="nav nav-tabs">
@@ -109,20 +112,131 @@
                         <?php endforeach ?>
                         </div>
                         <div class="tab-pane fade" id="question">
-                            <h4>Profile Tab</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <?php foreach ($question as $question): ?>
+                            <div>
+                                <h4>
+                                    <a href="<?php echo base_url('question/' . $question->url_question) ?>"><?php echo $question->subject ?></a>
+                                </h4>
+                                <i>Created</i> <?php echo dateHourIcon($question->question_date) ?>
+                                <i>Updated</i> <?php echo dateHourIcon($question->question_update) ?>
+                                <?php if ($question->viewers != NULL): ?>
+                                    <i class="fa fa-eye fa-fw"></i> <?php echo $question->viewers ?>
+                                <?php else: ?>
+                                    <i class="fa fa-eye-slash fa-fw"></i> Not Yet Viewers
+                                <?php endif ?>
+                                <br>
+                                <?php if ($question->answer_id != NULL): ?>
+                                    <i class="fa fa-check fa-fw success"></i> Answered
+                                <?php else: ?>
+                                    <i class="fa fa-times fa-fw danger"></i> Not Selected Answer
+                                <?php endif ?>
+                                <br>
+                                <i>Category</i> <i class="fa fa-tag fa-fw"></i> <?php echo $question->category_name ?>
+                                <i>Tags</i> <i class="fa fa-tags fa-fw"></i>
+                                <?php foreach ($question_tag as $qt): ?>
+                                    <?php if ($qt->question_id === $question->id_question): ?>
+                                        <button type="button" class="btn btn-default btn-xs"><?php echo $qt->tag_name ?></button>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </div>
+                            <hr>
+                        <?php endforeach ?>
                         </div>
                         <div class="tab-pane fade" id="answer">
-                            <h4>Messages Tab</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <?php foreach ($answer as $answer): ?>
+                            <div>
+                                <h4>
+                                    <a href="<?php echo base_url('question/' . $answer->url_question) ?>"><?php echo $answer->subject ?></a>
+                                </h4>
+                                <i>Answer on</i> <?php echo dateHourIcon($answer->answer_date) ?>
+                                <?php if (!empty($answer->answer_update)): ?>
+                                    <i>Updated</i> <?php echo dateHourIcon($answer->answer_update) ?>
+                                <?php endif ?>
+                                <p><?php echo qa_remove_html(qa_str_limit($answer->description_answer, 250)) ?></p>
+                            </div>
+                            <hr>
+                        <?php endforeach ?>
                         </div>
                         <div class="tab-pane fade" id="comment">
-                            <h4>Settings Tab</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <?php if (!empty($comment_question)): ?>
+                            <h3>Comment in Question</h3>
+                            <?php foreach ($comment_question as $cq): ?>
+                                <div>
+                                    <h4>
+                                        <a href="<?php echo base_url('question/' . $cq->url_question) ?>"><?php echo $cq->subject ?></a>
+                                    </h4>
+                                    <i>Comment on</i> <?php echo dateHourIcon($cq->comment_date) ?>
+                                    <?php if (!empty($cq->comment_update)): ?>
+                                        <i>Updated</i> <?php echo dateHourIcon($cq->comment_update) ?>
+                                    <?php endif ?>
+                                    <i>Comment in</i> <?php echo $cq->comment_in ?>
+                                    <p><?php echo qa_remove_html(qa_str_limit($cq->description_comment, 250)) ?></p>
+                                </div>
+                                <hr>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                        <?php if (!empty($comment_answer)): ?>
+                            <h3>Comment in Answer</h3>
+                            <?php foreach ($comment_answer as $ca): ?>
+                                <div>
+                                    <h4>
+                                        <a href="<?php echo base_url('question/' . $ca->url_question) ?>"><?php echo $ca->subject ?></a>
+                                    </h4>
+                                    <i>Comment on</i> <?php echo dateHourIcon($ca->comment_date) ?>
+                                    <?php if (!empty($ca->comment_update)): ?>
+                                        <i>Updated</i> <?php echo dateHourIcon($ca->comment_update) ?>
+                                    <?php endif ?>
+                                    <i>Comment in</i> <?php echo $ca->comment_in ?>
+                                    <p><?php echo qa_remove_html(qa_str_limit($ca->description_comment, 250)) ?></p>
+                                </div>
+                                <hr>
+                            <?php endforeach ?>
+                        <?php endif ?>
                         </div>
                         <div class="tab-pane fade" id="vote">
-                            <h4>Settings Tab</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <?php if (!empty($vote_question)): ?>
+                            <h3>Vote in Question</h3>
+                            <?php foreach ($vote_question as $cq): ?>
+                                <div>
+                                    <h4>
+                                        <a href="<?php echo base_url('question/' . $cq->url_question) ?>"><?php echo $cq->subject ?></a>
+                                        <?php if ($cq->vote_for === 'Up'): ?>
+                                            <button type="button" class="btn btn-success btn-circle btn-xl"><i class="fa fa-thumbs-up"></i></button>
+                                        <?php else: ?>
+                                            <button type="button" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-thumbs-down"></i></button>
+                                        <?php endif ?>
+                                    </h4>
+                                    <i>Vote on</i> <?php echo dateHourIcon($cq->vote_date) ?>
+                                    <?php if (!empty($cq->vote_update)): ?>
+                                        <i>Updated</i> <?php echo dateHourIcon($cq->vote_update) ?>
+                                    <?php endif ?>
+                                    <i>Vote in</i> <?php echo $cq->vote_in ?>
+                                    <p><?php echo $cq->vote_for ?></p>
+                                </div>
+                                <hr>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                        <?php if (!empty($vote_answer)): ?>
+                            <h3>Vote in Answer</h3>
+                            <?php foreach ($vote_answer as $ca): ?>
+                                <div>
+                                    <h4>
+                                        <a href="<?php echo base_url('question/' . $ca->url_question) ?>"><?php echo $ca->subject ?></a>
+                                        <?php if ($ca->vote_for === 'Up'): ?>
+                                            <button type="button" class="btn btn-success btn-circle btn-xl"><i class="fa fa-thumbs-up"></i></button>
+                                        <?php else: ?>
+                                            <button type="button" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-thumbs-down"></i></button>
+                                        <?php endif ?>
+                                    </h4>
+                                    <i>Vote on</i> <?php echo dateHourIcon($ca->vote_date) ?>
+                                    <?php if (!empty($ca->vote_update)): ?>
+                                        <i>Updated</i> <?php echo dateHourIcon($ca->vote_update) ?>
+                                    <?php endif ?>
+                                    <i>Vote in</i> <?php echo $ca->vote_in ?>
+                                </div>
+                                <hr>
+                            <?php endforeach ?>
+                        <?php endif ?>
                         </div>
                     </div>
                 </div>

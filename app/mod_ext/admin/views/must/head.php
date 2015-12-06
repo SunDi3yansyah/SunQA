@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="<?php echo base_url('assets/images/favicon.png'); ?>">
-<title>Administrator - <?php echo $this->config->item('web_name'); ?></title>
+<title><?php echo $this->uri->segment(1); ?> - <?php echo $this->config->item('web_name'); ?></title>
 <link href="<?php echo base_url($this->config->item('private_css') . 'bootstrap.min.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url($this->config->item('private_css') . 'metisMenu.min.css'); ?>" rel="stylesheet">
 <?php if (isset($timelineCSS) == TRUE): ?>
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="navbar-brand">Administrator - <?php echo $this->config->item('web_name'); ?></div>
+            <div class="navbar-brand"><?php echo $this->uri->segment(1); ?> - <?php echo $this->config->item('web_name'); ?></div>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
@@ -51,11 +51,14 @@
                         <a href="<?php echo base_url(''.$this->uri->segment(1).'/account'); ?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/account/settings'); ?>"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/account/settings'); ?>"><i class="fa fa-gear fa-fw"></i> Settings Account</a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="<?php echo base_url('log/out'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <a href="<?php echo base_url(); ?>" target="_blank" class="info"><i class="fa fa-external-link fa-fw"></i> Public Site</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('log/out'); ?>" class="danger"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <?php endforeach ?>
@@ -92,7 +95,7 @@
                         <a href="<?php echo base_url(''.$this->uri->segment(1).'/tag'); ?>"><i class="fa fa-tags fa-fw"></i> Tags</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/session_'); ?>"><i class="fa fa-users fa-fw"></i> Sessions</a>
+                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/sessions'); ?>"><i class="fa fa-users fa-fw"></i> Sessions</a>
                     </li>
                 </ul>
             </div>

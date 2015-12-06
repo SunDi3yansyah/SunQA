@@ -39,7 +39,9 @@
                                     Other Informations
                                 </div>
                                 <div class="panel-body">
-                                    <!-- <ul>...</ul> -->
+                                    <ul>
+                                        <li>Tidak diperbolehkan memasukkan <b>Username</b> dan <b>E-mail</b> yang sudah ada sebelumnya.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

@@ -18,11 +18,10 @@ class Dashboard extends CI_Privates
 			'count_answers' => $this->qa_model->count('answer'),
 			'count_users' => $this->qa_model->count('user'),
 			'count_comments' => $this->qa_model->count('comment'),
-			'count_category' => $this->qa_model->count('category'),
-			'count_role' => $this->qa_model->count('role'),
-			'count_session' => $this->qa_model->count('session'),
-			'count_tag' => $this->qa_model->count('tag'),
-			'count_vote' => $this->qa_model->count('vote'),
+			'count_categories' => $this->qa_model->count('category'),
+            'count_tags' => $this->qa_model->count('tag'),
+            'count_votes' => $this->qa_model->count('vote'),
+			'count_sessions' => $this->qa_model->count('session'),
 			'morrisjs' => TRUE,
             'dataTables' => TRUE,
             'dtFields' => array(
@@ -30,12 +29,12 @@ class Dashboard extends CI_Privates
                 'ip_address',
                 'timestamp',
                 ),
-            'param_ajax' => 'ajax_session',
+            'param_ajax' => 'sessions_ajax',
 			);
 		$this->_render('dashboard/index', $data);
 	}
 
-	function ajax_session()
+	function sessions_ajax()
 	{
         if (!$this->input->is_ajax_request())
         {
@@ -56,7 +55,7 @@ class Dashboard extends CI_Privates
                     'dt' => 'action',
                     'formatter' => function($id)
                     {
-                        return '<a href="' . base_url(''.$this->uri->segment(1).'/session_/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/sessions/delete/' . $id) . '" class="btn btn-danger btn-xs">Delete</a>';
                     }
                 ),
             );

@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     MIT
  * @copyright   Copyright (c) 2015 SunDi3yansyah
  */
-class Session_ extends CI_Privates
+class Sessions extends CI_Privates
 {
 	function index()
 	{
@@ -43,7 +43,7 @@ class Session_ extends CI_Privates
                     'dt' => 'action',
                     'formatter' => function($id)
                     {
-                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-sm">Delete</a>';
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-xs">Delete</a>';
                     }
                 ),
             );
