@@ -15,4 +15,9 @@ class Unanswereds extends CI_Publics
 	{
 		$this->_render('public/unanswereds/index');
 	}
+
+	function _get()
+	{
+		$this->_render('public/unanswereds/index');
+	}
 }

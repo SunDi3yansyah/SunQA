@@ -1,0 +1,77 @@
+.fc {
+    text-align: center;
+    margin: 0 auto;
+}
+.pure-menu-selected a.pure-menu-link {
+	color: #6FBEF3 !important;
+}
+.pure-menu-selected a.pure-menu-link:hover {
+    color: #AECFE5 !important;
+}
+a.pure-button-primary {
+    background: white;
+    color: #1f8dd6;
+    border-radius: 5px;
+    font-size: 120%;
+}
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.button-success {
+    background: rgb(28, 184, 65);
+}
+.button-error {
+    background: rgb(202, 60, 60);
+}
+.button-warning {
+    background: rgb(223, 117, 20);
+}
+.button-secondary {
+    background: rgb(66, 184, 221);
+}
+/*.button-blue {
+    background-color: #1f8dd6;
+}*/
+.pure-button {
+    color: white;
+    padding: 0.5em 2em;
+    border-radius: 5px;
+}
+
+.inner-screen {
+    background: #1abc9d;
+    margin: 0px auto;
+    padding: 8em 0;
+}
+.inner-screen .pure-form-stacked legend {
+    color: #AB1E1E;
+    text-align: center;
+    font-weight: normal;
+    font-size: xx-large;
+}
+.open-form {
+    width: 400px;
+    background: #edeff1;
+    margin: 0px auto;
+    padding: 20px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+.errors {
+    margin: 0 auto;
+    background-color: #dd514c;
+    padding: 3px 10px;
+}
+
+.errors p {
+    margin: 0 auto;
+    color: #fff;
+    font-size: 13px;
+}

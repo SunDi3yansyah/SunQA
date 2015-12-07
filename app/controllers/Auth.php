@@ -72,6 +72,11 @@ class Auth extends CI_Publics
 		}		
 	}
 
+	function account()
+	{
+		$this->_render('public/auth/account');
+	}
+
 	function forgot()
 	{
 		$this->_render('public/auth/forgot');

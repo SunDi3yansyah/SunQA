@@ -9,6 +9,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @copyright	Copyright (c) 2015 SunDi3yansyah
  */
 
+if (!function_exists('assets_css'))
+{
+	function assets_css($str)
+	{
+		$obj =& get_instance();
+
+		return base_url($obj->config->item('public_css') . $str);
+	}
+}
+
+if (!function_exists('assets_js'))
+{
+	function assets_js($str)
+	{
+		$obj = &get_instance();
+
+		return base_url($obj->config->item('public_js') . $str);
+	}
+}
+
+if (!function_exists('assets_img'))
+{
+	function assets_img($str)
+	{
+		$obj = &get_instance();
+
+		return base_url($obj->config->item('public_img') . $str);
+	}
+}
+
 if (!function_exists('dateNoHour'))
 {
 	function dateNoHour($str)

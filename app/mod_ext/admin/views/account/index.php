@@ -9,9 +9,6 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     Data <?php echo $this->uri->segment(2) ?>
-                    <div class="pull-right">
-                        <button type="button" id="fnReloadAjax" class="btn btn-success btn-xs">Refresh</button>
-                    </div>
                 </div>
                 <div class="panel-body">
                     <ul class="nav nav-tabs">
@@ -169,7 +166,12 @@
                                     <?php if (!empty($cq->comment_update)): ?>
                                         <i>Updated</i> <?php echo dateHourIcon($cq->comment_update) ?>
                                     <?php endif ?>
-                                    <i>Comment in</i> <?php echo $cq->comment_in ?>
+                                    <i>Comment in</i>
+                                    <?php if ($cq->comment_in === 'Question'): ?>
+                                        <span class="btn btn-info btn-xs"><i class="fa fa-question-circle"></i> <?php echo $cq->comment_in ?></span>
+                                    <?php else: ?>
+                                        <span class="btn btn-success btn-xs"><i class="fa fa-comment"></i> <?php echo $cq->comment_in ?></span>
+                                    <?php endif ?>
                                     <p><?php echo qa_remove_html(qa_str_limit($cq->description_comment, 250)) ?></p>
                                 </div>
                                 <hr>
@@ -186,7 +188,12 @@
                                     <?php if (!empty($ca->comment_update)): ?>
                                         <i>Updated</i> <?php echo dateHourIcon($ca->comment_update) ?>
                                     <?php endif ?>
-                                    <i>Comment in</i> <?php echo $ca->comment_in ?>
+                                    <i>Comment in</i>
+                                    <?php if ($ca->comment_in === 'Question'): ?>
+                                        <span class="btn btn-info btn-xs"><i class="fa fa-question-circle"></i> <?php echo $ca->comment_in ?></span>
+                                    <?php else: ?>
+                                        <span class="btn btn-success btn-xs"><i class="fa fa-comment"></i> <?php echo $ca->comment_in ?></span>
+                                    <?php endif ?>
                                     <p><?php echo qa_remove_html(qa_str_limit($ca->description_comment, 250)) ?></p>
                                 </div>
                                 <hr>
@@ -196,43 +203,52 @@
                         <div class="tab-pane fade" id="vote">
                         <?php if (!empty($vote_question)): ?>
                             <h3>Vote in Question</h3>
-                            <?php foreach ($vote_question as $cq): ?>
+                            <?php foreach ($vote_question as $vq): ?>
                                 <div>
                                     <h4>
-                                        <a href="<?php echo base_url('question/' . $cq->url_question) ?>"><?php echo $cq->subject ?></a>
-                                        <?php if ($cq->vote_for === 'Up'): ?>
+                                        <a href="<?php echo base_url('question/' . $vq->url_question) ?>"><?php echo $vq->subject ?></a>
+                                        <?php if ($vq->vote_for === 'Up'): ?>
                                             <button type="button" class="btn btn-success btn-circle btn-xl"><i class="fa fa-thumbs-up"></i></button>
                                         <?php else: ?>
                                             <button type="button" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-thumbs-down"></i></button>
                                         <?php endif ?>
                                     </h4>
-                                    <i>Vote on</i> <?php echo dateHourIcon($cq->vote_date) ?>
-                                    <?php if (!empty($cq->vote_update)): ?>
-                                        <i>Updated</i> <?php echo dateHourIcon($cq->vote_update) ?>
+                                    <i>Vote on</i> <?php echo dateHourIcon($vq->vote_date) ?>
+                                    <?php if (!empty($vq->vote_update)): ?>
+                                        <i>Updated</i> <?php echo dateHourIcon($vq->vote_update) ?>
                                     <?php endif ?>
-                                    <i>Vote in</i> <?php echo $cq->vote_in ?>
-                                    <p><?php echo $cq->vote_for ?></p>
+                                    <i>Vote in</i>
+                                    <?php if ($vq->vote_in === 'Question'): ?>
+                                        <span class="btn btn-info btn-xs"><i class="fa fa-question-circle"></i> <?php echo $vq->vote_in ?></span>
+                                    <?php else: ?>
+                                        <span class="btn btn-success btn-xs"><i class="fa fa-comment"></i> <?php echo $vq->vote_in ?></span>
+                                    <?php endif ?>
                                 </div>
                                 <hr>
                             <?php endforeach ?>
                         <?php endif ?>
                         <?php if (!empty($vote_answer)): ?>
                             <h3>Vote in Answer</h3>
-                            <?php foreach ($vote_answer as $ca): ?>
+                            <?php foreach ($vote_answer as $va): ?>
                                 <div>
                                     <h4>
-                                        <a href="<?php echo base_url('question/' . $ca->url_question) ?>"><?php echo $ca->subject ?></a>
-                                        <?php if ($ca->vote_for === 'Up'): ?>
+                                        <a href="<?php echo base_url('question/' . $va->url_question) ?>"><?php echo $va->subject ?></a>
+                                        <?php if ($va->vote_for === 'Up'): ?>
                                             <button type="button" class="btn btn-success btn-circle btn-xl"><i class="fa fa-thumbs-up"></i></button>
                                         <?php else: ?>
                                             <button type="button" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-thumbs-down"></i></button>
                                         <?php endif ?>
                                     </h4>
-                                    <i>Vote on</i> <?php echo dateHourIcon($ca->vote_date) ?>
-                                    <?php if (!empty($ca->vote_update)): ?>
-                                        <i>Updated</i> <?php echo dateHourIcon($ca->vote_update) ?>
+                                    <i>Vote on</i> <?php echo dateHourIcon($va->vote_date) ?>
+                                    <?php if (!empty($va->vote_update)): ?>
+                                        <i>Updated</i> <?php echo dateHourIcon($va->vote_update) ?>
                                     <?php endif ?>
-                                    <i>Vote in</i> <?php echo $ca->vote_in ?>
+                                    <i>Vote in</i>
+                                    <?php if ($va->vote_in === 'Question'): ?>
+                                        <span class="btn btn-info btn-xs"><i class="fa fa-question-circle"></i> <?php echo $va->vote_in ?></span>
+                                    <?php else: ?>
+                                        <span class="btn btn-success btn-xs"><i class="fa fa-comment"></i> <?php echo $va->vote_in ?></span>
+                                    <?php endif ?>
                                 </div>
                                 <hr>
                             <?php endforeach ?>

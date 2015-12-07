@@ -243,10 +243,7 @@
         <div class="col-lg-12">
             <div class="panel panel-green">
                 <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Statistics System Flow 
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-default btn-xs">Refresh</button>
-                    </div>
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Statistics Data
                 </div>
                 <div class="panel-body">
                     <div id="morris-area-chart"></div>
@@ -279,6 +276,59 @@
                                 </table>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    Information Server
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>Database</td>
+                                    <td><?php echo $this->db->version(); ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Driver</td>
+                                    <td><?php echo $this->db->platform(); ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Gatway Interface</td>
+                                    <td><?php echo $_SERVER['GATEWAY_INTERFACE']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>IP Server</td>
+                                    <td><?php echo $_SERVER['SERVER_ADDR']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Server Name</td>
+                                    <td><?php echo $_SERVER['SERVER_NAME']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">Web Server</td>
+                                    <td><?php echo $_SERVER['SERVER_SOFTWARE']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Protocol</td>
+                                    <td><?php echo $_SERVER['SERVER_PROTOCOL']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Document Root</td>
+                                    <td><?php echo $_SERVER['DOCUMENT_ROOT']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Connection</td>
+                                    <td><?php echo $_SERVER['HTTP_CONNECTION']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>User Agent</td>
+                                    <td><?php echo $_SERVER['HTTP_USER_AGENT']; ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

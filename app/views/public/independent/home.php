@@ -2,100 +2,126 @@
 </head>
 <body>
 <?php $this->load->view('public/must/menu'); ?>
-<div class="splash-container">
-    <div class="splash">
-        <h1 class="splash-head"><?php echo $this->lang->line('welcome') . $this->config->item('web_name') ?></h1>
-        <p class="splash-subhead">
-            Temukan masalah anda disini karena kesempatan dua kali sulit didapatkan, jangan sampai masalah anda semakin menumpuk dan menundanya dimudian hari hanya karena masalah sepele.
-        </p>
-        <p>
-            <a href="<?php echo base_url('question/create'); ?>" class="pure-button pure-button-primary">Getting Started Question</a>
-        </p>
-    </div>
-</div>
-<div class="content-wrapper on-top">
-    <div class="content">
-        <h2 class="content-head is-center">Excepteur sint occaecat cupidatat.</h2>
-        <div class="pure-g">
-            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-
-                <h3 class="content-subhead">
-                    <i class="fa fa-rocket"></i>
-                    Get Started Quickly
-                </h3>
-                <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
-                </p>
-            </div>
-            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-                <h3 class="content-subhead">
-                    <i class="fa fa-mobile"></i>
-                    Responsive Layouts
-                </h3>
-                <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
-                </p>
-            </div>
-            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-                <h3 class="content-subhead">
-                    <i class="fa fa-th-large"></i>
-                    Modular
-                </h3>
-                <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
-                </p>
-            </div>
-            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
-                <h3 class="content-subhead">
-                    <i class="fa fa-check-square-o"></i>
-                    Plays Nice
-                </h3>
-                <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
-                </p>
+    <div class="page-content">
+        <div class="bg-lightBlue fg-white align-center">
+            <div class="container">
+                <div class="no-overflow" style="padding-top: 40px">
+                    <br>
+                    <br>
+                    <br>
+                    <div class="padding10 sub-leader text-light">
+                        <?php echo $this->lang->line('welcome') ?>
+                    </div>
+                    <h1 style="font-size: 3.5rem; line-height: 1" class="text-shadow metro-title text-light"><?php echo $this->config->item('web_name') ?></h1>
+                    <p class="padding10" style="font-size: 1rem; line-height: 25px;">
+                        <?php echo $this->config->item('description_home') ?>
+                    </p>
+                    <div class="margin60">
+                        <div class="clear-float">
+                            <a href="<?php echo base_url('question/create'); ?>"><button class="button big-button block-shadow success"><span class="mif-question mif-ani-shuttle"></span> Getting Started Question</button></a>
+                        </div>
+                    </div>
+                    <div class="grid no-margin-bottom" style="margin-top: 100px" id="g1">
+                        <div class="row cells3">
+                            <div class="cell no-overflow" style="height: 85px">
+                                <div class="bg-yellow fg-white block-shadow" style="height: 85px; padding-top: 20px; margin-top: 85px;">
+                                    <h2 class="text-light">easy to use</h2>
+                                </div>
+                            </div>
+                            <div class="cell no-overflow" style="height: 85px">
+                                <div class="bg-green fg-white block-shadow" style="height: 85px; padding-top: 20px; margin-top: 85px;">
+                                    <h2 class="text-light">less source</h2>
+                                </div>
+                            </div>
+                            <div class="cell no-overflow" style="height: 85px">
+                                <div class="bg-red fg-white block-shadow" style="height: 85px; padding-top: 20px; margin-top: 85px;">
+                                    <h2 class="text-light">mit license</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(function(){
+                            setTimeout(function(){
+                                $("#g1 .cell > div:eq(0)").animate({
+                                    'margin-top': 0
+                                }, 500, 'easeOutBounce');
+                                $("#g1 .cell > div:eq(1)").animate({
+                                    'margin-top': 0
+                                }, 1000, 'easeOutBounce');
+                                $("#g1 .cell > div:eq(2)").animate({
+                                    'margin-top': 0
+                                }, 1500, 'easeOutBounce');
+                            }, 500);
+                        });
+                    </script>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="ribbon l-box-lrg pure-g">
-        <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-            <img class="pure-img-responsive" alt="File Icons" width="300" src="<?php echo base_url('assets/images/common/qa.png'); ?>">
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
-            <h2 class="content-head content-head-ribbon">Laboris nisi ut aliquip.</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit optio numquam ratione nulla, alias, maiores voluptate, odio consequatur molestias quaerat repellendus nobis animi, iusto sapiente tempora tempore nam laudantium dolor. Sunt, ducimus. Repellendus, tenetur. Quas soluta, vel tempora pariatur repellat ad nesciunt distinctio recusandae repellendus, non aliquam nisi eum sed a, cum eligendi quasi tenetur quos rem rerum minus iusto. Numquam debitis placeat perferendis sunt quaerat libero, molestias, autem officiis odit ex laborum, accusamus ad suscipit iste neque est necessitatibus nulla repellat quae. Nemo ex, eveniet dicta minus ad fugit libero. Laboriosam possimus molestias aliquid deleniti quasi eum alias explicabo!
-            </p>
-        </div>
-    </div>
-    <div class="content">
-        <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
-        <div class="pure-g">
-            <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked">
-                    <fieldset>
-                        <label for="name">Your Name</label>
-                        <input id="name" type="text" placeholder="Your Name">
-                        <label for="email">Your Email</label>
-                        <input id="email" type="email" placeholder="Your Email">
-                        <label for="password">Your Password</label>
-                        <input id="password" type="password" placeholder="Your Password">
-                        <button type="submit" class="pure-button button-secondary">Sign Up</button>
-                    </fieldset>
-                </form>
+        <div class="fg-dark">
+            <div class="container">
+                <div class="padding80" style="padding-top: 40px">
+                    <div class="">
+                        <div class="grid">
+                            <div class="row cells3">
+                                <div class="cell no-phone">
+                                    <div class="image-container bordered">
+                                        <div class="frame">
+                                            <img src="<?php echo assets_img('qa.png'); ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cell colspan2" style="padding-left: 20px">
+                                    <h1 class="">Whats is <?php echo $this->config->item('web_name'); ?></h1>
+                                    <ol class="numeric-list square-marker">
+                                        <li>compatible with <strong>Angular<span class="fg-red">JS</span></strong> and <strong>Require<span class="fg-red">JS</span></strong></li>
+                                        <li>full code refactoring &amp; new components</li>
+                                        <li>declarative approach to the definition of components</li>
+                                        <li>framework itself monitors components, pressure via ajax</li>
+                                        <li>create cool page without knowledge of javascript</li>
+                                        <li>support classic approach to definition of components</li>
+                                    </ol>
+                                    <p class="no-display">
+                                    The main feature in version 3 is: a declarative approach to the definition and initialization of components, and the framework itself monitors components, pressure via ajax. When a declarative definition of all component parameters are set via data-* attributes, including methods and events of the component. This approach allows to further separate html and javascript code. Now that would determine which component do not need to know javascript :). It is still possible to determine which component directly via javascript.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr class="thin">
+                </div>
             </div>
-            <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
-                <h4>Contact Us</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.
-                </p>
-                <h4>More Information</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.
-                </p>
+        </div>
+        <div class="bg-steel no-tablet-portrait no-phone">
+            <div class="container padding20 fg-white">
+                <div class="carousel bg-transparent" data-role="carousel" data-controls="false" data-markers="false" data-effect="fade" data-height="200">
+                    <div class="slide fg-white">
+                        <div class="place-left" style="margin-right: 20px">
+                            <img src="<?php echo assets_img('qa.png'); ?>" style="height: 200px">
+                        </div>
+                        <h1>Developed with advice</h1>
+                        <p>Metro UI CSS developed with the advice of Microsoft to build the user interface and include: general styles, grid, layouts, typography, 20+ components, 300+ built-in icons.</p>
+                        <p>Metro UI CSS build with {LESS}. Metro UI CSS is open source and has MIT licensing model.</p>
+                    </div>
+                    <div class="slide fg-white">
+                        <div class="place-left" style="margin-right: 20px">
+                            <img src="<?php echo assets_img('qa.png'); ?>" style="height: 200px">
+                        </div>
+                        <h1>BizSpark Startup</h1>
+                        <p>Metro UI CSS is a BizSpark Startup. Microsoft BizSpark is a global program that helps software startups succeed by giving them access to software development tools, connecting them with key industry players, and providing marketing visibility.</p>
+                        <p>BizSpark provides free software, support, and visibility to help startups succeed. Join BizSpark and become part of a global community that has over 50,000 members in 100+ countries.</p>
+                        <a class="button primary" href="http://bizspark.com">Join the BizSpark Program now</a>
+                    </div>
+                    <div class="slide fg-white">
+                        <div class="place-left" style="margin-right: 20px">
+                            <img src="<?php echo assets_img('qa.png'); ?>" style="height: 200px">
+                        </div>
+                        <h1>Thanks to JetBrains</h1>
+                        <p>Thanks to the company JetBrains for supporting the project in the form of a license for a great product PhpStorm.</p>
+                        <a class="button success" href="http://www.jetbrains.com/phpstorm/">Get PhpStorm now!</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

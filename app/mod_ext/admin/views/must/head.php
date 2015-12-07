@@ -5,8 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="<?php echo base_url('assets/images/favicon.png'); ?>">
-<title><?php echo $this->uri->segment(1); ?> - <?php echo $this->config->item('web_name'); ?></title>
+<title><?php echo ucwords($this->uri->segment(1)); ?> - <?php echo $this->config->item('web_name'); ?></title>
 <link href="<?php echo base_url($this->config->item('private_css') . 'bootstrap.min.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url($this->config->item('private_css') . 'select2.min.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url($this->config->item('private_css') . 'metisMenu.min.css'); ?>" rel="stylesheet">
 <?php if (isset($timelineCSS) == TRUE): ?>
 <link href="<?php echo base_url($this->config->item('private_css') . 'timeline.css'); ?>" rel="stylesheet">
@@ -19,7 +20,6 @@
 <link href="<?php echo base_url($this->config->item('private_css') . 'morris.css'); ?>" rel="stylesheet">
 <?php endif ?>
 <link href="<?php echo base_url($this->config->item('private_css') . 'font-awesome.min.css'); ?>" rel="stylesheet">
-<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/css/select2.min.css" rel="stylesheet">
 <link href="<?php echo base_url($this->config->item('private_css') . 'style.css'); ?>" rel="stylesheet">
 <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -89,7 +89,7 @@
                         <a href="<?php echo base_url(''.$this->uri->segment(1).'/vote'); ?>"><i class="fa fa-bar-chart-o fa-fw"></i> Votes</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/category'); ?>"><i class="fa fa-th-list fa-fw"></i> Categories</a>
+                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/category'); ?>"><i class="fa fa-tag fa-fw"></i> Categories</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url(''.$this->uri->segment(1).'/tag'); ?>"><i class="fa fa-tags fa-fw"></i> Tags</a>
