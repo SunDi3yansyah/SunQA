@@ -13,13 +13,15 @@ class Home extends CI_Publics
 {
 	function index()
 	{
-		if ($this->qa_libs->logged_in())
-		{
-			$this->_render('public/independent/home');
-		}
-		else
-		{
-			$this->_render('public/independent/home');
-		}		
+		$data = array(
+			'latest_question' => $this->_latest_question(),
+			);
+		$this->_render('public/independent/home', $data);
+	}
+
+	function _latest_question()
+	{
+        $var = $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.id_question DESC', 5, 0);
+        return ($var == FALSE)?array():$var;
 	}
 }

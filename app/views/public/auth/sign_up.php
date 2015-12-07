@@ -1,30 +1,11 @@
 <title>Sign Up - <?php echo $this->config->item('web_name'); ?></title>
 <style>
-body {
-    padding-top: 3em;
-}
-.signup-form {
-    margin: 0 auto 3em;
-    width: 25rem;
-    left: 50%;
-    background-color: #ffffff;
-    opacity: 0;
-    -webkit-transform: scale(.8);
-    transform: scale(.8);
-}
-.padding10.bg-red.fg-white.text-accent {
-	margin-bottom: 0.5em;
-}
-.padding10.bg-red.fg-white.text-accent p {
-	font-size: 13px;
-	margin: 0;
-}
-footer {
-	display: none;
+.footer {
+    display: none;
 }
 </style>
 <script>
-$(function(){
+$(function() {
     var form = $(".signup-form");
     form.css({
         opacity: 1,
@@ -37,7 +18,7 @@ $(function(){
 </script>
 </head>
 <body>
-<body class="bg-darkTeal">
+<body class="bg-darkTeal" style="padding-top: 3em;">
 <div class="signup-form padding20 block-shadow">
     <?php echo form_open($this->uri->uri_string()); ?>
         <h1 class="text-light">Sign Up</h1>

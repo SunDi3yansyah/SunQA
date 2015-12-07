@@ -39,6 +39,16 @@ if (!function_exists('assets_img'))
 	}
 }
 
+if (!function_exists('pic_user'))
+{
+	function pic_user($str)
+	{
+		$obj = &get_instance();
+
+		return base_url($obj->config->item('pic_user') . $str);
+	}
+}
+
 if (!function_exists('dateNoHour'))
 {
 	function dateNoHour($str)

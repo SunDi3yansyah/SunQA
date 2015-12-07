@@ -15,9 +15,9 @@ class Questions extends CI_Publics
 	{
 		if (!empty($str)) {
 			$data = array(
-				'record' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.id_question', 5, $str),
+				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.id_question DESC', 5, $str),
 				);
-			if (!empty($data['record']))
+			if (!empty($data['questions']))
 			{
 				$this->load->view('public/questions/ajax', $data);
 			}
@@ -28,9 +28,9 @@ class Questions extends CI_Publics
 			}
 		} else {
 			$data = array(
-				'record' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.id_question', 5, 0),
+				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.id_question DESC', 5, 0),
 				);
-			if (!empty($data['record']))
+			if (!empty($data['questions']))
 			{
 				$this->_render('public/questions/index', $data);
 			}

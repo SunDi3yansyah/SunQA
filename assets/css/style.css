@@ -10,3 +10,132 @@
     text-align: right;
     margin: 0 auto;
 }
+
+.QuestionList {
+    padding-bottom: 2em;
+}
+
+.QuestionList-title {
+    font-size: 1.5em;
+    margin-bottom: 0.2em;
+}
+
+.QuestionList-avatar {
+    border-radius: 50px;
+    float: right;
+    margin-left: 1em;
+}
+
+.QuestionList-description {
+    font-family: Georgia, "Cambria", serif;
+    color: #444;
+    line-height: 1.8em;
+}
+
+.QuestionList-meta {
+    color: #999;
+    font-size: 90%;
+}
+
+.QuestionList-category {
+    margin: 0 0.1em;
+    padding: 0.3em 1em;
+    color: #fff;
+    background: #999;
+    font-size: 80%;
+}
+    .QuestionList-category-design {
+        background: #5aba59;
+    }
+    .QuestionList-category-pure {
+        background: #4d85d1;
+    }
+    .QuestionList-category-yui {
+        background: #8156a7;
+    }
+    .QuestionList-category-js {
+        background: #df2d4f;
+    }
+
+.QuestionList-images {
+    margin: 1em 0;
+}
+
+.QuestionList-image-meta {
+    margin-top: -3.5em;
+    margin-left: 1em;
+    color: #fff;
+    text-shadow: 0 1px 1px #333;
+}
+
+.login-form {
+    width: 25rem;
+    position: fixed;
+    top: 35%;
+    margin-top: -9.375rem;
+    left: 50%;
+    margin-left: -12.5rem;
+    background-color: #ffffff;
+    opacity: 0;
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
+}
+
+.login-form .padding10.bg-red.fg-white.text-accent {
+	margin-bottom: 0.5em;
+}
+
+.login-form .padding10.bg-red.fg-white.text-accent p {
+	font-size: 13px;
+	margin: 0;
+}
+
+.signup-form {
+    margin: 0 auto 3em;
+    width: 25rem;
+    left: 50%;
+    background-color: #ffffff;
+    opacity: 0;
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
+}
+
+.signup-form .padding10.bg-red.fg-white.text-accent {
+	margin-bottom: 0.5em;
+}
+
+.signup-form .padding10.bg-red.fg-white.text-accent p {
+	font-size: 13px;
+	margin: 0;
+}
+
+.footer {
+    background-color: #EFEAE3;
+}
+
+.land-bar {
+    padding-top: 7em;
+}
+
+.land-bar-title {
+    font-size: 3.5rem;
+    line-height: 1;
+}
+
+.land-bar-description {
+    font-size: 1rem;
+    line-height: 25px;
+}
+
+.latest-question {
+    margin: 3em 0;
+}
+
+.pic-user {
+    height: 25px;
+    border-radius: 50%;
+}
+
+.capitalize {
+    text-transform: capitalize !important;
+}

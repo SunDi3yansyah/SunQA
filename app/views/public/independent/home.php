@@ -5,23 +5,20 @@
     <div class="page-content">
         <div class="bg-lightBlue fg-white align-center">
             <div class="container">
-                <div class="no-overflow" style="padding-top: 40px">
-                    <br>
-                    <br>
-                    <br>
+                <div class="no-overflow land-bar">
                     <div class="padding10 sub-leader text-light">
                         <?php echo $this->lang->line('welcome') ?>
                     </div>
-                    <h1 style="font-size: 3.5rem; line-height: 1" class="text-shadow metro-title text-light"><?php echo $this->config->item('web_name') ?></h1>
-                    <p class="padding10" style="font-size: 1rem; line-height: 25px;">
+                    <h1 class="text-shadow metro-title text-light land-bar-title"><?php echo $this->config->item('web_name') ?></h1>
+                    <p class="padding10 land-bar-description">
                         <?php echo $this->config->item('description_home') ?>
                     </p>
-                    <div class="margin60">
+                    <div class="margin50">
                         <div class="clear-float">
                             <a href="<?php echo base_url('question/create'); ?>"><button class="button big-button block-shadow success"><span class="mif-question mif-ani-shuttle"></span> Getting Started Question</button></a>
                         </div>
                     </div>
-                    <div class="grid no-margin-bottom" style="margin-top: 100px" id="g1">
+                    <div class="grid no-margin-bottom" id="g1">
                         <div class="row cells3">
                             <div class="cell no-overflow" style="height: 85px">
                                 <div class="bg-yellow fg-white block-shadow" style="height: 85px; padding-top: 20px; margin-top: 85px;">
@@ -60,36 +57,52 @@
         </div>
         <div class="fg-dark">
             <div class="container">
-                <div class="padding80" style="padding-top: 40px">
-                    <div class="">
-                        <div class="grid">
-                            <div class="row cells3">
-                                <div class="cell no-phone">
-                                    <div class="image-container bordered">
-                                        <div class="frame">
-                                            <img src="<?php echo assets_img('qa.png'); ?>">
-                                        </div>
+                <div style="padding-top: 40px; padding-bottom: 10px;">
+                    <div class="grid">
+                        <div class="row cells3">
+                            <div class="cell no-phone">
+                                <div class="image-container bordered">
+                                    <div class="frame">
+                                        <img src="<?php echo assets_img('qa.png'); ?>">
                                     </div>
                                 </div>
-                                <div class="cell colspan2" style="padding-left: 20px">
-                                    <h1 class="">Whats is <?php echo $this->config->item('web_name'); ?></h1>
-                                    <ol class="numeric-list square-marker">
-                                        <li>compatible with <strong>Angular<span class="fg-red">JS</span></strong> and <strong>Require<span class="fg-red">JS</span></strong></li>
-                                        <li>full code refactoring &amp; new components</li>
-                                        <li>declarative approach to the definition of components</li>
-                                        <li>framework itself monitors components, pressure via ajax</li>
-                                        <li>create cool page without knowledge of javascript</li>
-                                        <li>support classic approach to definition of components</li>
-                                    </ol>
-                                    <p class="no-display">
-                                    The main feature in version 3 is: a declarative approach to the definition and initialization of components, and the framework itself monitors components, pressure via ajax. When a declarative definition of all component parameters are set via data-* attributes, including methods and events of the component. This approach allows to further separate html and javascript code. Now that would determine which component do not need to know javascript :). It is still possible to determine which component directly via javascript.
-                                    </p>
-                                </div>
+                            </div>
+                            <div class="cell colspan2" style="padding-left: 20px">
+                                <h1 class="">Whats is <?php echo $this->config->item('web_name'); ?></h1>
+                                <ol class="numeric-list square-marker">
+                                    <li>compatible with <strong>Angular<span class="fg-red">JS</span></strong> and <strong>Require<span class="fg-red">JS</span></strong></li>
+                                    <li>full code refactoring &amp; new components</li>
+                                    <li>declarative approach to the definition of components</li>
+                                    <li>framework itself monitors components, pressure via ajax</li>
+                                    <li>create cool page without knowledge of javascript</li>
+                                    <li>support classic approach to definition of components</li>
+                                </ol>
+                                <p class="no-display">
+                                The main feature in version 3 is: a declarative approach to the definition and initialization of components, and the framework itself monitors components, pressure via ajax. When a declarative definition of all component parameters are set via data-* attributes, including methods and events of the component. This approach allows to further separate html and javascript code. Now that would determine which component do not need to know javascript :). It is still possible to determine which component directly via javascript.
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <br>
+                </div>
+                <div class="latest-question">
+                    <h2>Latest Question</h2>
                     <hr class="thin">
+                    <?php foreach ($latest_question as $lq): ?>
+                    <section class="QuestionList">
+                        <header class="QuestionList-header">
+                            <img class="QuestionList-avatar" alt="" height="48" width="48" src="<?php echo pic_user($lq->image) ?>">
+                            <h3 class="QuestionList-title"><a href="<?php echo base_url('question/' . $lq->url_question) ?>"><?php echo $lq->subject ?></a></h3>
+                            <p class="QuestionList-meta">
+                                By <a class="QuestionList-author" href="<?php echo base_url('user/' . $lq->username); ?>"><?php echo $lq->nama ?></a> under <a class="QuestionList-category QuestionList-category-js" href="<?php echo base_url('category/' . $lq->category_name); ?>"><?php echo $lq->category_name ?></a>
+                            </p>
+                        </header>
+                        <div class="QuestionList-description">
+                            <p>
+                                <?php echo qa_remove_html_limit($lq->description_question, 100) ?>
+                            </p>
+                        </div>
+                    </section>
+                    <?php endforeach ?>
                 </div>
             </div>
         </div>

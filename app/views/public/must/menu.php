@@ -1,6 +1,7 @@
 <header class="app-bar fixed-top" data-role="appbar">
     <div class="container">
         <a href="<?php echo base_url(); ?>" class="app-bar-element branding"><img src="<?php echo base_url('assets/images/qa.png'); ?>" style="height: 28px; display: inline-block; margin-right: 10px;"> <?php echo $this->config->item('web_name'); ?></a>
+        <span class="app-bar-divider"></span>
         <ul class="app-bar-menu">
             <li>
                 <a href="<?php echo base_url('activities'); ?>">Activities</a>

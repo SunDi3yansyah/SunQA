@@ -1,30 +1,11 @@
 <title>Log In - <?php echo $this->config->item('web_name'); ?></title>
 <style>
-.login-form {
-    width: 25rem;
-    position: fixed;
-    top: 35%;
-    margin-top: -9.375rem;
-    left: 50%;
-    margin-left: -12.5rem;
-    background-color: #ffffff;
-    opacity: 0;
-    -webkit-transform: scale(.8);
-    transform: scale(.8);
-}
-.padding10.bg-red.fg-white.text-accent {
-	margin-bottom: 0.5em;
-}
-.padding10.bg-red.fg-white.text-accent p {
-	font-size: 13px;
-	margin: 0;
-}
-footer {
-	display: none;
+.footer {
+    display: none;
 }
 </style>
 <script>
-$(function(){
+$(function() {
     var form = $(".login-form");
     form.css({
         opacity: 1,
