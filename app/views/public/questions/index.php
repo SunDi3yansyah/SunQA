@@ -18,8 +18,6 @@
         <div class="fg-dark">
             <div class="container">
                 <div class="latest-question">
-                    <h2>Latest Question</h2>
-                    <hr class="thin">
                     <?php foreach ($questions as $q): ?>
                     <section class="QuestionList">
                         <header class="QuestionList-header">

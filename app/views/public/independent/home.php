@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="latest-question">
-                    <h2>Latest Question</h2>
+                    <h2>Latest Questions</h2>
                     <hr class="thin">
                     <?php foreach ($latest_question as $lq): ?>
                     <section class="QuestionList">
