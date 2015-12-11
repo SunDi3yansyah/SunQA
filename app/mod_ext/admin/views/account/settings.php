@@ -69,12 +69,7 @@
                                         <li>Last Login : <b><?php echo dateHourStripe($data->last_login) ?></b></li>
                                         <li>Last IP Address : <b><?php echo $data->last_ip ?></b></li>
                                         <li>Last Modified : <b><?php echo dateHourStripe($data->modified) ?></b></li>
-                                        <li>Lost Password : 
-                                                            <?php if ($data->lost_password != NULL): ?>
-                                                                <?php echo $data->lost_password ?>
-                                                            <?php else: ?>
-                                                                <b>Nothing</b>
-                                                            <?php endif ?>
+                                        <li>Lost Password : <?php if ($data->lost_password != NULL): ?><?php echo $data->lost_password ?><?php else: ?><b>Nothing</b><?php endif ?>
                                         </li>
                                     </ul>
                                 </div>
@@ -82,7 +77,8 @@
                             <div class="fc">
                                 <a href="<?php echo base_url('user/' . $data->username) ?>" target="_blank" class="btn btn-primary btn-lg">See <?php echo $this->uri->segment(2) ?></a>
                                 <hr>
-                                <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/unique'); ?>" class="btn btn-outline btn-info">Change Username or Email</a>
+                                <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/username'); ?>" class="btn btn-outline btn-info">Change Username</a>
+                                <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/email'); ?>" class="btn btn-outline btn-info">Change Email</a>
                                 <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/passwd'); ?>" class="btn btn-outline btn-warning">Change Password</a>
                             </div>
                         </div>

@@ -22,10 +22,6 @@
                         <?php endif ?>
                             <?php echo form_open($this->uri->uri_string(), 'role="form"'); ?>
                                 <div class="form-group">
-                                    <label>Username</label>
-                                    <?php echo form_input('username', $user->username, 'class="form-control" autocomplete="off"') ?>
-                                </div>
-                                <div class="form-group">
                                     <label>E-Mail</label>
                                     <?php echo form_input('email', $user->email, 'class="form-control" autocomplete="off"') ?>
                                 </div>
@@ -40,7 +36,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul>
-                                        <li>Tidak diperbolehkan memasukkan <b>Username</b> dan <b>E-mail</b> yang sudah ada sebelumnya.</li>
+                                        <li>Tidak diperbolehkan memasukkan <b>E-mail</b> yang sudah ada sebelumnya.</li>
                                     </ul>
                                 </div>
                             </div>

@@ -442,3 +442,23 @@ table#qa-dataTables th:first-child {
 .col-lg-7 {
     margin-bottom: 1em;
 }
+
+a.btn {
+    margin: 1px 0;
+}
+
+/* Datatables */
+div#qa-dataTables_wrapper .col-sm-6:first-child {
+    display: none;
+}
+div#qa-dataTables_filter,
+div#qa-dataTables_paginate {
+    float: left;
+    text-align: left;
+}
+@media(max-width:768px) {
+    .dataTables_wrapper {
+        padding: 1rem;
+    }
+}
+/* End Datatables */
