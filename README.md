@@ -4,7 +4,7 @@ __PERANCANGAN WEBSITE SISTEM TANYA JAWAB__
 
 Final Project Pemrograman Web Lanjut
 
-![Thanks to](https://raw.githubusercontent.com/SunDi3yansyah/FinalProjectPWL/master/assets/images/common/thanks-to.png)
+![Thanks to](https://raw.githubusercontent.com/SunDi3yansyah/FinalProjectPWL/master/assets/images/thanks-to.png)
 
 ### Rincian Mahasiswa
 
