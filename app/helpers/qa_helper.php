@@ -100,8 +100,8 @@ if (!function_exists('dateHourIcon'))
 		$minute = substr($str,14,2);
 		$formatMonth = monthID($month);
 		$icon = array(
-			'clock' => '<i class="fa fa-clock-o"></i>',
-			'calendar' => '<i class="fa fa-calendar"></i>'
+			'calendar' => '<span class="mif-calendar"></span>',
+			'clock' => '<span class="mif-history"></span>',
 			);
 		return $icon['calendar'].' '.$date.' '.$formatMonth.' '.$year.' '.$icon['clock'].' '.$hour.':'.$minute;
 	}

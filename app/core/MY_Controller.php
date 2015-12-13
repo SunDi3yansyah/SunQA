@@ -20,18 +20,18 @@ class CI_Publics extends CI_Controller
 
 		$array = array(
 			'current_url' => $this->uri->uri_string(),
-		);		
+		);
 		$this->session->set_userdata($array);
 	}
 
 	function _render($content, $data = NULL)
 	{
 		$data = array(
-			'head'		=> $this->load->view('public/must/head', $data, TRUE),
+			'head'		=> $this->load->view('must/head', $data, TRUE),
 			'content'	=> $this->load->view($content, $data, TRUE),
-			'foot'		=> $this->load->view('public/must/foot', $data, TRUE),
+			'foot'		=> $this->load->view('must/foot', $data, TRUE),
 			);
-		$this->load->view('public/main', $data);
+		$this->load->view('main', $data);
     }
 	
 	function _AlphaNumberSpace($str)

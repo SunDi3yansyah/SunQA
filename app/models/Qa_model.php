@@ -19,9 +19,12 @@ class Qa_model extends CI_Model
         $this->db->from($table);
         $this->db->order_by($order);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -32,9 +35,12 @@ class Qa_model extends CI_Model
         $this->db->where($where);
         $this->db->order_by($order);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -44,9 +50,12 @@ class Qa_model extends CI_Model
         $this->db->from($table);
         $this->db->where($where);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -57,9 +66,27 @@ class Qa_model extends CI_Model
         $this->db->where($where1);
         $this->db->where($where2);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
+            return $query->result();
+        }
+    }
+
+    function firt_or_last($table, $order)
+    {
+        $this->db->from($table);
+        $this->db->limit(1, 0);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0) {
+            return FALSE;
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -72,43 +99,11 @@ class Qa_model extends CI_Model
         if ($query->num_rows() > 0)
         {
             return $query->result_array();
-        } else {
-            return FALSE;
-        } 
-    }
-
-    function get_array($table, $where)
-    {
-        $this->db->select('*');
-        $this->db->from($table);
-        if ($where !== NULL)
-        {
-            if (is_array($where))
-            {
-                foreach ($where as $field => $value)
-                {
-                    $this->db->where($field, $value);
-                }
-            } else {
-                $this->db->where($where);
-            }
-        }
-        $result = $this->db->get()->result();
-        if ($result)
-        {
-            if ($where !== NULL)
-            {
-                return array_shift($result);
-            }
-            else
-            {
-                return $result;
-            }
         }
         else
         {
             return FALSE;
-        }
+        } 
     }
 
     function join_where($table1, $table2, $join, $where, $order)
@@ -118,9 +113,12 @@ class Qa_model extends CI_Model
         $this->db->where($where);
         $this->db->order_by($order);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -132,9 +130,12 @@ class Qa_model extends CI_Model
         $this->db->join($table3, $join2);
         $this->db->order_by($order);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -147,9 +148,31 @@ class Qa_model extends CI_Model
         $this->db->limit($limit, $offset);
         $this->db->order_by($order);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
+            return $query->result();
+        }
+    }
+
+    function join2_where_ajax($table1, $table2, $table3, $join1, $join2, $where, $order, $limit, $offset)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join1);
+        $this->db->join($table3, $join2);
+        $this->db->limit($limit, $offset);
+        $this->db->where($where);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0)
+        {
+            return FALSE;
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -162,9 +185,12 @@ class Qa_model extends CI_Model
         $this->db->where($where);
         $this->db->order_by($order);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -178,9 +204,12 @@ class Qa_model extends CI_Model
         $this->db->where($where);
         $this->db->order_by($order);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -195,9 +224,12 @@ class Qa_model extends CI_Model
         $this->db->where($where);
         $this->db->order_by($order);
         $query = $this->db->get();
-        if ($query->num_rows() == 0){
+        if ($query->num_rows() == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $query->result();
         }
     }
@@ -294,9 +326,12 @@ class Qa_model extends CI_Model
         $this->db->set($field, "$field+1", FALSE);
         $this->db->where($where);
         $query = $this->db->update();
-        if ($query == 0){
+        if ($query == 0)
+        {
             return FALSE;
-        } else {
+        }
+        else
+        {
             return $query;
         }
     }

@@ -19,7 +19,7 @@ class Questions extends CI_Publics
 				);
 			if (!empty($data['questions']))
 			{
-				$this->load->view('public/questions/ajax', $data);
+				$this->load->view('questions/ajax', $data);
 			}
 			else
 			{
@@ -32,7 +32,7 @@ class Questions extends CI_Publics
 				);
 			if (!empty($data['questions']))
 			{
-				$this->_render('public/questions/index', $data);
+				$this->_render('questions/index', $data);
 			}
 			else
 			{

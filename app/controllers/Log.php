@@ -48,7 +48,7 @@ class Log extends CI_Controller
 									$data = array(
 										'errors' => '<p>Status akun anda belum aktif, silakan periksa alamat email anda.</p>'
 										);
-									$this->_render('public/auth/log_in', $data);
+									$this->_render('auth/log_in', $data);
 								}
 								else
 								{
@@ -73,7 +73,7 @@ class Log extends CI_Controller
 							$data = array(
 								'errors' => '<p>Password yang anda masukkan salah.</p>'
 								);
-							$this->_render('public/auth/log_in', $data);
+							$this->_render('auth/log_in', $data);
 						}						
 					}
 				}
@@ -82,12 +82,12 @@ class Log extends CI_Controller
 					$data = array(
 						'errors' => '<p>Username tidak ada dalam database.</p>'
 						);
-					$this->_render('public/auth/log_in', $data);
+					$this->_render('auth/log_in', $data);
 				}
 			}
 			else
 			{
-				$this->_render('public/auth/log_in');
+				$this->_render('auth/log_in');
 			}			
 		}		
 	}
@@ -108,9 +108,9 @@ class Log extends CI_Controller
 
 	function _render($content, $data = NULL)
 	{
-		$data['head'] = $this->load->view('public/must/head', $data, TRUE);
+		$data['head'] = $this->load->view('must/head', $data, TRUE);
 		$data['content'] = $this->load->view($content, $data, TRUE);
-		$data['foot'] = $this->load->view('public/must/foot', $data, TRUE);
-		$this->load->view('public/main', $data);
+		$data['foot'] = $this->load->view('must/foot', $data, TRUE);
+		$this->load->view('main', $data);
     }
 }

@@ -9,10 +9,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @copyright	Copyright (c) 2015 SunDi3yansyah
  */
 
-class Activities extends CI_Publics
+class Tag extends CI_Publics
 {
 	function index()
 	{
-		$this->_render('public/activities/index');
+		$this->_render('tag/index');
 	}
 }

@@ -94,4 +94,12 @@ class Qa_libs
     		return $return;
     	}    
     }
+
+    function last_question()
+    {
+        foreach ($this->ci->qa_model->firt_or_last('question', 'id_question DESC') as $q)
+        {
+            return $q->id_question + 1;
+        }
+    }
 }

@@ -1,17 +1,15 @@
-<title>Questions - <?php echo $this->config->item('web_name'); ?></title>
+<title>Unanswereds - <?php echo $this->config->item('web_name'); ?></title>
 </head>
 <body>
-<?php $this->load->view('public/must/menu'); ?>
+<?php $this->load->view('must/menu'); ?>
     <div class="page-content">
         <div class="bg-darkBlue fg-white align-center">
             <div class="container">
                 <div class="no-overflow land-bar">
                     <h1 class="text-shadow metro-title text-light land-bar-title capitalize"><?php echo $this->uri->segment(1) ?></h1>
-                    <div class="margin30">
-                        <div class="clear-float">
-                            <a href="<?php echo base_url('question/create'); ?>"><button class="button big-button block-shadow success"><span class="mif-question mif-ani-shuttle"></span> Start Question</button></a>
-                        </div>
-                    </div>
+                    <br>
+                    <br>
+                    <br>
                 </div>
             </div>
         </div>

@@ -40,11 +40,17 @@ class Auth extends CI_Publics
 					'activated_hash' => sha1(microtime()),
 					);
 				$this->qa_model->insert('user', $insert);
-				$this->_render('public/auth/sign_up_success');
+				$this->_render('auth/sign_up_success');
+				$this->email->from($this->config->item('webmaster_email'), $this->config->item('web_name'));
+				$this->email->reply_to($this->config->item('webmaster_email'), $this->config->item('web_name'));
+				$this->email->to($insert['email']);
+				$this->email->subject(sprintf('Activation - ', $this->config->item('web_name')));
+				$this->email->message('Untuk mengaktifkan akun anda silakan kunjungi alamat URL berikut '.base_url('auth/activated/'. $insert['activated_hash']).'');
+				$this->email->send();
 			}
 			else
 			{
-				$this->_render('public/auth/sign_up');
+				$this->_render('auth/sign_up');
 			}
 		}
 	}
@@ -60,7 +66,7 @@ class Auth extends CI_Publics
 						'last_ip' => $this->input->ip_address(),
 						'activated_hash' => NULL
 						);
-					$this->_render('public/auth/activated');
+					$this->_render('auth/activated');
 				}
 			} else {
 				show_404();
@@ -74,36 +80,36 @@ class Auth extends CI_Publics
 
 	function account()
 	{
-		$this->_render('public/auth/account');
+		$this->_render('auth/account');
 	}
 
 	function forgot()
 	{
-		$this->_render('public/auth/forgot');
+		$this->_render('auth/forgot');
 	}
 
 	function settings()
 	{
-		$this->_render('public/auth/settings');
+		$this->_render('auth/settings');
 	}
 
 	function answer()
 	{
-		$this->_render('public/auth/answer');
+		$this->_render('auth/answer');
 	}
 
 	function question()
 	{
-		$this->_render('public/auth/question');
+		$this->_render('auth/question');
 	}
 
 	function comment()
 	{
-		$this->_render('public/auth/comment');
+		$this->_render('auth/comment');
 	}
 
 	function vote()
 	{
-		$this->_render('public/auth/vote');
+		$this->_render('auth/vote');
 	}
 }

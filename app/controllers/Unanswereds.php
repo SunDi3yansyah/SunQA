@@ -13,11 +13,37 @@ class Unanswereds extends CI_Publics
 {
 	function index()
 	{
-		$this->_render('public/unanswereds/index');
+		if (!empty($str)) {
+			$data = array(
+				'questions' => $this->qa_model->join2_where_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', array('answer_id' => NULL), 'question.id_question DESC', 5, $str),
+				);
+			if (!empty($data['questions']))
+			{
+				$this->load->view('unanswereds/ajax', $data);
+			}
+			else
+			{
+				show_404();
+				return FALSE;
+			}
+		} else {
+			$data = array(
+				'questions' => $this->qa_model->join2_where_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', array('answer_id' => NULL), 'question.id_question DESC', 5, 0),
+				);
+			if (!empty($data['questions']))
+			{
+				$this->_render('unanswereds/index', $data);
+			}
+			else
+			{
+				show_404();
+				return FALSE;
+			}
+		}
 	}
 
 	function _get()
 	{
-		$this->_render('public/unanswereds/index');
+		$this->_render('unanswereds/index');
 	}
 }

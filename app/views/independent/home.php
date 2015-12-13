@@ -1,7 +1,7 @@
 <title>Welcome to <?php echo $this->config->item('web_name'); ?></title>
 </head>
 <body>
-<?php $this->load->view('public/must/menu'); ?>
+<?php $this->load->view('must/menu'); ?>
     <div class="page-content">
         <div class="bg-lightBlue fg-white align-center">
             <div class="container">
@@ -15,7 +15,7 @@
                     </p>
                     <div class="margin50">
                         <div class="clear-float">
-                            <a href="<?php echo base_url('question/create'); ?>"><button class="button big-button block-shadow success"><span class="mif-question mif-ani-shuttle"></span> Getting Started Question</button></a>
+                            <a href="<?php echo base_url('create'); ?>"><button class="button big-button block-shadow success"><span class="mif-question mif-ani-shuttle"></span> Getting Started Question</button></a>
                         </div>
                     </div>
                     <div class="grid no-margin-bottom" id="g1">

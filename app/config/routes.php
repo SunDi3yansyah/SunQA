@@ -50,5 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
+$route['question/(:any)'] = 'question/a302344c485385d66b3c1736be5213fb07e7fbb8/$1';
+$route['question/(:any)/(:any)'] = 'question/a302344c485385d66b3c1736be5213fb07e7fbb8/$1/$2';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

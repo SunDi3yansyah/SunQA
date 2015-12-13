@@ -13,6 +13,8 @@ $config['web_name'] = 'Question Answer';
 $config['description_home'] = 'Temukan masalah anda disini karena kesempatan dua kali sulit didapatkan, jangan sampai masalah anda semakin menumpuk dan menundanya dimudian hari hanya karena masalah sepele.';
 $config['footer'] = 'Copyright &copy; '.date('Y').' '.$config['web_name'].', All Right Reserved.';
 
+$config['webmaster_email'] = 'localhost@localhost';
+
 $config['pic_user'] = 'pictures/users/';
 
 $config['public_css'] = 'assets/css/';

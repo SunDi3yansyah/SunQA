@@ -16,7 +16,7 @@ class Home extends CI_Publics
 		$data = array(
 			'latest_question' => $this->_latest_question(),
 			);
-		$this->_render('public/independent/home', $data);
+		$this->_render('independent/home', $data);
 	}
 
 	function _latest_question()
