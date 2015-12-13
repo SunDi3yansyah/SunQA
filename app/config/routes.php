@@ -52,5 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['question/(:any)'] = 'question/a302344c485385d66b3c1736be5213fb07e7fbb8/$1';
 $route['question/(:any)/(:any)'] = 'question/a302344c485385d66b3c1736be5213fb07e7fbb8/$1/$2';
+$route['questions/most-view'] = 'questions/most_view';
+$route['questions/most-popular'] = 'questions/most_popular';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -17,9 +17,9 @@ class Account extends CI_Privates
             'question' => $this->_question(),
             'question_tag' => $this->_question_tag(),
             'answer' => $this->_answer(),
-            'vote' => $this->_vote(),
             );
-            foreach ($this->_comment() as $c) {
+            foreach ($this->_comment() as $c)
+            {
                 if ($c->comment_in === 'Question')
                 {
                     $comment = $this->qa_model->join_where('comment', 'question', 'comment.question_id=question.id_question', array('comment.user_id' => $this->qa_libs->id_user()), 'comment.id_comment DESC');
@@ -31,7 +31,8 @@ class Account extends CI_Privates
                     $data['comment_answer'] = ($comment == FALSE)?array():$comment;
                 }
             }
-            foreach ($this->_vote() as $v) {
+            foreach ($this->_vote() as $v)
+            {
                 if ($v->vote_in === 'Question')
                 {
                     $vote = $this->qa_model->join_where('vote', 'question', 'vote.question_id=question.id_question', array('vote.user_id' => $this->qa_libs->id_user()), 'vote.id_vote DESC');
@@ -62,7 +63,8 @@ class Account extends CI_Privates
                 $this->form_validation->set_error_delimiters('', '<br>');
                 if ($this->form_validation->run() == TRUE)
                 {
-                    foreach ($this->qa_libs->user() as $user) {
+                    foreach ($this->qa_libs->user() as $user)
+                    {
                         $check_username = $this->qa_model->get('user', array('username' => $this->input->post('username', TRUE)));
                         if (strtolower($user->username) === strtolower($this->input->post('username', TRUE)))
                         {

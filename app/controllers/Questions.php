@@ -19,7 +19,7 @@ class Questions extends CI_Publics
 				);
 			if (!empty($data['questions']))
 			{
-				$this->load->view('questions/ajax', $data);
+				$this->load->view('questions/questions_ajax', $data);
 			}
 			else
 			{
@@ -32,7 +32,100 @@ class Questions extends CI_Publics
 				);
 			if (!empty($data['questions']))
 			{
-				$this->_render('questions/index', $data);
+				$this->_render('questions/questions', $data);
+			}
+			else
+			{
+				show_404();
+				return FALSE;
+			}
+		}
+	}
+
+	function unanswereds($str = NULL)
+	{
+		if (!empty($str)) {
+			$data = array(
+				'questions' => $this->qa_model->join2_where_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', array('answer_id' => NULL), 'question.id_question DESC', 5, $str),
+				);
+			if (!empty($data['questions']))
+			{
+				$this->load->view('questions/unanswereds_ajax', $data);
+			}
+			else
+			{
+				show_404();
+				return FALSE;
+			}
+		} else {
+			$data = array(
+				'questions' => $this->qa_model->join2_where_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', array('answer_id' => NULL), 'question.id_question DESC', 5, 0),
+				);
+			if (!empty($data['questions']))
+			{
+				$this->_render('questions/unanswereds', $data);
+			}
+			else
+			{
+				show_404();
+				return FALSE;
+			}
+		}
+	}
+
+	function most_view($str = NULL)
+	{
+		if (!empty($str)) {
+			$data = array(
+				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.viewers DESC', 5, $str),
+				);
+			if (!empty($data['questions']))
+			{
+				$this->load->view('questions/most_view_ajax', $data);
+			}
+			else
+			{
+				show_404();
+				return FALSE;
+			}
+		} else {
+			$data = array(
+				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.viewers DESC', 5, 0),
+				);
+			if (!empty($data['questions']))
+			{
+				$this->_render('questions/most_view', $data);
+			}
+			else
+			{
+				show_404();
+				return FALSE;
+			}
+		}
+	}
+
+	function most_popular($str = NULL)
+	{
+		if (!empty($str)) {
+			$data = array(
+				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.viewers DESC', 5, $str),
+				);
+			if (!empty($data['questions']))
+			{
+				$this->load->view('questions/most_popular_ajax', $data);
+			}
+			else
+			{
+				show_404();
+				return FALSE;
+			}
+		} else {
+			$data = array(
+				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.viewers DESC', 5, 0),
+				);
+			if (!empty($data['questions']))
+			{
+				$this->_render('questions/most_popular', $data);
 			}
 			else
 			{

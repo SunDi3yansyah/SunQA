@@ -27,15 +27,18 @@
                     <br>
                 <?php endif ?>
                 <?php echo form_open($this->uri->uri_string()); ?>
-                    <div class="input-control text big-input full-size">
-                        <?php echo form_input('subject', set_value('subject'), 'placeholder="Subject" autocomplete="off"'); ?>
+                    <label for="subject">Subject Question</label>
+                    <div class="input-control text full-size">
+                        <?php echo form_input('subject', set_value('subject'), 'autocomplete="off"'); ?>
                     </div>
+                    <label for="description_question">Description Question</label>
                     <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true">
                         <?php echo form_textarea('description_question', set_value('description_question')); ?>
                     </div>
                     <div class="flex-grid">
                         <div class="row">
                             <div class="cell colspan4">
+                                <label for="category_id">Category Question</label>
                                 <div class="input-control full-size" data-role="select">
                                     <?php foreach ($category as $cat): ?>
                                         <?php $options_cat[] = array($cat->id_category => $cat->category_name); ?>
@@ -44,6 +47,7 @@
                                 </div>
                             </div>
                             <div class="cell colspan8">
+                                <label for="id_tag">Tags Question</label>
                                 <div class="input-control full-size" data-role="select" data-multiple="true">
                                     <?php foreach ($tag as $tag): ?>
                                         <?php $options_tag[] = array($tag->id_tag => $tag->tag_name); ?>

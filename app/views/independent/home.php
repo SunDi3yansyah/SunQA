@@ -101,6 +101,11 @@
                                 <?php echo qa_remove_html_limit($lq->description_question, 100) ?>
                             </p>
                         </div>
+                        <?php foreach ($question_tag as $qt): ?>
+                            <?php if ($qt->question_id === $lq->id_question): ?>
+                                <span class="tag success"><?php echo $qt->tag_name ?></span>
+                            <?php endif ?>
+                        <?php endforeach ?>
                     </section>
                     <?php endforeach ?>
                 </div>
