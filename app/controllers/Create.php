@@ -13,12 +13,12 @@ class Create extends CI_Publics
 {
 	function index()
 	{
-		$data = array(
-			'category' => $this->qa_model->all('category', 'id_category ASC'),
-			'tag' => $this->qa_model->all('tag', 'id_tag ASC'),
-			);
 		if ($this->qa_libs->logged_in())
 		{
+			$data = array(
+				'category' => $this->qa_model->all('category', 'id_category ASC'),
+				'tag' => $this->qa_model->all('tag', 'id_tag ASC'),
+				);
 			$this->form_validation->set_rules('subject', 'Description', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('category_id', 'Description', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('description_question', 'Description', 'trim|required|xss_clean');
@@ -48,12 +48,13 @@ class Create extends CI_Publics
 			}
 			else
 			{
-				$this->_render('create/index', $data);
+				$this->_render('question/create', $data);
 			}
 		}
 		else
 		{
-			$this->_render('create/index', $data);
-		}		
+			show_404();
+			return FALSE;
+		}
 	}
 }

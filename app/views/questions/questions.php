@@ -7,11 +7,9 @@
             <div class="container">
                 <div class="no-overflow land-bar">
                     <h1 class="text-shadow metro-title text-light land-bar-title capitalize"><?php echo $this->uri->segment(1) ?></h1>
-                    <div class="margin30">
-                        <div class="clear-float">
-                            <a href="<?php echo base_url('create'); ?>"><button class="button big-button block-shadow success"><span class="mif-question mif-ani-shuttle"></span> Start Question</button></a>
-                        </div>
-                    </div>
+                    <br>
+                    <br>
+                    <br>
                 </div>
             </div>
         </div>
@@ -32,6 +30,11 @@
                                 <?php echo qa_remove_html_limit($q->description_question, 100) ?>
                             </p>
                         </div>
+                        <?php foreach ($question_tag as $qt): ?>
+                            <?php if ($qt->question_id === $q->id_question): ?>
+                                <span class="tag success"><?php echo $qt->tag_name ?></span>
+                            <?php endif ?>
+                        <?php endforeach ?>
                     </section>
                     <?php endforeach ?>
                 </div>

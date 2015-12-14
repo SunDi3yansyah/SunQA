@@ -16,6 +16,7 @@ class Questions extends CI_Publics
 		if (!empty($str)) {
 			$data = array(
 				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.id_question DESC', 5, $str),
+				'question_tag' => $this->_question_tag(),
 				);
 			if (!empty($data['questions']))
 			{
@@ -29,6 +30,7 @@ class Questions extends CI_Publics
 		} else {
 			$data = array(
 				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.id_question DESC', 5, 0),
+				'question_tag' => $this->_question_tag(),
 				);
 			if (!empty($data['questions']))
 			{
@@ -47,6 +49,7 @@ class Questions extends CI_Publics
 		if (!empty($str)) {
 			$data = array(
 				'questions' => $this->qa_model->join2_where_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', array('answer_id' => NULL), 'question.id_question DESC', 5, $str),
+				'question_tag' => $this->_question_tag(),
 				);
 			if (!empty($data['questions']))
 			{
@@ -60,6 +63,7 @@ class Questions extends CI_Publics
 		} else {
 			$data = array(
 				'questions' => $this->qa_model->join2_where_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', array('answer_id' => NULL), 'question.id_question DESC', 5, 0),
+				'question_tag' => $this->_question_tag(),
 				);
 			if (!empty($data['questions']))
 			{
@@ -78,6 +82,7 @@ class Questions extends CI_Publics
 		if (!empty($str)) {
 			$data = array(
 				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.viewers DESC', 5, $str),
+				'question_tag' => $this->_question_tag(),
 				);
 			if (!empty($data['questions']))
 			{
@@ -91,6 +96,7 @@ class Questions extends CI_Publics
 		} else {
 			$data = array(
 				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.viewers DESC', 5, 0),
+				'question_tag' => $this->_question_tag(),
 				);
 			if (!empty($data['questions']))
 			{
@@ -104,6 +110,7 @@ class Questions extends CI_Publics
 		}
 	}
 
+	// belum jadi
 	function most_popular($str = NULL)
 	{
 		if (!empty($str)) {
@@ -134,4 +141,10 @@ class Questions extends CI_Publics
 			}
 		}
 	}
+
+    function _question_tag()
+    {
+        $var = $this->qa_model->join2('question_tag', 'question', 'tag', 'question_tag.question_id=question.id_question', 'question_tag.tag_id=tag.id_tag', 'question_tag.id_qt');
+        return ($var == FALSE)?array():$var;
+    }
 }

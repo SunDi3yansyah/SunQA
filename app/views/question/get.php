@@ -1,5 +1,5 @@
 <?php foreach ($question as $ask): ?>
-<title><?php echo $ask->subject ?> - Question - <?php echo $this->config->item('web_name'); ?></title>
+<title><?php echo $ask->subject ?> - <?php echo $this->config->item('web_name'); ?></title>
 </head>
 <body>
 <?php $this->load->view('must/menu'); ?>
@@ -28,9 +28,22 @@
             </div>
             <p class="bg-grayLighter padding10" style="line-height: 25px;">
                 <?php echo $ask->description_question ?>
-                <hr>
                 <?php if (!empty($ask->question_update)): ?>
-                    <i>laste update</i> <?php echo dateHourIcon($ask->question_update) ?>
+                    <blockquote class="place-right">
+                        <p>Question last update on</p>
+                        <small><cite title="Question last update"><?php echo dateHourIcon($ask->question_update) ?></cite></small>
+                    </blockquote>
+                <?php endif ?>
+                <hr class="bg-red">
+                <?php foreach ($question_tag as $qt): ?>
+                    <?php if ($qt->question_id === $ask->id_question): ?>
+                        <span class="tag success"><?php echo $qt->tag_name ?></span>
+                    <?php endif ?>
+                <?php endforeach ?>
+                <?php if ($ask->user_id === $this->qa_libs->id_user()): ?>
+                    <br>
+                    <a class="button info" href="<?php echo base_url($this->uri->segment(1) .'/'. $ask->url_question . '/update'); ?>"><span class="mif-pencil"></span> Update</a>
+                    <a class="button warning" href="<?php echo base_url($this->uri->segment(1) .'/'. $ask->url_question . '/delete'); ?>"><span class="mif-cancel"></span> Delete</a>
                 <?php endif ?>
             </p>
         </div>
@@ -38,14 +51,14 @@
             <div class="grid">
                 <div class="row ">
                     <div class="cell">
-                        <ul class="step-list">
+                        <ul class="numeric-list large-bullet blue-bullet">
                             <li>
                                 <strong class="no-margin-top">Improve user sign-in experience</strong>
                                 <hr class="bg-orange">
                                 <div>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea quas nihil est maiores voluptatem suscipit consequatur repellat fugiat, ipsum quos ullam aliquid aspernatur optio, voluptates molestias nam nisi esse? Quo!
                                 </div>
-                                    <ul class="step-list">
+                                    <ul class="numeric-list large-bullet blue-bullet">
                                         <li>
                                             <strong class="no-margin-top">Improve user sign-in experience</strong>
                                             <hr class="bg-black">

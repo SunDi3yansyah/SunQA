@@ -54,5 +54,7 @@ $route['question/(:any)'] = 'question/a302344c485385d66b3c1736be5213fb07e7fbb8/$
 $route['question/(:any)/(:any)'] = 'question/a302344c485385d66b3c1736be5213fb07e7fbb8/$1/$2';
 $route['questions/most-view'] = 'questions/most_view';
 $route['questions/most-popular'] = 'questions/most_popular';
+$route['category/(:any)'] = 'category/index/$1';
+$route['tag/(:any)'] = 'tag/index/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

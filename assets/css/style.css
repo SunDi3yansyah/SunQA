@@ -109,8 +109,7 @@
 
 .QuestionList-category {
     margin: 0 0.1em;
-    padding: 0.3em 1em;
-    color: #fff;
+    padding: 0.3em 1em 0.6em;
     background: #999;
     font-size: 80%;
 }
@@ -126,6 +125,10 @@
     .QuestionList-category-js {
         background: #df2d4f;
     }
+
+.QuestionList-category.QuestionList-category-js {
+    color: rgb(255, 255, 255);
+}
 
 .QuestionList-images {
     margin: 1em 0;
@@ -185,6 +188,13 @@
 
 .footer {
     background-color: #EFEAE3;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.footer-relative {
+    position: relative;
 }
 
 .land-bar {
@@ -241,4 +251,15 @@ strong.select2-results__group {
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     margin-top: 1px !important;
+}
+
+.messages {
+    padding: .625rem;
+    font-size: 1rem !important;
+    line-height: 25px;
+}
+
+.numeric-list.large-bullet li:before, .simple-list.large-bullet li:before {
+    top: 2rem !important;
+    margin-left: 0 !important;
 }

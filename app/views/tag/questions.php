@@ -1,4 +1,5 @@
-<title>Most Views - <?php echo $this->config->item('web_name'); ?></title>
+<?php foreach ($tag as $tag): ?>
+<title><?php echo $tag->tag_name ?> - <?php echo $this->config->item('web_name'); ?></title>
 </head>
 <body>
 <?php $this->load->view('must/menu'); ?>
@@ -6,7 +7,7 @@
         <div class="bg-darkBlue fg-white align-center">
             <div class="container">
                 <div class="no-overflow land-bar">
-                    <h1 class="text-shadow metro-title text-light land-bar-title capitalize">Most Views</h1>
+                    <h1 class="text-shadow metro-title text-light land-bar-title capitalize"><?php echo $tag->tag_name ?></h1>
                     <br>
                     <br>
                     <br>
@@ -30,14 +31,10 @@
                                 <?php echo qa_remove_html_limit($q->description_question, 100) ?>
                             </p>
                         </div>
-                        <?php foreach ($question_tag as $qt): ?>
-                            <?php if ($qt->question_id === $q->id_question): ?>
-                                <span class="tag success"><?php echo $qt->tag_name ?></span>
-                            <?php endif ?>
-                        <?php endforeach ?>
                     </section>
                     <?php endforeach ?>
                 </div>
             </div>
         </div>
     </div>
+<?php endforeach ?>

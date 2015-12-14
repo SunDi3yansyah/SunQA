@@ -28,7 +28,7 @@ class Home extends CI_Publics
 
     function _question_tag()
     {
-        $var = $this->qa_model->join2_where('question_tag', 'question', 'tag', 'question_tag.question_id=question.id_question', 'question_tag.tag_id=tag.id_tag', array('question.user_id' => $this->qa_libs->id_user()), 'question_tag.id_qt');
+        $var = $this->qa_model->join2('question_tag', 'question', 'tag', 'question_tag.question_id=question.id_question', 'question_tag.tag_id=tag.id_tag', 'question_tag.id_qt');
         return ($var == FALSE)?array():$var;
     }
 }

@@ -214,7 +214,7 @@ class Qa_model extends CI_Model
         }
     }
 
-    function join4_ajax($table1, $table2, $table3, $table4, $table5, $join1, $join2, $join3, $join4, $order, $limit, $offset)
+    function join4_where_ajax($table1, $table2, $table3, $table4, $table5, $join1, $join2, $join3, $join4, $where, $order, $limit, $offset)
     {
         $this->db->from($table1);
         $this->db->join($table2, $join1);
@@ -222,25 +222,6 @@ class Qa_model extends CI_Model
         $this->db->join($table4, $join3);
         $this->db->join($table5, $join4);
         $this->db->limit($limit, $offset);
-        $this->db->order_by($order);
-        $query = $this->db->get();
-        if ($query->num_rows() == 0)
-        {
-            return FALSE;
-        }
-        else
-        {
-            return $query->result();
-        }
-    }
-
-    function join4_where($table1, $table2, $table3, $table4, $table5, $join1, $join2, $join3, $join4, $where, $order)
-    {
-        $this->db->from($table1);
-        $this->db->join($table2, $join1);
-        $this->db->join($table3, $join2);
-        $this->db->join($table4, $join3);
-        $this->db->join($table5, $join4);
         $this->db->where($where);
         $this->db->order_by($order);
         $query = $this->db->get();
