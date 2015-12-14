@@ -97,7 +97,6 @@
 }
 
 .QuestionList-description {
-    font-family: Georgia, "Cambria", serif;
     color: #444;
     line-height: 1.8em;
 }
@@ -259,7 +258,23 @@ strong.select2-results__group {
     line-height: 25px;
 }
 
-.numeric-list.large-bullet li:before, .simple-list.large-bullet li:before {
+.numeric-list.large-bullet.list-ac li:before, .simple-list.large-bullet.list-ac li:before,
+.numeric-list.list-ac li:before, .simple-list.list-ac li:before {
     top: 2rem !important;
     margin-left: 0 !important;
+}
+
+.numeric-list.default-bullet>li:before {
+    margin-top: -1rem;
+}
+.numeric-list.default-bullet li:before, .simple-list.default-bullet li:before {
+    line-height: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: -1rem;
+}
+
+.numeric-list.default-bullet li, .simple-list.default-bullet li {
+    margin: 10px 0;
+    padding-left: 18px;
 }

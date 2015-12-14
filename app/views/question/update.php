@@ -13,10 +13,12 @@
                     <div class="cell">
                         <img src="<?php echo pic_user($user->image) ?>" data-role="fitImage" data-format="cycle">
                     </div>
-                    <div class="fl">
-                        <h3><?php echo $user->nama ?></h3>
-                        <a class="QuestionList-author" href="<?php echo base_url('user/' . $user->username); ?>">@<?php echo $user->username ?></a>
-                        <p><?php echo dateHourIcon(date('Y:m:d H:i:s')) ?></p>
+                    <div class="cell colspan5">
+                        <div class="fl">
+                            <h3><?php echo $user->nama ?></h3>
+                            <a class="QuestionList-author" href="<?php echo base_url('user/' . $user->username); ?>"><?php echo $user->username ?></a>
+                            <p><?php echo dateHourIcon(date('Y:m:d H:i:s')) ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,7 +35,7 @@
                         <?php echo form_input('subject', $ask->subject, 'autocomplete="off"'); ?>
                     </div>
                     <label for="description_question">Description Question</label>
-                    <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true">
+                    <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true" data-text-max-height="200">
                         <?php echo form_textarea('description_question', $ask->description_question); ?>
                     </div>
                     <div class="flex-grid">
@@ -63,6 +65,7 @@
                         <div class="fc">
                             <?php echo form_submit('submit', 'Update Question', 'class="button success large-button"'); ?>
                             <?php echo form_reset('reset', 'Reset Field', 'class="button warning large-button"'); ?>
+                            <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2)); ?>" class="button primary">Back to Question <span class="mif-enter"></span></a>
                         </div>
                     </div>
                 <?php echo form_close(); ?>

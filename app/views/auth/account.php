@@ -61,7 +61,7 @@
                                 <div style="margin-left: 15px;">
                                     <blockquote>
                                         <p><?php echo $user->bio ?></p>
-                                        <small><i>Your Quotes</i></small>
+                                        <small><i><?php echo $user->nama ?></i></small>
                                     </blockquote>                                    
                                 </div>
                                 </div>

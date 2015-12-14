@@ -22,17 +22,17 @@
                         <div class="row cells3">
                             <div class="cell no-overflow" style="height: 85px">
                                 <div class="bg-yellow fg-white block-shadow" style="height: 85px; padding-top: 20px; margin-top: 85px;">
-                                    <h2 class="text-light">easy to use</h2>
+                                    <h2 class="text-light">simple question</h2>
                                 </div>
                             </div>
                             <div class="cell no-overflow" style="height: 85px">
                                 <div class="bg-green fg-white block-shadow" style="height: 85px; padding-top: 20px; margin-top: 85px;">
-                                    <h2 class="text-light">less source</h2>
+                                    <h2 class="text-light">quick response</h2>
                                 </div>
                             </div>
                             <div class="cell no-overflow" style="height: 85px">
                                 <div class="bg-red fg-white block-shadow" style="height: 85px; padding-top: 20px; margin-top: 85px;">
-                                    <h2 class="text-light">mit license</h2>
+                                    <h2 class="text-light">awesome answer</h2>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                             <img class="QuestionList-avatar" alt="" height="48" width="48" src="<?php echo pic_user($lq->image) ?>">
                             <h3 class="QuestionList-title"><a href="<?php echo base_url('question/' . $lq->url_question) ?>"><?php echo $lq->subject ?></a></h3>
                             <p class="QuestionList-meta">
-                                By <a class="QuestionList-author" href="<?php echo base_url('user/' . $lq->username); ?>"><?php echo $lq->nama ?></a> under <a class="QuestionList-category QuestionList-category-js" href="<?php echo base_url('category/' . $lq->category_name); ?>"><?php echo $lq->category_name ?></a>
+                                By <a class="QuestionList-author" href="<?php echo base_url('user/' . $lq->username); ?>"><?php echo $lq->nama ?></a> under <a class="QuestionList-category QuestionList-category-js" href="<?php echo base_url('category/'. uri_encode($lq->category_name)) ?>"><?php echo $lq->category_name ?></a> <?php echo dateHourIcon($lq->question_date) ?>
                             </p>
                         </header>
                         <div class="QuestionList-description">
@@ -103,7 +103,7 @@
                         </div>
                         <?php foreach ($question_tag as $qt): ?>
                             <?php if ($qt->question_id === $lq->id_question): ?>
-                                <span class="tag success"><?php echo $qt->tag_name ?></span>
+                                <a href="<?php echo base_url('tag/' . uri_encode($qt->tag_name)); ?>"><span class="tag success"><?php echo $qt->tag_name ?></span></a>
                             <?php endif ?>
                         <?php endforeach ?>
                     </section>
@@ -116,28 +116,32 @@
                 <div class="carousel bg-transparent" data-role="carousel" data-controls="false" data-markers="false" data-effect="fade" data-height="200">
                     <div class="slide fg-white">
                         <div class="place-left" style="margin-right: 20px">
-                            <img src="<?php echo assets_img('qa.png'); ?>" style="height: 200px">
+                            <img src="<?php echo assets_img('carousel/amikom.jpg'); ?>" style="height: 200px">
                         </div>
-                        <h1>Developed with advice</h1>
-                        <p>Metro UI CSS developed with the advice of Microsoft to build the user interface and include: general styles, grid, layouts, typography, 20+ components, 300+ built-in icons.</p>
-                        <p>Metro UI CSS build with {LESS}. Metro UI CSS is open source and has MIT licensing model.</p>
+                        <h1>STMIK AMIKOM Yogyakarta</h1>
+                        <p style="line-height: 20px;">Sekolah Tinggi Manajemen Informatika dan Komputer AMIKOM Yogyakarta (selanjutnya disebut STMIK AMIKOM Yogyakarta) merupakan salah satu perguruan tinggi swasta yang berkedudukan di Yogyakarta di bawah naungan Yayasan AMIKOM Yogyakarta. STMIK AMIKOM Yogyakarta merupakan sebuah perguruan tinggi hasil pengembangan dari Akademi Manajemen Informatika dan Komputer "AMIKOM Yogyakarta".</p>
                     </div>
                     <div class="slide fg-white">
                         <div class="place-left" style="margin-right: 20px">
-                            <img src="<?php echo assets_img('qa.png'); ?>" style="height: 200px">
+                            <img src="<?php echo assets_img('carousel/codeigniter.png'); ?>" style="height: 200px">
                         </div>
-                        <h1>BizSpark Startup</h1>
-                        <p>Metro UI CSS is a BizSpark Startup. Microsoft BizSpark is a global program that helps software startups succeed by giving them access to software development tools, connecting them with key industry players, and providing marketing visibility.</p>
-                        <p>BizSpark provides free software, support, and visibility to help startups succeed. Join BizSpark and become part of a global community that has over 50,000 members in 100+ countries.</p>
-                        <a class="button primary" href="http://bizspark.com">Join the BizSpark Program now</a>
+                        <h1>Framework CodeIgniter</h1>
+                        <p style="line-height: 20px;">CodeIgniter is loosely based on the popular Model-View-Controller development pattern. While controller classes are a necessary part of development under CodeIgniter, models and views are optional.</p>
                     </div>
                     <div class="slide fg-white">
                         <div class="place-left" style="margin-right: 20px">
-                            <img src="<?php echo assets_img('qa.png'); ?>" style="height: 200px">
+                            <img src="<?php echo assets_img('carousel/github.png'); ?>" style="height: 200px">
                         </div>
-                        <h1>Thanks to JetBrains</h1>
-                        <p>Thanks to the company JetBrains for supporting the project in the form of a license for a great product PhpStorm.</p>
-                        <a class="button success" href="http://www.jetbrains.com/phpstorm/">Get PhpStorm now!</a>
+                        <h1>GitHub, Inc.</h1>
+                        <p style="line-height: 20px;">Powerful collaboration, code review, and code management for open source and private projects. Public projects are always free.</p>
+                        <p style="line-height: 20px;">GitHub is how people build software. With a community of more than 12 million people, developers can discover, use, and contribute to over 30 million projects using a powerful collaborative development workflow.</p>
+                    </div>
+                    <div class="slide fg-white">
+                        <div class="place-left" style="margin-right: 20px">
+                            <img src="<?php echo assets_img('carousel/openshift.svg'); ?>" style="height: 200px">
+                        </div>
+                        <p style="line-height: 20px;">Next Generation application hosting platform that makes it easy to run your web applications in the cloud for free.</p>
+                        <p style="line-height: 20px;">Bring the power and flexibility of OpenShift 3 to your business through the managed public cloud.</p>
                     </div>
                 </div>
             </div>

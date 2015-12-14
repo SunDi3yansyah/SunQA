@@ -5,7 +5,7 @@ commit.sh
 app/config/development/config.php
 app/config/development/database.php
 app/logs/*.php
-planning.notes
+TODO
 user_guide
 design
 pwl

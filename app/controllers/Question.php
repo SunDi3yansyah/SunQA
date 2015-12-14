@@ -25,39 +25,39 @@ class Question extends CI_Publics
 			{
 				if (!empty($str) && empty($action))
 				{
-					foreach ($data['question'] as $q)
+					foreach ($data['question'] as $question)
 					{
-						$this->qa_model->viewers('question', 'viewers', array('id_question' => $q->id_question));
-						$this->_render('question/get', $data);
+						$data['answer'] = $this->qa_model->join2_where('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('answer.question_id' => $question->id_question), 'answer.id_answer');
+						$data['comment_in_question'] = $this->qa_model->join2_where('comment', 'user', 'question', 'comment.user_id=user.id_user', 'comment.question_id=question.id_question', array('comment.question_id' => $question->id_question), 'comment.id_comment');
+						
+						$this->qa_model->viewers('question', 'viewers', array('id_question' => $question->id_question));
+						
+						$this->form_validation->set_rules('description_answer', 'Description', 'trim|required|xss_clean');
+						if ($this->form_validation->run() == TRUE)
+						{
+							foreach ($data['question'] as $question)
+							{
+								$insert = array(
+									'user_id' => $this->qa_libs->id_user(),
+									'question_id' => $question->id_question,
+									'description_answer' => $this->input->post('description_answer', TRUE),
+									'answer_date' => date('Y-m-d H:i:s'),
+									);
+								$this->qa_model->insert('answer', $insert);
+								redirect($this->uri->segment(1) .'/'. $question->url_question);
+							}
+						}
+						else
+						{
+							$this->_render('question/get', $data);
+						}
 					}
 				}
 				elseif (!empty($str && $action))
 				{
 					if ($this->qa_libs->logged_in())
 					{
-						if ($action === 'answer')
-						{
-							$this->form_validation->set_rules('description_answer', 'Description', 'trim|required|xss_clean');
-							if ($this->form_validation->run() == TRUE)
-							{
-								foreach ($data['question'] as $question)
-								{
-									$insert = array(
-										'user_id' => $this->qa_libs->id_user(),
-										'question_id' => $question->id_question,
-										'description_answer' => $this->input->post('description_answer', TRUE),
-										'answer_date' => date('Y-m-d H:i:s'),
-										);
-									$this->qa_model->insert('answer', $insert);
-									redirect($this->uri->segment(1) .'/'.$question->url_question);
-								}
-							}
-							else
-							{
-								$this->_render('question/answer', $data);
-							}
-						}
-						elseif ($action === 'update')
+						if ($action === 'update')
 						{
 							foreach ($data['question'] as $question)
 							{
@@ -93,7 +93,7 @@ class Question extends CI_Publics
 													$this->qa_model->insert('question_tag', $tags);
 												}
 											}
-											redirect($this->uri->segment(1) .'/'.$update['url_question']);
+											redirect($this->uri->segment(1) .'/'. $update['url_question']);
 									}
 									else
 									{

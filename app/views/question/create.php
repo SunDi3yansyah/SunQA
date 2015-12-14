@@ -12,10 +12,12 @@
                     <div class="cell">
                         <img src="<?php echo pic_user($ask->image) ?>" data-role="fitImage" data-format="cycle">
                     </div>
-                    <div class="fl">
-                        <h3><?php echo $ask->nama ?></h3>
-                        <a class="QuestionList-author" href="<?php echo base_url('user/' . $ask->username); ?>">@<?php echo $ask->username ?></a>
-                        <p><?php echo dateHourIcon(date('Y:m:d H:i:s')) ?></p>
+                    <div class="cell colspan5">
+                        <div class="fl">
+                            <h3><?php echo $ask->nama ?></h3>
+                            <a class="QuestionList-author" href="<?php echo base_url('user/' . $ask->username); ?>">@<?php echo $ask->username ?></a>
+                            <p><?php echo dateHourIcon(date('Y:m:d H:i:s')) ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -32,7 +34,7 @@
                         <?php echo form_input('subject', set_value('subject'), 'autocomplete="off"'); ?>
                     </div>
                     <label for="description_question">Description Question</label>
-                    <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true">
+                    <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true" data-text-max-height="200">
                         <?php echo form_textarea('description_question', set_value('description_question')); ?>
                     </div>
                     <div class="flex-grid">

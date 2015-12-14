@@ -19,12 +19,6 @@ class Qa_libs
 		return $this->ci->qa_model->join_where('user', 'role', 'user.role_id=role.id_role', array('id_user' => $this->id_user()), 'user.id_user');
     }
 
-	function destroy()
-	{
-		$this->ci->session->sess_destroy();
-		$this->ci->session->sess_create();
-	}
-
 	function log_out()
 	{
 		$session = array('id_user', 'username', 'activated', 'email', 'role_id');
@@ -93,6 +87,19 @@ class Qa_libs
         {
     		return $return;
     	}    
+    }
+
+    function comment_in_answer($param)
+    {
+        $data = $this->ci->qa_model->join2_where('comment', 'user', 'answer', 'comment.user_id=user.id_user', 'comment.answer_id=answer.id_answer', array('comment.answer_id' => $param), 'comment.id_comment');
+        if ($data != FALSE)
+        {
+            return $data;
+        }
+        else
+        {
+            return array();
+        }        
     }
 
     function last_question()

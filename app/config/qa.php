@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 $config['web_name'] = 'Question Answer';
-$config['description_home'] = 'Temukan masalah anda disini karena kesempatan dua kali sulit didapatkan, jangan sampai masalah anda semakin menumpuk dan menundanya dimudian hari hanya karena masalah sepele.';
+$config['description_home'] = 'Ayo... temukan masalah anda disini jangan sampai masalah anda semakin menumpuk dan menundanya.';
 $config['footer'] = 'Copyright &copy; '.date('Y').' '.$config['web_name'].', All Right Reserved.';
 
 $config['webmaster_email'] = 'localhost@localhost';
