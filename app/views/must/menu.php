@@ -8,7 +8,6 @@
                 <ul class="d-menu" data-role="dropdown">
                     <li><a href="<?php echo base_url('questions'); ?>"><span class="mif-question"></span> Questions</a></li>
                     <li><a href="<?php echo base_url('questions/unanswereds'); ?>"><span class="mif-heart-broken"></span> Unanswereds</a></li>
-                    <li><a href="<?php echo base_url('questions/most-popular'); ?>"><span class="mif-heart"></span> Most Popular</a></li>
                     <li><a href="<?php echo base_url('questions/most-view'); ?>"><span class="mif-eye"></span> Most View</a></li>
                 </ul>
             </li>

@@ -13,7 +13,7 @@
                     </div>
                     <div class="fl">
                         <h3><?php echo $ask->nama ?></h3>
-                        <a class="QuestionList-author" href="<?php echo base_url('user/' . $ask->username); ?>">@<?php echo $ask->username ?></a>
+                        <a class="QuestionList-author" href="<?php echo base_url('user/' . $ask->username); ?>"><?php echo $ask->username ?></a>
                         <p><?php echo dateHourIcon($ask->question_date) ?></p>
                         <a href="<?php echo base_url('category/' . $ask->category_name); ?>" class="button danger"><?php echo $ask->category_name ?></a>
                     </div>

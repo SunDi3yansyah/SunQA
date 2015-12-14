@@ -50,6 +50,7 @@ class Auth extends CI_Publics
 				$data = array('messages' => 'Registrasi sukses, silakan periksa alamat email anda.');
 				$this->_render('independent/messages', $data);
 				
+				$this->load->library('email');
 				$this->email->from($this->config->item('webmaster_email'), $this->config->item('web_name'));
 				$this->email->reply_to($this->config->item('webmaster_email'), $this->config->item('web_name'));
 				$this->email->to($insert['email']);
@@ -153,6 +154,7 @@ class Auth extends CI_Publics
 							$data = array('messages' => 'Permintaan lupa password anda sukses, untuk melanjutkan silakan periksa alamat email anda.');
 							$this->_render('independent/messages', $data);
 
+							$this->load->library('email');
 							$this->email->from($this->config->item('webmaster_email'), $this->config->item('web_name'));
 							$this->email->reply_to($this->config->item('webmaster_email'), $this->config->item('web_name'));
 							$this->email->to($update['email']);
@@ -199,19 +201,7 @@ class Auth extends CI_Publics
 		}
 	}
 
-	function answer()
-	{
-		if ($this->qa_libs->logged_in())
-		{
-			$this->_render('auth/answers');
-		}
-		else
-		{
-			# code...
-		}
-	}
-
-	function question()
+	function questions()
 	{
 		if ($this->qa_libs->logged_in())
 		{
@@ -223,7 +213,19 @@ class Auth extends CI_Publics
 		}
 	}
 
-	function comment()
+	function answers()
+	{
+		if ($this->qa_libs->logged_in())
+		{
+			$this->_render('auth/answers');
+		}
+		else
+		{
+			# code...
+		}
+	}
+
+	function comments()
 	{
 		if ($this->qa_libs->logged_in())
 		{
@@ -235,7 +237,7 @@ class Auth extends CI_Publics
 		}
 	}
 
-	function vote()
+	function votes()
 	{
 		if ($this->qa_libs->logged_in())
 		{

@@ -110,38 +110,6 @@ class Questions extends CI_Publics
 		}
 	}
 
-	// belum jadi
-	function most_popular($str = NULL)
-	{
-		if (!empty($str)) {
-			$data = array(
-				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.viewers DESC', 5, $str),
-				);
-			if (!empty($data['questions']))
-			{
-				$this->load->view('questions/most_popular_ajax', $data);
-			}
-			else
-			{
-				show_404();
-				return FALSE;
-			}
-		} else {
-			$data = array(
-				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.viewers DESC', 5, 0),
-				);
-			if (!empty($data['questions']))
-			{
-				$this->_render('questions/most_popular', $data);
-			}
-			else
-			{
-				show_404();
-				return FALSE;
-			}
-		}
-	}
-
     function _question_tag()
     {
         $var = $this->qa_model->join2('question_tag', 'question', 'tag', 'question_tag.question_id=question.id_question', 'question_tag.tag_id=tag.id_tag', 'question_tag.id_qt');
