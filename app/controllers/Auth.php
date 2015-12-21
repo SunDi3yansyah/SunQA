@@ -185,7 +185,8 @@ class Auth extends CI_Publics
 		}
 		else
 		{
-			# code...
+			show_404();
+			return FALSE;
 		}		
 	}
 
@@ -193,11 +194,31 @@ class Auth extends CI_Publics
 	{
 		if ($this->qa_libs->logged_in())
 		{
-			$this->_render('auth/settings');
+			$this->form_validation->set_rules('nama', 'Nama', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('bio', 'Bio', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('web', 'Web', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('lokasi', 'Lokasi', 'trim|required|xss_clean');
+			$this->form_validation->set_error_delimiters('<p>', '</p>');
+			if ($this->form_validation->run() == TRUE)
+			{
+				$update = array(
+					'nama' => $this->input->post('nama'),
+					'bio' => $this->input->post('bio'),
+					'web' => $this->input->post('web'),
+					'lokasi' => $this->input->post('lokasi'),
+					);
+				$this->qa_model->update('user', $update, array('id_user' => $this->qa_libs->id_user()));
+				redirect('auth/account');
+			}
+			else
+			{
+				$this->_render('auth/settings');
+			}
 		}
 		else
 		{
-			# code...
+			show_404();
+			return FALSE;
 		}
 	}
 
@@ -209,7 +230,8 @@ class Auth extends CI_Publics
 		}
 		else
 		{
-			# code...
+			show_404();
+			return FALSE;
 		}
 	}
 
@@ -221,7 +243,8 @@ class Auth extends CI_Publics
 		}
 		else
 		{
-			# code...
+			show_404();
+			return FALSE;
 		}
 	}
 
@@ -233,7 +256,8 @@ class Auth extends CI_Publics
 		}
 		else
 		{
-			# code...
+			show_404();
+			return FALSE;
 		}
 	}
 
@@ -245,7 +269,8 @@ class Auth extends CI_Publics
 		}
 		else
 		{
-			# code...
+			show_404();
+			return FALSE;
 		}
 	}
 }

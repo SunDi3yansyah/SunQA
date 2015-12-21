@@ -107,6 +107,24 @@ if (!function_exists('dateHourIcon'))
 	}
 }
 
+if (!function_exists('dateHourIconPrivate'))
+{
+	function dateHourIconPrivate($str)
+	{
+		$year = substr($str,0,4);
+		$date = substr($str,8,2);
+		$month = substr($str,5,2);
+		$hour = substr($str,11,2);
+		$minute = substr($str,14,2);
+		$formatMonth = monthID($month);
+		$icon = array(
+			'calendar' => '<span class="fa fa-calendar"></span>',
+			'clock' => '<span class="fa fa-clock-o"></span>',
+			);
+		return $icon['calendar'].' '.$date.' '.$formatMonth.' '.$year.' '.$icon['clock'].' '.$hour.':'.$minute;
+	}
+}
+
 if (!function_exists('monthID'))
 {
 	function monthID($str)

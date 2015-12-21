@@ -35,7 +35,7 @@
                         <?php echo form_input('subject', $ask->subject, 'autocomplete="off"'); ?>
                     </div>
                     <label for="description_question">Description Question</label>
-                    <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true" data-text-max-height="200">
+                    <div class="input-control textarea full-size" data-role="input">
                         <?php echo form_textarea('description_question', $ask->description_question); ?>
                     </div>
                     <div class="flex-grid">

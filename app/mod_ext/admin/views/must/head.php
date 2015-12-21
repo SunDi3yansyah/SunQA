@@ -55,7 +55,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="<?php echo base_url(); ?>" target="_blank" class="info"><i class="fa fa-external-link fa-fw"></i> Public Site</a>
+                        <a href="<?php echo base_url(); ?>" target="_blank" class="primary"><i class="fa fa-external-link fa-fw"></i> Public Site</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url('log/out'); ?>" class="danger"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

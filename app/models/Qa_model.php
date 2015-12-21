@@ -14,6 +14,21 @@ class Qa_model extends CI_Model
 		parent::__construct();
 	}
 
+    function get_result_array($table, $field)
+    {
+        $this->db->from($table);
+        $this->db->where($field);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0)
+        {
+            return $query->result_array();
+        }
+        else
+        {
+            return FALSE;
+        } 
+    }
+
     function all($table, $order)
     {
         $this->db->from($table);
@@ -60,11 +75,43 @@ class Qa_model extends CI_Model
         }
     }
 
+    function get_one($table, $where)
+    {
+        $this->db->from($table);
+        $this->db->where($where);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0)
+        {
+            return FALSE;
+        }
+        else
+        {
+            return $query->result();
+        }
+    }
+
     function get_two($table, $where1, $where2)
     {
         $this->db->from($table);
         $this->db->where($where1);
         $this->db->where($where2);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0)
+        {
+            return FALSE;
+        }
+        else
+        {
+            return $query->result();
+        }
+    }
+
+    function get_three($table, $where1, $where2, $where3)
+    {
+        $this->db->from($table);
+        $this->db->where($where1);
+        $this->db->where($where2);
+        $this->db->where($where3);
         $query = $this->db->get();
         if ($query->num_rows() == 0)
         {
@@ -91,19 +138,20 @@ class Qa_model extends CI_Model
         }
     }
 
-    function get_result_array($table, $field)
+    function join($table1, $table2, $join, $order)
     {
-        $this->db->from($table);
-        $this->db->where($field);
+        $this->db->from($table1);
+        $this->db->join($table2, $join);
+        $this->db->order_by($order);
         $query = $this->db->get();
-        if ($query->num_rows() > 0)
+        if ($query->num_rows() == 0)
         {
-            return $query->result_array();
+            return FALSE;
         }
         else
         {
-            return FALSE;
-        } 
+            return $query->result();
+        }
     }
 
     function join_where($table1, $table2, $join, $where, $order)
@@ -195,6 +243,25 @@ class Qa_model extends CI_Model
         }
     }
 
+    function join2_where2($table1, $table2, $table3, $join1, $join2, $where1, $where2, $order)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join1);
+        $this->db->join($table3, $join2);
+        $this->db->where($where1);
+        $this->db->where($where2);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0)
+        {
+            return FALSE;
+        }
+        else
+        {
+            return $query->result();
+        }
+    }
+
     function join3_where($table1, $table2, $table3, $table4, $join1, $join2, $join3, $where, $order)
     {
         $this->db->from($table1);
@@ -266,7 +333,7 @@ class Qa_model extends CI_Model
         $count = $this->db->count_all_results();
         if ($count == 0)
         {
-            return FALSE;
+            return 0;
         }
         else
         {
@@ -281,7 +348,7 @@ class Qa_model extends CI_Model
         $count = $this->db->count_all_results();
         if ($count == 0)
         {
-            return FALSE;
+            return 0;
         }
         else
         {
@@ -297,7 +364,7 @@ class Qa_model extends CI_Model
         $count = $this->db->count_all_results();
         if ($count == 0)
         {
-            return FALSE;
+            return 0;
         }
         else
         {
@@ -313,7 +380,7 @@ class Qa_model extends CI_Model
         $count = $this->db->count_all_results();
         if ($count == 0)
         {
-            return FALSE;
+            return 0;
         }
         else
         {

@@ -47,7 +47,7 @@ $(function() {
         <br>
         <div class="form-actions">
             <div class="fc">
-                <button type="submit" class="button primary">Request Password</button>
+                <button type="submit" class="button primary">Setup Password</button>
                 <hr class="thin">
                 <a href="<?php echo base_url('auth/sign_up'); ?>" class="button success"><span class="mif-user-plus"></span> Sign Up</a>
                 <a style="margin-top: 5px;" href="<?php echo base_url('log/in'); ?>" class="button success"><span class="mif-enter"></span> Log In</a>

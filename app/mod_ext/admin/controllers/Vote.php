@@ -17,6 +17,7 @@ class Vote extends CI_Privates
                 'id_vote',
                 'username',
                 'vote_in',
+                'vote_for',
                 ),
             );
 		$this->_render('vote/index', $data);
@@ -39,11 +40,26 @@ class Vote extends CI_Privates
                 array('db' => 'username', 'dt' => 'username'),
                 array('db' => 'vote_in', 'dt' => 'vote_in'),
                 array(
+                    'db' => 'vote_for',
+                    'dt' => 'vote_for',
+                    'formatter' => function($vote)
+                    {
+                        if ($vote === 'Up')
+                        {
+                            return '<i class="fa fa-thumbs-o-up"></i>';
+                        }
+                        else
+                        {
+                            return '<i class="fa fa-thumbs-o-down"></i>';
+                        }
+                    }
+                ),
+                array(
                     'db' => 'id_vote',
                     'dt' => 'action',
                     'formatter' => function($id)
                     {
-                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/view/' . $id) . '" class="btn btn-info btn-xs">View</a> <a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-xs">Delete</a>';
+                        return '<a href="' . base_url(''.$this->uri->segment(1).'/'.$this->uri->segment(2).'/delete/' . $id) . '" class="btn btn-danger btn-xs">Delete</a>';
                     }
                 ),
             );

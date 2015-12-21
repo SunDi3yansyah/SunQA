@@ -17,6 +17,7 @@ class Sessions extends CI_Privates
                 'id',
                 'ip_address',
                 'timestamp',
+                'data',
                 ),
             );
 		$this->_render('session/index', $data);
@@ -37,7 +38,24 @@ class Sessions extends CI_Privates
             $columns = array(
                 array('db' => 'id', 'dt' => 'id'),
                 array('db' => 'ip_address', 'dt' => 'ip_address'),
-                array('db' => 'timestamp', 'dt' => 'timestamp'),
+                array(
+                    'db' => 'timestamp',
+                    'dt' => 'timestamp',
+                    'formatter' => function($str)
+                    {
+                        return dateHourIconPrivate(date('Y-m-d H:i:s', $str));
+                    }
+                ),
+                array(
+                    'db' => 'data',
+                    'dt' => 'data',
+                    'formatter' => function($str)
+                    {
+                        return '<textarea style="margin: 0px;height: 150px;width: 350px;">'
+                        .preg_replace("/[s:]+[0-9]+[:]/", '', preg_replace("/^.+\n/", "", str_replace(';', "\n", str_replace('|', ' : ', $str)))).
+                        '</textarea>';
+                    }
+                ),
                 array(
                     'db' => 'id',
                     'dt' => 'action',

@@ -39,7 +39,14 @@ class Answer extends CI_Privates
                 array('db' => 'id_answer', 'dt' => 'id_answer'),
                 array('db' => 'username', 'dt' => 'username'),
                 array('db' => 'subject', 'dt' => 'subject'),
-                array('db' => 'answer_date', 'dt' => 'answer_date'),
+                array(
+                    'db' => 'answer_date',
+                    'dt' => 'answer_date',
+                    'formatter' => function($date)
+                    {
+                        return dateHourIconPrivate($date);
+                    }
+                ),
                 array(
                     'db' => 'id_answer',
                     'dt' => 'action',
@@ -72,7 +79,7 @@ class Answer extends CI_Privates
             $data = $this->_get($str);
             if (!empty($data))
             {
-                $answer = $this->qa_model->join2_where('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('answer.question_id' => $str), 'answer.question_id');
+                $answer = $this->qa_model->join2_where('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('answer.id_answer' => $str), 'answer.id_answer');
                 foreach ($answer as $get)
                 {
                     redirect('question/' . $get->url_question);

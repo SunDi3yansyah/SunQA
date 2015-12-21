@@ -11,15 +11,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Question extends CI_Publics
 {
-	function a302344c485385d66b3c1736be5213fb07e7fbb8($str = NULL, $action = NULL)
+	function a302344c485385d66b3c1736be5213fb07e7fbb8($str = NULL, $action = NULL, $num = NULL)
 	{
 		if (!empty($str))
 		{
 			$data = array(
 				'question' => $this->_get($str),
 				'question_tag' => $this->_question_tag($str),
-				'category' => $this->qa_model->all('category', 'id_category ASC'),
-				'tag' => $this->qa_model->all('tag', 'id_tag ASC'),
 				);
 			if (!empty($data['question']))
 			{
@@ -29,22 +27,35 @@ class Question extends CI_Publics
 					{
 						$data['answer'] = $this->qa_model->join2_where('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('answer.question_id' => $question->id_question), 'answer.id_answer');
 						$data['comment_in_question'] = $this->qa_model->join2_where('comment', 'user', 'question', 'comment.user_id=user.id_user', 'comment.question_id=question.id_question', array('comment.question_id' => $question->id_question), 'comment.id_comment');
-						
+						$data['count_vote'] = $this->qa_model->count_where2('vote', array('question_id' => $question->id_question), array('vote_for' => 'Up')) - $this->qa_model->count_where2('vote', array('question_id' => $question->id_question), array('vote_for' => 'Down'));
+
 						$this->qa_model->viewers('question', 'viewers', array('id_question' => $question->id_question));
-						
-						$this->form_validation->set_rules('description_answer', 'Description', 'trim|required|xss_clean');
-						if ($this->form_validation->run() == TRUE)
+
+						if ($this->qa_libs->logged_in())
 						{
-							foreach ($data['question'] as $question)
+							if ($question->user_id != $this->qa_libs->id_user())
 							{
-								$insert = array(
-									'user_id' => $this->qa_libs->id_user(),
-									'question_id' => $question->id_question,
-									'description_answer' => $this->input->post('description_answer', TRUE),
-									'answer_date' => date('Y-m-d H:i:s'),
-									);
-								$this->qa_model->insert('answer', $insert);
-								redirect($this->uri->segment(1) .'/'. $question->url_question);
+								$this->form_validation->set_rules('description_answer', 'Description', 'trim|required|xss_clean');
+								$this->form_validation->set_error_delimiters('<p>', '</p>');
+								if ($this->form_validation->run() == TRUE)
+								{
+									$insert = array(
+										'user_id' => $this->qa_libs->id_user(),
+										'question_id' => $question->id_question,
+										'description_answer' => $this->input->post('description_answer', TRUE),
+										'answer_date' => date('Y-m-d H:i:s'),
+										);
+									$this->qa_model->insert('answer', $insert);
+									redirect($this->uri->segment(1) .'/'. $question->url_question);
+								}
+								else
+								{
+									$this->_render('question/get', $data);
+								}
+							}
+							else
+							{
+								$this->_render('question/get', $data);
 							}
 						}
 						else
@@ -53,7 +64,7 @@ class Question extends CI_Publics
 						}
 					}
 				}
-				elseif (!empty($str && $action))
+				elseif (!empty($str && $action) && empty($num))
 				{
 					if ($this->qa_libs->logged_in())
 					{
@@ -71,6 +82,7 @@ class Question extends CI_Publics
 									$this->form_validation->set_rules('subject', 'Description', 'trim|required|xss_clean');
 									$this->form_validation->set_rules('category_id', 'Description', 'trim|required|xss_clean');
 									$this->form_validation->set_rules('description_question', 'Description', 'trim|required|xss_clean');
+									$this->form_validation->set_error_delimiters('<p>', '</p>');
 									if ($this->form_validation->run() == TRUE)
 									{
 											$update = array(
@@ -97,6 +109,8 @@ class Question extends CI_Publics
 									}
 									else
 									{
+										$data['category'] = $this->qa_model->all('category', 'id_category ASC');
+										$data['tag'] = $this->qa_model->all('tag', 'id_tag ASC');
 										$this->_render('question/update', $data);
 									}
 								}
@@ -115,6 +129,262 @@ class Question extends CI_Publics
 								{
 									$this->qa_model->delete('question', array('url_question' => $str));
 									redirect();
+								}
+							}
+						}
+						elseif ($action === 'vq_up')
+						{
+							foreach ($data['question'] as $question)
+							{
+								if ($question->user_id != $this->qa_libs->id_user())
+								{
+									$check_exist = $this->qa_model->get_two('vote', array('user_id' => $this->qa_libs->id_user()), array('question_id' => $question->id_question));
+									if ($check_exist == TRUE)
+									{
+										foreach ($check_exist as $vote)
+										{
+											if ($vote->vote_for == 'Down')
+											{
+												$update_vote = array(
+													'vote_update' => date('Y-m-d H:i:s'),
+													'vote_for' => 'Up',
+													);
+												$this->qa_model->update('vote', $update_vote, array('id_vote' => $vote->id_vote));
+												redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+											}
+											else
+											{
+												$data = array('messages' => 'Anda sudah memberikan Vote UP pada pertanyaan ini.');
+												$this->_render('independent/messages', $data);
+											}
+										}
+									}
+									else
+									{
+										$vote = array(
+											'user_id' => $this->qa_libs->id_user(),
+											'question_id' => $question->id_question,
+											'vote_in' => 'Question',
+											'vote_date' => date('Y-m-d H:i:s'),
+											'vote_for' => 'Up',
+											);
+										$this->qa_model->insert('vote', $vote);
+										redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+									}
+								}
+								else
+								{
+									$data = array('messages' => 'Permission denied!');
+									$this->_render('independent/messages', $data);
+								}
+							}
+						}
+						elseif ($action === 'vq_down')
+						{
+							foreach ($data['question'] as $question)
+							{
+								if ($question->user_id != $this->qa_libs->id_user())
+								{
+									$check_exist = $this->qa_model->get_two('vote', array('user_id' => $this->qa_libs->id_user()), array('question_id' => $question->id_question));
+									if ($check_exist == TRUE)
+									{
+										foreach ($check_exist as $vote)
+										{
+											if ($vote->vote_for == 'Up')
+											{
+												$update_vote = array(
+													'vote_update' => date('Y-m-d H:i:s'),
+													'vote_for' => 'Down',
+													);
+												$this->qa_model->update('vote', $update_vote, array('id_vote' => $vote->id_vote));
+												redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+											}
+											else
+											{
+												$data = array('messages' => 'Anda sudah memberikan Vote DOWN pada pertanyaan ini.');
+												$this->_render('independent/messages', $data);
+											}
+										}
+									}
+									else
+									{
+										$vote = array(
+											'user_id' => $this->qa_libs->id_user(),
+											'question_id' => $question->id_question,
+											'vote_in' => 'Question',
+											'vote_date' => date('Y-m-d H:i:s'),
+											'vote_for' => 'Down',
+											);
+										$this->qa_model->insert('vote', $vote);
+										redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+									}
+								}
+								else
+								{
+									$data = array('messages' => 'Permission denied!');
+									$this->_render('independent/messages', $data);
+								}
+							}
+						}
+						else
+						{
+							show_404();
+							return FALSE;
+						}
+					}
+					else
+					{
+						show_404();
+						return FALSE;
+					}
+				}
+				elseif (!empty($str && $action && $num))
+				{
+					if ($this->qa_libs->logged_in())
+					{
+						if ($action === 'answer')
+						{
+							foreach ($data['question'] as $question)
+							{
+								if ($question->user_id === $this->qa_libs->id_user())
+								{
+									$check_exist = $this->qa_model->get_two('answer', array('id_answer' => $num), array('question_id' => $question->id_question));
+									if (!empty($check_exist))
+									{
+										$update_answer = array(
+											'answer_id' => $num
+											);
+										$this->qa_model->update('question', $update_answer, array('id_question' => $question->id_question));
+										redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+									}
+									else
+									{
+										show_404();
+										return FALSE;
+									}
+								}
+								else
+								{
+									show_404();
+									return FALSE;
+								}
+							}
+						}
+						elseif ($action === 'va_up')
+						{
+							foreach ($data['question'] as $question)
+							{
+								$answer = $this->qa_model->get_two('answer', array('id_answer' => $num), array('question_id' => $question->id_question));
+								if ($answer != FALSE)
+								{
+									foreach ($answer as $ans)
+									{
+										if ($ans->user_id != $this->qa_libs->id_user())
+										{
+											$check_exist = $this->qa_model->get_two('vote', array('user_id' => $this->qa_libs->id_user()), array('answer_id' => $num));
+											if ($check_exist == TRUE)
+											{
+												foreach ($check_exist as $vote)
+												{
+													if ($vote->vote_for == 'Down')
+													{
+														$update_vote = array(
+															'vote_update' => date('Y-m-d H:i:s'),
+															'vote_for' => 'Up',
+															);
+														$this->qa_model->update('vote', $update_vote, array('id_vote' => $vote->id_vote));
+														redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+													}
+													else
+													{
+														$data = array('messages' => 'Anda sudah memberikan Vote UP pada pertanyaan ini.');
+														$this->_render('independent/messages', $data);
+													}
+												}
+											}
+											else
+											{
+												$vote = array(
+													'user_id' => $this->qa_libs->id_user(),
+													'answer_id' => $num,
+													'vote_in' => 'Answer',
+													'vote_date' => date('Y-m-d H:i:s'),
+													'vote_for' => 'Up',
+													);
+												$this->qa_model->insert('vote', $vote);
+												redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+											}
+										}
+										else
+										{
+											$data = array('messages' => 'Permission denied!');
+											$this->_render('independent/messages', $data);
+										}									
+									}
+								}
+								else
+								{
+									show_404();
+									return FALSE;
+								}
+							}
+						}
+						elseif ($action === 'va_down')
+						{
+							foreach ($data['question'] as $question)
+							{
+								$answer = $this->qa_model->get_two('answer', array('id_answer' => $num), array('question_id' => $question->id_question));
+								if ($answer != FALSE)
+								{
+									foreach ($answer as $ans)
+									{
+										if ($ans->user_id != $this->qa_libs->id_user())
+										{
+											$check_exist = $this->qa_model->get_two('vote', array('user_id' => $this->qa_libs->id_user()), array('answer_id' => $num));
+											if ($check_exist == TRUE)
+											{
+												foreach ($check_exist as $vote)
+												{
+													if ($vote->vote_for == 'Up')
+													{
+														$update_vote = array(
+															'vote_update' => date('Y-m-d H:i:s'),
+															'vote_for' => 'Down',
+															);
+														$this->qa_model->update('vote', $update_vote, array('id_vote' => $vote->id_vote));
+														redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+													}
+													else
+													{
+														$data = array('messages' => 'Anda sudah memberikan Vote DOWN pada pertanyaan ini.');
+														$this->_render('independent/messages', $data);
+													}
+												}
+											}
+											else
+											{
+												$vote = array(
+													'user_id' => $this->qa_libs->id_user(),
+													'answer_id' => $num,
+													'vote_in' => 'Answer',
+													'vote_date' => date('Y-m-d H:i:s'),
+													'vote_for' => 'Down',
+													);
+												$this->qa_model->insert('vote', $vote);
+												redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+											}
+										}
+										else
+										{
+											$data = array('messages' => 'Permission denied!');
+											$this->_render('independent/messages', $data);
+										}
+									}
+								}
+								else
+								{
+									show_404();
+									return FALSE;
 								}
 							}
 						}

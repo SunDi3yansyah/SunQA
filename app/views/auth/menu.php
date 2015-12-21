@@ -8,7 +8,7 @@
             <span class="mif-cogs icon"></span>
             <span class="title">settings</span>
         </a></li>
-        <li><a href="<?php echo base_url('auth/questions'); ?>">
+<!--         <li><a href="<?php echo base_url('auth/questions'); ?>">
             <span class="mif-question icon"></span>
             <span class="title">questions</span>
             <span class="counter">0</span>
@@ -27,6 +27,6 @@
             <span class="mif-clipboard icon"></span>
             <span class="title">votes</span>
             <span class="counter">0</span>
-        </a></li>
+        </a></li> -->
     </ul>
 </div>

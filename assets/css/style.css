@@ -223,11 +223,20 @@
     text-transform: capitalize !important;
 }
 
-.vote span[class*=mif-] {
+.vote_question span[class*=mif-] {
     font-size: 2rem;
     margin-top: 20px;
     margin-right: 10px;
     color: #999;
+}
+
+.vote_answer span[class*=mif-] {
+    font-size: 1.3rem;
+    color: #999;
+}
+
+.vote_answer button span[class*=mif-] {
+    color: #fff;
 }
 
 .title_qa {

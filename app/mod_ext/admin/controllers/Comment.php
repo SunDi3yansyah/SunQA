@@ -39,7 +39,14 @@ class Comment extends CI_Privates
                 array('db' => 'id_comment', 'dt' => 'id_comment'),
                 array('db' => 'username', 'dt' => 'username'),
                 array('db' => 'comment_in', 'dt' => 'comment_in'),
-                array('db' => 'comment_date', 'dt' => 'comment_date'),
+                array(
+                    'db' => 'comment_date',
+                    'dt' => 'comment_date',
+                    'formatter' => function($date)
+                    {
+                        return dateHourIconPrivate($date);
+                    }
+                ),
                 array(
                     'db' => 'id_comment',
                     'dt' => 'action',

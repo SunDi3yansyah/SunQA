@@ -21,6 +21,7 @@
                                     <th>ID</th>
                                     <th>IP Address</th>
                                     <th>Timestamp</th>
+                                    <th>Data</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

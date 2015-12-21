@@ -41,7 +41,14 @@ class Question extends CI_Privates
                 array('db' => 'username', 'dt' => 'username'),
                 array('db' => 'subject', 'dt' => 'subject'),
                 array('db' => 'category_name', 'dt' => 'category_name'),
-                array('db' => 'question_date', 'dt' => 'question_date'),
+                array(
+                    'db' => 'question_date',
+                    'dt' => 'question_date',
+                    'formatter' => function($date)
+                    {
+                        return dateHourIconPrivate($date);
+                    }
+                ),
                 array(
                     'db' => 'id_question',
                     'dt' => 'action',

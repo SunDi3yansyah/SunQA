@@ -109,4 +109,9 @@ class Qa_libs
             return $q->id_question + 1;
         }
     }
+
+    function count_vote_answer($str)
+    {
+        return $this->ci->qa_model->count_where2('vote', array('answer_id' => $str), array('vote_for' => 'Up')) - $this->ci->qa_model->count_where2('vote', array('answer_id' => $str), array('vote_for' => 'Down'));
+    }
 }

@@ -31,4 +31,14 @@ class Home extends CI_Publics
         $var = $this->qa_model->join2('question_tag', 'question', 'tag', 'question_tag.question_id=question.id_question', 'question_tag.tag_id=tag.id_tag', 'question_tag.id_qt');
         return ($var == FALSE)?array():$var;
     }
+
+    function not_found()
+    {
+    	$data = array(
+    		'message' => 'Not Found'
+    		);
+    	$this->output
+    	->set_content_type('application/json')
+    	->set_output(json_encode($data, JSON_PRETTY_PRINT));
+    }
 }

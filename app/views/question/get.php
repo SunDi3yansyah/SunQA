@@ -16,11 +16,18 @@
                             <h3><?php echo $ask->nama ?></h3>
                             <a class="QuestionList-author" href="<?php echo base_url('user/' . $ask->username); ?>"><?php echo $ask->username ?></a>
                             <p><?php echo dateHourIcon($ask->question_date) ?></p>
-                            <a href="<?php echo base_url('category/' . uri_encode($ask->category_name)); ?>" class="button danger"><span class="mif-bookmark"></span> <?php echo $ask->category_name ?></a>
+                            <a href="<?php echo base_url('category/' . uri_encode($ask->category_name)); ?>" class="button"><span class="mif-bookmark"></span> <?php echo $ask->category_name ?></a>
                         </div>
-                        <div class="fr vote">
-                            <a href="#"><span class="mif-thumbs-up mif-ani-bounce"></span></a>
-                            <a href="#"><span class="mif-thumbs-down mif-ani-bounce"></span></a>
+                        <div class="fr vote_question">
+                            <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/vq_up'); ?>" data-role="hint" data-hint-mode="2" data-hint="Vote|Select for vote UP" data-hint-position="top"><span class="mif-thumbs-up mif-ani-bounce"></span></a>
+                            <?php if ($count_vote > 0): ?>
+                                <button class="square-button success" style="margin-top: 15px;"><?php echo $count_vote ?></button>
+                            <?php elseif ($count_vote < 0): ?>
+                                <button class="square-button danger" style="margin-top: 15px;"><?php echo $count_vote ?></button>
+                            <?php else: ?>
+                                <button class="square-button" style="margin-top: 15px;"><?php echo $count_vote ?></button>
+                            <?php endif ?>
+                            <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/vq_down'); ?>" data-role="hint" data-hint-mode="2" data-hint="Vote|Select for vote DOWN" data-hint-position="top"><span class="mif-thumbs-down mif-ani-bounce"></span></a>
                             <?php if (!empty($ask->viewers)): ?>
                                 <p style="margin-right: 10px; font-size: 17px;"><i>viewers</i> <i class="mif-eye"></i> <b><?php echo $ask->viewers ?></b></p>
                             <?php endif ?>
@@ -61,7 +68,7 @@
                     <?php foreach ($comment_in_question as $ciq): ?>
                         <ul class="numeric-list list-ac">
                             <li>
-                                <strong class="no-margin-top" style="font-size: .675rem;"><?php echo $ciq->nama ?> (<a href="<?php echo base_url('user/' . $ciq->username); ?>"><?php echo $ciq->username ?></a>)</strong>
+                                <strong class="no-margin-top" style="font-size: .675rem;"><?php echo $ciq->nama ?> (<a href="<?php echo base_url('user/' . $ciq->username); ?>"><?php echo $ciq->username ?></a>)</strong> <i style="font-size: .675rem;"><?php echo dateHourIcon($ciq->comment_date) ?></i>
                                 <hr class="bg-black">
                                 <div style="font-size: .775rem;">
                                     <?php echo $ciq->description_comment ?>
@@ -80,7 +87,24 @@
                         <ul class="numeric-list large-bullet list-ac">
                             <?php foreach ($answer as $anw): ?>
                             <li>
-                                <strong class="no-margin-top"><?php echo $anw->nama ?> (<a href="<?php echo base_url('user/' . $anw->username); ?>"><?php echo $anw->username ?></a>)</strong>
+                                <strong class="no-margin-top"><?php echo $anw->nama ?> (<a href="<?php echo base_url('user/' . $anw->username); ?>"><?php echo $anw->username ?></a>)</strong> <i style="font-size: .675rem;"><?php echo dateHourIcon($anw->answer_date) ?></i>
+                                <?php if ($ask->id_user === $this->qa_libs->id_user()): ?>
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/answer/'. $anw->id_answer) ?>" class="cycle-button small-button" style="margin-top: -11px; margin-left: 5px;" data-role="hint" data-hint-mode="2" data-hint="Select this as answer" data-hint-position="top"><span class="mif-checkmark"></span></a>
+                                <?php endif ?>
+                                <div class="fr vote_answer">
+                                    <?php if ($ask->answer_id === $anw->id_answer): ?>
+                                        <button class="cycle-button success" style="margin-top: -10px;" data-role="hint" data-hint-mode="2" data-hint="This Answer|" data-hint-position="top"><span class="mif-checkmark"></span></button>
+                                    <?php endif ?>
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/va_up/'. $anw->id_answer); ?>" data-role="hint" data-hint-mode="2" data-hint="Vote|Select for vote UP" data-hint-position="top"><span class="mif-thumbs-up mif-ani-bounce"></span></a>
+                                    <?php if ($this->qa_libs->count_vote_answer($anw->id_answer) > 0): ?>
+                                        <button class="square-button small-button success" style="margin-top: -5px;"><?php echo $this->qa_libs->count_vote_answer($anw->id_answer) ?></button>
+                                    <?php elseif ($this->qa_libs->count_vote_answer($anw->id_answer) < 0): ?>
+                                        <button class="square-button small-button danger" style="margin-top: -5px;"><?php echo $this->qa_libs->count_vote_answer($anw->id_answer) ?></button>
+                                    <?php else: ?>
+                                        <button class="square-button small-button" style="margin-top: -5px;"><?php echo $this->qa_libs->count_vote_answer($anw->id_answer) ?></button>
+                                    <?php endif ?>
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/va_down/'. $anw->id_answer); ?>" data-role="hint" data-hint-mode="2" data-hint="Vote|Select for vote DOWN" data-hint-position="top"><span class="mif-thumbs-down mif-ani-bounce"></span></a>
+                                </div>
                                 <hr class="bg-orange">
                                 <div>
                                     <?php echo $anw->description_answer ?>
@@ -89,7 +113,7 @@
                                     <?php foreach ($this->qa_libs->comment_in_answer($anw->id_answer) as $cia): ?>
                                     <ul class="numeric-list default-bullet list-ac">
                                         <li>
-                                            <strong class="no-margin-top" style="font-size: .675rem;"><?php echo $cia->nama ?> (<a href="<?php echo base_url('user/' . $cia->username); ?>"><?php echo $cia->username ?></a>)</strong>
+                                            <strong class="no-margin-top" style="font-size: .675rem;"><?php echo $cia->nama ?> (<a href="<?php echo base_url('user/' . $cia->username); ?>"><?php echo $cia->username ?></a>)</strong>  <i style="font-size: .675rem;"><?php echo dateHourIcon($cia->comment_date) ?></i>
                                             <hr class="bg-black">
                                             <div style="font-size: .775rem;">
                                                 <?php echo $cia->description_answer ?>
@@ -101,30 +125,38 @@
                             </li>
                             <?php endforeach ?>
                         </ul>
+                        <?php else: ?>
+                        <div class="padding10 bg-red fg-white text-accent">Belum ada jawaban.</div>
                         <?php endif ?>
-                        <?php echo form_open($this->uri->uri_string()); ?>
-                        <h4 class="text-light">Answer</h4>
-                        <hr class="thin">
-                        <br>
-                        <?php if (validation_errors() || !empty($errors)): ?>
-                            <div class="padding10 bg-red fg-white text-accent">
-                                <?php echo validation_errors(); ?>
-                                <?php echo (!empty($errors)?$errors:NULL); ?>
-                            </div>
-                            <br>
+                        <?php if ($this->qa_libs->logged_in()): ?>
+                            <?php if ($ask->user_id != $this->qa_libs->id_user()): ?>
+                                <?php echo form_open($this->uri->uri_string()); ?>
+                                <h4 class="text-light">Answer</h4>
+                                <hr class="thin">
+                                <br>
+                                <?php if (validation_errors() || !empty($errors)): ?>
+                                    <div class="padding10 bg-red fg-white text-accent">
+                                        <?php echo validation_errors(); ?>
+                                        <?php echo (!empty($errors)?$errors:NULL); ?>
+                                    </div>
+                                    <br>
+                                <?php endif ?>
+                                <div class="input-control textarea full-size" data-role="input">
+                                    <?php echo form_textarea('description_answer', set_value('description_answer')); ?>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-actions">
+                                    <div class="fc">
+                                        <?php echo form_submit('submit', 'Answer', 'class="button success large-button"'); ?>
+                                        <?php echo form_reset('reset', 'Reset', 'class="button warning large-button"'); ?>
+                                    </div>
+                                </div>
+                                <?php echo form_close(); ?>
+                            <?php endif ?>
+                        <?php else: ?>
+                            <div class="padding10 bg-red fg-white text-accent">Jika anda ingin menjawab silakan login.</div>
                         <?php endif ?>
-                        <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true" data-text-max-height="200">
-                            <?php echo form_textarea('description_answer', set_value('description_answer')); ?>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="form-actions">
-                            <div class="fc">
-                                <?php echo form_submit('submit', 'Answer', 'class="button success large-button"'); ?>
-                                <?php echo form_reset('reset', 'Reset', 'class="button warning large-button"'); ?>
-                            </div>
-                        </div>
-                        <?php echo form_close(); ?>
                     </div>
                 </div>
             </div>

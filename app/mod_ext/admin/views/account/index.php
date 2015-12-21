@@ -70,11 +70,11 @@
                                         </tr>
                                         <tr>
                                             <td>Registered</td>
-                                            <td><?php echo dateHourIcon($user->user_date) ?></td>
+                                            <td><?php echo dateHourIconPrivate($user->user_date) ?></td>
                                         </tr>
                                         <tr>
                                             <td>Last Login</td>
-                                            <td><?php echo dateHourIcon($user->last_login) ?></td>
+                                            <td><?php echo dateHourIconPrivate($user->last_login) ?></td>
                                         </tr>
                                         <tr>
                                             <td>Last IP</td>
@@ -82,7 +82,7 @@
                                         </tr>
                                         <tr>
                                             <td>Modified</td>
-                                            <td><?php echo dateHourIcon($user->modified) ?></td>
+                                            <td><?php echo dateHourIconPrivate($user->modified) ?></td>
                                         </tr>
                                         <tr>
                                             <td>Lost Password</td>
@@ -115,12 +115,14 @@
                                 <h4>
                                     <a href="<?php echo base_url('question/' . $question->url_question) ?>"><?php echo $question->subject ?></a>
                                 </h4>
-                                <i>Created</i> <?php echo dateHourIcon($question->question_date) ?>
-                                <i>Updated</i> <?php echo dateHourIcon($question->question_update) ?>
+                                <i>Created</i> <?php echo dateHourIconPrivate($question->question_date) ?>
+                                <?php if (!empty($question->question_update)): ?>
+                                <br><i>Updated</i> <?php echo dateHourIconPrivate($question->question_update) ?>
+                                <?php endif ?>
                                 <?php if ($question->viewers != NULL): ?>
-                                    <i class="fa fa-eye fa-fw"></i> <?php echo $question->viewers ?>
+                                    <br><i class="fa fa-eye fa-fw"></i> Viewers <?php echo $question->viewers ?>
                                 <?php else: ?>
-                                    <i class="fa fa-eye-slash fa-fw"></i> Not Yet Viewers
+                                    <br><i class="fa fa-eye-slash fa-fw"></i> Not Yet Viewers
                                 <?php endif ?>
                                 <br>
                                 <?php if ($question->answer_id != NULL): ?>
@@ -146,9 +148,9 @@
                                 <h4>
                                     <a href="<?php echo base_url('question/' . $answer->url_question) ?>"><?php echo $answer->subject ?></a>
                                 </h4>
-                                <i>Answer on</i> <?php echo dateHourIcon($answer->answer_date) ?>
+                                <i>Answer on</i> <?php echo dateHourIconPrivate($answer->answer_date) ?>
                                 <?php if (!empty($answer->answer_update)): ?>
-                                    <i>Updated</i> <?php echo dateHourIcon($answer->answer_update) ?>
+                                    <i>Updated</i> <?php echo dateHourIconPrivate($answer->answer_update) ?>
                                 <?php endif ?>
                                 <p><?php echo qa_remove_html(qa_str_limit($answer->description_answer, 250)) ?></p>
                             </div>
@@ -163,10 +165,11 @@
                                     <h4>
                                         <a href="<?php echo base_url('question/' . $cq->url_question) ?>"><?php echo $cq->subject ?></a>
                                     </h4>
-                                    <i>Comment on</i> <?php echo dateHourIcon($cq->comment_date) ?>
+                                    <i>Comment on</i> <?php echo dateHourIconPrivate($cq->comment_date) ?>
                                     <?php if (!empty($cq->comment_update)): ?>
-                                        <i>Updated</i> <?php echo dateHourIcon($cq->comment_update) ?>
+                                        <br><i>Updated</i> <?php echo dateHourIconPrivate($cq->comment_update) ?>
                                     <?php endif ?>
+                                    <br>
                                     <i>Comment in</i>
                                     <?php if ($cq->comment_in === 'Question'): ?>
                                         <span class="btn btn-info btn-xs"><i class="fa fa-question-circle"></i> <?php echo $cq->comment_in ?></span>
@@ -185,10 +188,11 @@
                                     <h4>
                                         <a href="<?php echo base_url('question/' . $ca->url_question) ?>"><?php echo $ca->subject ?></a>
                                     </h4>
-                                    <i>Comment on</i> <?php echo dateHourIcon($ca->comment_date) ?>
+                                    <i>Comment on</i> <?php echo dateHourIconPrivate($ca->comment_date) ?>
                                     <?php if (!empty($ca->comment_update)): ?>
-                                        <i>Updated</i> <?php echo dateHourIcon($ca->comment_update) ?>
+                                        <br><i>Updated</i> <?php echo dateHourIconPrivate($ca->comment_update) ?>
                                     <?php endif ?>
+                                    <br>
                                     <i>Comment in</i>
                                     <?php if ($ca->comment_in === 'Question'): ?>
                                         <span class="btn btn-info btn-xs"><i class="fa fa-question-circle"></i> <?php echo $ca->comment_in ?></span>
@@ -214,9 +218,9 @@
                                             <button type="button" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-thumbs-down"></i></button>
                                         <?php endif ?>
                                     </h4>
-                                    <i>Vote on</i> <?php echo dateHourIcon($vq->vote_date) ?>
+                                    <i>Vote on</i> <?php echo dateHourIconPrivate($vq->vote_date) ?>
                                     <?php if (!empty($vq->vote_update)): ?>
-                                        <i>Updated</i> <?php echo dateHourIcon($vq->vote_update) ?>
+                                        <i>Updated</i> <?php echo dateHourIconPrivate($vq->vote_update) ?>
                                     <?php endif ?>
                                     <i>Vote in</i>
                                     <?php if ($vq->vote_in === 'Question'): ?>
@@ -240,9 +244,9 @@
                                             <button type="button" class="btn btn-danger btn-circle btn-xl"><i class="fa fa-thumbs-down"></i></button>
                                         <?php endif ?>
                                     </h4>
-                                    <i>Vote on</i> <?php echo dateHourIcon($va->vote_date) ?>
+                                    <i>Vote on</i> <?php echo dateHourIconPrivate($va->vote_date) ?>
                                     <?php if (!empty($va->vote_update)): ?>
-                                        <i>Updated</i> <?php echo dateHourIcon($va->vote_update) ?>
+                                        <i>Updated</i> <?php echo dateHourIconPrivate($va->vote_update) ?>
                                     <?php endif ?>
                                     <i>Vote in</i>
                                     <?php if ($va->vote_in === 'Question'): ?>

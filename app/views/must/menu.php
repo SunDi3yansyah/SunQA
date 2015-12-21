@@ -18,6 +18,9 @@
                     <li><a href="<?php echo base_url('tag'); ?>"><span class="mif-tags"></span> Tags</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="<?php echo base_url('user'); ?>"><span class="mif-users"></span> Users</a>
+            </li>
         </ul>
         <?php if ($this->qa_libs->logged_in()): ?>
             <?php $this->load->view('must/login'); ?>

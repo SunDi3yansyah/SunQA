@@ -21,6 +21,7 @@
                                     <th>ID</th>
                                     <th>Username</th>
                                     <th>Vote in</th>
+                                    <th>Vote for</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

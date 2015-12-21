@@ -53,8 +53,8 @@ class Create extends CI_Publics
 		}
 		else
 		{
-			show_404();
-			return FALSE;
+			$data = array('messages' => 'Dibutuhkan login untuk memulai bertanya.');
+			$this->_render('independent/messages', $data);
 		}
 	}
 }
