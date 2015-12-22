@@ -45,7 +45,14 @@ if (!function_exists('pic_user'))
 	{
 		$obj = &get_instance();
 
-		return base_url($obj->config->item('pic_user') . $str);
+		if (!empty($str))
+		{
+			return base_url($obj->config->item('pic_user') . $str);
+		}
+		else
+		{
+			return base_url($obj->config->item('public_img') . 'user-default.png');
+		}
 	}
 }
 

@@ -21,10 +21,6 @@ body {
     }
 }
 
-.navbar-default .navbar-brand {
-    text-transform: capitalize;
-}
-
 .navbar-top-links {
     margin-right: 0;
 }
@@ -352,6 +348,11 @@ table.dataTable thead .sorting:after {
 }
 
 /* ADITIONAL */
+
+.navbar-default .navbar-brand {
+    text-transform: capitalize;
+}
+
 ul#side-menu li h4 {
     padding: 10px 35px;
     color: #d9534f;

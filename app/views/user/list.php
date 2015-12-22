@@ -14,17 +14,25 @@
             </div>
         </div>
         <div class="container">
-            <div class="align-center" style="padding-top: 40px; padding-bottom: 10px;">
+            <div class="example align-center" data-text="users - <?php echo $this->config->item('web_name'); ?>" style="margin: 50px 0;">
                 <div class="grid">
-                    <div class="row cells2">
                     <?php foreach ($user as $user): ?>
-                        <div class="cell no-overflow" style="margin: 0;">
-                            <div class="bg-random fg-white block-shadow" style="height: 85px; padding-top: 20px; margin-top: 10px;">
-                                <h2 class="text-light"><a class="fg-white" href="<?php echo base_url($this->uri->segment(1) .'/'. uri_encode($user->username)) ?>"><?php echo $user->username ?></a></h2>
+                    <div class="row cells6">
+                        <div class="cell">
+                            <img src="<?php echo pic_user($user->image) ?>" data-role="fitImage" data-format="cycle">
+                        </div>
+                        <div class="cell colspan5">
+                            <div class="fl">
+                                <h3><?php echo $user->nama ?></h3> <span class="tag info"><span class="mif-bookmark"></span> <?php echo $user->role_name ?></span>
+                                <span class="mif-user"></span> <a class="QuestionList-author" href="<?php echo base_url('user/' . $user->username); ?>"><?php echo $user->username ?></a>
+                                ─
+                                <span class="mif-mail"></span> <?php echo mailto($user->email, NULL, 'class="QuestionList-author"') ?>
+                                <p>Registered <?php echo dateHourIcon($user->user_date) ?></p>
                             </div>
                         </div>
-                    <?php endforeach ?>
                     </div>
+                    <hr>
+                    <?php endforeach ?>
                 </div>
             </div>
         </div>

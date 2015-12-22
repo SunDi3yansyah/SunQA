@@ -42,7 +42,7 @@
                 <?php if (!empty($ask->question_update)): ?>
                     <small><i>Question last update on</i> <?php echo dateHourIcon($ask->question_update) ?></small>
                 <?php endif ?>
-                <div style="height: 3em; margin-top: 1em;">
+                <div style="height: 2em; margin-top: 1em;">
                     <div class="fl">
                         <span class="mif-tags"></span>
                         <?php foreach ($question_tag as $qt): ?>
@@ -51,11 +51,11 @@
                             <?php endif ?>
                         <?php endforeach ?>
                     </div>
-                    <div class="fr">
+                    <div class="fr" style="margin-top: -10px;">
                         <?php if ($ask->user_id === $this->qa_libs->id_user()): ?>
-                            <div class="dropdown-button">
-                                <button class="button dropdown-toggle">Action</button>
-                                <ul class="split-content d-menu" data-role="dropdown">
+                            <div class="dropdown-button place-right">
+                                <button class="button warning small-button dropdown-toggle">Action</button>
+                                <ul class="split-content d-menu place-right" data-role="dropdown">
                                     <li><a href="<?php echo base_url($this->uri->segment(1) .'/'. $ask->url_question . '/update'); ?>"><span class="mif-pencil"></span> Update</a></li>
                                     <li><a href="<?php echo base_url($this->uri->segment(1) .'/'. $ask->url_question . '/delete'); ?>"><span class="mif-cancel"></span> Delete</a></li>
                                 </ul>
@@ -126,7 +126,11 @@
                             <?php endforeach ?>
                         </ul>
                         <?php else: ?>
-                        <div class="padding10 bg-red fg-white text-accent">Belum ada jawaban.</div>
+                        <div class="errors padding10 bg-red fg-white text-accent">
+                            <p>
+                                Belum ada jawaban.
+                            </p>
+                        </div>
                         <?php endif ?>
                         <?php if ($this->qa_libs->logged_in()): ?>
                             <?php if ($ask->user_id != $this->qa_libs->id_user()): ?>
@@ -135,7 +139,7 @@
                                 <hr class="thin">
                                 <br>
                                 <?php if (validation_errors() || !empty($errors)): ?>
-                                    <div class="padding10 bg-red fg-white text-accent">
+                                    <div class="errors padding10 bg-red fg-white text-accent">
                                         <?php echo validation_errors(); ?>
                                         <?php echo (!empty($errors)?$errors:NULL); ?>
                                     </div>
@@ -155,7 +159,11 @@
                                 <?php echo form_close(); ?>
                             <?php endif ?>
                         <?php else: ?>
-                            <div class="padding10 bg-red fg-white text-accent">Jika anda ingin menjawab silakan login.</div>
+                            <div class="errors padding10 bg-red fg-white text-accent">
+                                <p>
+                                    Jika anda ingin menjawab silakan login.
+                                </p>
+                            </div>
                         <?php endif ?>
                     </div>
                 </div>

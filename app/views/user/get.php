@@ -12,12 +12,11 @@
                     </div>
                     <div class="cell colspan5">
                         <div class="fl">
-                            <h3><?php echo $user->nama ?></h3>
-                            <a class="QuestionList-author" href="<?php echo base_url('user/' . $user->username); ?>"><?php echo $user->username ?></a>
+                            <h3><?php echo $user->nama ?></h3> <span class="tag info"><span class="mif-bookmark"></span> <?php echo $user->role_name ?></span>
+                            <span class="mif-user"></span> <a class="QuestionList-author" href="<?php echo base_url('user/' . $user->username); ?>"><?php echo $user->username ?></a>
                             ─
-                            <?php echo mailto($user->email, NULL, 'class="QuestionList-author"') ?>
+                            <span class="mif-mail"></span> <?php echo mailto($user->email, NULL, 'class="QuestionList-author"') ?>
                             <p>Registered <?php echo dateHourIcon($user->user_date) ?></p>
-                            <button class="button"><span class="mif-bookmark"></span> <?php echo $user->role_name ?></button>
                         </div>
                     </div>
                 </div>

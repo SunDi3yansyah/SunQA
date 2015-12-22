@@ -30,11 +30,14 @@
                                 <?php echo qa_remove_html_limit($q->description_question, 100) ?>
                             </p>
                         </div>
-                        <?php foreach ($question_tag as $qt): ?>
-                            <?php if ($qt->question_id === $q->id_question): ?>
-                                <a href="<?php echo base_url('tag/' . uri_encode($qt->tag_name)); ?>"><span class="tag success"><?php echo $qt->tag_name ?></span></a>
-                            <?php endif ?>
-                        <?php endforeach ?>
+                        <div class="fl">
+                            <span class="mif-tags"></span>
+                            <?php foreach ($question_tag as $qt): ?>
+                                <?php if ($qt->question_id === $q->id_question): ?>
+                                    <a href="<?php echo base_url('tag/' . uri_encode($qt->tag_name)); ?>"><span class="tag success"><?php echo $qt->tag_name ?></span></a>
+                                <?php endif ?>
+                            <?php endforeach ?>
+                        </div>
                     </section>
                     <?php endforeach ?>
                 </div>
