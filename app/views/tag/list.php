@@ -6,7 +6,7 @@
         <div class="bg-darkBlue fg-white align-center">
             <div class="container">
                 <div class="no-overflow land-bar">
-                    <h1 class="text-shadow metro-title text-light land-bar-title capitalize">Tags</h1>
+                    <h1 class="text-shadow metro-title text-light land-bar-title capitalize"><span class="mif-tags"></span> Tags</h1>
                     <br>
                     <br>
                     <br>

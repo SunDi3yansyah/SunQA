@@ -31,7 +31,7 @@ class User extends CI_Publics
 		else
 		{
 			$data = array(
-				'user' => $this->qa_model->join('user', 'role', 'user.role_id=role.id_role', 'user.id_user DESC'),
+				'user' => $this->qa_model->join('user', 'role', 'user.role_id=role.id_role', 'user.id_user ASC'),
 				);
 			$this->_render('user/list', $data);
 		}

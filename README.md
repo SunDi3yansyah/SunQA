@@ -97,7 +97,7 @@ __pwl_question__
 | answer_id            | int(11)      | YES  | MUL | NULL    |                |
 | question_date        | datetime     | NO   |     | NULL    |                |
 | question_update      | datetime     | YES  |     | NULL    |                |
-| viewers              | int(11)      | YES  |     | NULL    |                |
+| viewers              | int(11)      | NO   |     | 0       |                |
 | url_question         | varchar(250) | NO   |     | NULL    |                |
 +----------------------+--------------+------+-----+---------+----------------+
 ```
@@ -146,11 +146,11 @@ __pwl_user__
 | Field          | Type         | Null | Key | Default           | Extra                       |
 +----------------+--------------+------+-----+-------------------+-----------------------------+
 | id_user        | int(11)      | NO   | PRI | NULL              | auto_increment              |
-| username       | varchar(25)  | NO   | UNI | NULL              |                             |
+| username       | varchar(25)  | NO   |     | NULL              |                             |
 | password       | varchar(200) | NO   |     | NULL              |                             |
 | activated      | tinyint(4)   | NO   |     | 0                 |                             |
 | nama           | varchar(100) | NO   |     | NULL              |                             |
-| email          | varchar(100) | NO   | UNI | NULL              |                             |
+| email          | varchar(100) | NO   |     | NULL              |                             |
 | bio            | text         | NO   |     | NULL              |                             |
 | web            | varchar(50)  | NO   |     | NULL              |                             |
 | lokasi         | varchar(50)  | NO   |     | NULL              |                             |
@@ -174,6 +174,9 @@ __pwl_vote__
 | question_id | int(11)                   | YES  | MUL | NULL    |                |
 | answer_id   | int(11)                   | YES  | MUL | NULL    |                |
 | vote_in     | enum('Question','Answer') | NO   |     | NULL    |                |
+| vote_date   | datetime                  | NO   |     | NULL    |                |
+| vote_update | datetime                  | YES  |     | NULL    |                |
+| vote_for    | enum('Up','Down')         | NO   |     | NULL    |                |
 +-------------+---------------------------+------+-----+---------+----------------+
 ```
 
