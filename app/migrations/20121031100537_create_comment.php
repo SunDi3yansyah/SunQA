@@ -24,11 +24,13 @@ class Migration_Create_comment extends CI_Migration
             'question_id' => array(
                 'type' => 'INT',
                 'constraint' => 11,
+                'null' => TRUE,
                 'default' => NULL
                 ),
             'answer_id' => array(
                 'type' => 'INT',
                 'constraint' => 11,
+                'null' => TRUE,
                 'default' => NULL
                 ),
             'comment_in' => array(

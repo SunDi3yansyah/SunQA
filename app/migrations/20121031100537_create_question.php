@@ -35,6 +35,7 @@ class Migration_Create_question extends CI_Migration
             'answer_id' => array(
                 'type' => 'INT',
                 'constraint' => 11,
+                'null' => TRUE,
                 'default' => NULL
                 ),
             'question_date' => array(

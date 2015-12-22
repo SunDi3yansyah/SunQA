@@ -59,27 +59,32 @@ class Migration_Create_user extends CI_Migration
                 ),
             'last_login' => array(
                 'type' => 'DATETIME',
+                'null' => TRUE,
                 'default' => NULL
                 ),
             'last_ip' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 50,
+                'null' => TRUE,
                 'default' => NULL
                 ),
             'modified TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
             'lost_password' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 50,
+                'null' => TRUE,
                 'default' => NULL
                 ),
             'image' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 50,
+                'null' => TRUE,
                 'default' => NULL
                 ),
             'activated_hash' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 40,
+                'null' => TRUE,
                 'default' => NULL
                 )
             ));
