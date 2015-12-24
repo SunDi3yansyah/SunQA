@@ -41,8 +41,8 @@ class Questions extends CI_Publics
 			}
 			else
 			{
-				show_404();
-				return FALSE;
+				$data = array('messages' => 'Belum ada data yang dapat ditampilkan.');
+				$this->_render('independent/messages', $data);
 			}
 		}
 	}
@@ -74,8 +74,8 @@ class Questions extends CI_Publics
 			}
 			else
 			{
-				show_404();
-				return FALSE;
+				$data = array('messages' => 'Belum ada data yang dapat ditampilkan.');
+				$this->_render('independent/messages', $data);
 			}
 		}
 	}
@@ -107,8 +107,8 @@ class Questions extends CI_Publics
 			}
 			else
 			{
-				show_404();
-				return FALSE;
+				$data = array('messages' => 'Belum ada data yang dapat ditampilkan.');
+				$this->_render('independent/messages', $data);
 			}
 		}
 	}

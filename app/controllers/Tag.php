@@ -60,7 +60,15 @@ class Tag extends CI_Publics
 			$data = array(
 				'tags' => $this->qa_model->all('tag', 'id_tag DESC'),
 				);
-			$this->_render('tag/list', $data);
+			if (!empty($data['tags']))
+			{
+				$this->_render('tag/list', $data);
+			}
+			else
+			{
+				$data = array('messages' => 'Belum ada data Tag yang dapat ditampilkan.');
+				$this->_render('independent/messages', $data);
+			}
 		}
 	}
 

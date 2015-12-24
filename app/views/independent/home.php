@@ -84,6 +84,7 @@
                         </div>
                     </div>
                 </div>
+                <?php if (!empty($latest_question)): ?>
                 <div class="latest-question">
                     <h2>Latest Questions</h2>
                     <hr class="thin">
@@ -112,6 +113,7 @@
                     </section>
                     <?php endforeach ?>
                 </div>
+                <?php endif ?>
             </div>
         </div>
         <div class="bg-steel no-tablet-portrait no-phone">

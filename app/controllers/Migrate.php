@@ -11,13 +11,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Migrate extends CI_Controller
 {
-	function index()
+	function install()
 	{
 		$this->load->library('migration');
 
 		if ($this->migration->current() === FALSE)
 		{
 			show_error($this->migration->error_string());
+		}
+		else
+		{
+			echo '<h1>Successfully install schema database '.$this->config->item('web_name').'</h1><br>
+				  <code>Version : '.$this->migration->current().'</code>';
 		}
 	}
 }

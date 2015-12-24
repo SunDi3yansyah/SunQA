@@ -14,6 +14,7 @@ class Auth extends CI_Publics
 	function __construct()
 	{
 		parent::__construct();
+		
 		$this->session->unset_userdata('current_url');
 	}
 

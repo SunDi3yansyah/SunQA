@@ -62,7 +62,15 @@ class Category extends CI_Publics
 			$data = array(
 				'categories' => $this->qa_model->all('category', 'id_category DESC'),
 				);
-			$this->_render('category/list', $data);
+			if (!empty($data['categories']))
+			{
+				$this->_render('category/list', $data);
+			}
+			else
+			{
+				$data = array('messages' => 'Belum ada data Category yang dapat ditampilkan.');
+				$this->_render('independent/messages', $data);
+			}
 		}
 	}
 

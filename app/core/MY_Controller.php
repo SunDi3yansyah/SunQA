@@ -18,6 +18,8 @@ class CI_Publics extends CI_Controller
 	{
 		parent::__construct();
 
+		$this->load->library('session');
+
 		$array = array(
 			'current_url' => $this->uri->uri_string(),
 		);
@@ -53,6 +55,8 @@ class CI_Privates extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+
+		$this->load->library('session');
 
 		if ($this->qa_libs->logged_in())
 		{
