@@ -13,7 +13,8 @@ class Questions extends CI_Publics
 {
 	function index($str = NULL)
 	{
-		if (!empty($str)) {
+		if (!empty($str))
+		{
 			$data = array(
 				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.id_question DESC', 5, $str),
 				'question_tag' => $this->_question_tag(),
@@ -27,7 +28,9 @@ class Questions extends CI_Publics
 				show_404();
 				return FALSE;
 			}
-		} else {
+		}
+		else
+		{
 			$data = array(
 				'questions' => $this->qa_model->join2_ajax('question', 'user', 'category', 'question.user_id=user.id_user', 'question.category_id=category.id_category', 'question.id_question DESC', 5, 0),
 				'question_tag' => $this->_question_tag(),
