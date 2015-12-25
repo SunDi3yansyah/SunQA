@@ -1,0 +1,143 @@
+/* line 3, ../../_sass/404.scss */
+#not-found, #not-found body {
+  display: table;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 11, ../../_sass/404.scss */
+#not-found body {
+  position: relative;
+  background-color: #1d2b2a;
+  background-image: url(/assets/images/404-stripe.png), url(/assets/images/404-noise.png);
+  background-repeat: repeat-x, repeat;
+  background-position: 0 0%;
+  background-attachment: fixed;
+  font-size: 21px;
+  font-family: Inconsolata, "Lucida Console", Monaco, Courier, monospace;
+  font-smooth: never;
+  line-height: 2em;
+  color: #d4f8e3;
+  -webkit-font-smoothing: none;
+  text-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
+  -moz-animation: blink 0.1s steps(2, start) infinite, skip 7s linear infinite, flicker 0.1s steps(2, start) infinite;
+  -webkit-animation: blink 0.1s steps(2, start) infinite, skip 7s linear infinite, flicker 0.1s steps(2, start) infinite;
+  animation: blink 0.1s steps(2, start) infinite, skip 7s linear infinite, flicker 0.1s steps(2, start) infinite;
+}
+/* line 26, ../../_sass/404.scss */
+#not-found body #holder {
+  display: table-cell;
+  vertical-align: bottom;
+  max-width: 800px;
+  margin: 0 auto;
+}
+/* line 32, ../../_sass/404.scss */
+#not-found body #story {
+  padding: 10px;
+  max-width: 100%;
+  display: block;
+  white-space: pre;
+  line-height: 1.25em;
+}
+/* line 38, ../../_sass/404.scss */
+#not-found body #story:after {
+  visibility: visible;
+  content: '';
+  background-color: #d4f8e3;
+  display: inline-block;
+  position: relative;
+  width: 0.5em;
+  height: 1em;
+  top: 5px;
+  margin-left: 0;
+  -moz-box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
+  -webkit-box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
+  box-shadow: -2px 0 0px rgba(0, 0, 225, 0.4), -1px 0 3px rgba(103, 171, 236, 0.6), 1px 0 4px rgba(69, 112, 204, 0.5);
+  -moz-animation: flicker 0.1s steps(2, start) infinite, ready 1s steps(2, start) 25s infinite;
+  -webkit-animation: flicker 0.1s steps(2, start) infinite, ready 1s steps(2, start) 25s infinite;
+  animation: flicker 0.1s steps(2, start) infinite, ready 1s steps(2, start) 25s infinite;
+}
+/* line 52, ../../_sass/404.scss */
+#not-found body #kick {
+  text-shadow: none;
+  margin: 10px;
+}
+/* line 55, ../../_sass/404.scss */
+#not-found body #kick a {
+  background-color: #d4f8e3;
+  color: #1d2b2a;
+  text-decoration: inherit;
+}
+/* line 61, ../../_sass/404.scss */
+#not-found body .typed-cursor {
+  display: none;
+}
+
+@-moz-keyframes blink {
+  to {
+    background-color: #223332;
+  }
+}
+@-webkit-keyframes blink {
+  to {
+    background-color: #223332;
+  }
+}
+@keyframes blink {
+  to {
+    background-color: #223332;
+  }
+}
+@-moz-keyframes skip {
+  to {
+    background-position: 0 100%;
+  }
+}
+@-webkit-keyframes skip {
+  to {
+    background-position: 0 100%;
+  }
+}
+@keyframes skip {
+  to {
+    background-position: 0 100%;
+  }
+}
+@-moz-keyframes flicker {
+  to {
+    color: #bddeca;
+  }
+}
+@-webkit-keyframes flicker {
+  to {
+    color: #bddeca;
+  }
+}
+@keyframes flicker {
+  to {
+    color: #bddeca;
+  }
+}
+@-moz-keyframes ready {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes ready {
+  to {
+    visibility: hidden;
+  }
+}
+@keyframes ready {
+  to {
+    visibility: hidden;
+  }
+}
+@media screen and (max-width: 400px) {
+  /* line 84, ../../_sass/404.scss */
+  #not-found body {
+    font-size: 18px;
+  }
+}
