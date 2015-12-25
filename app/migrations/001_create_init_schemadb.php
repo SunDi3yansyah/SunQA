@@ -13,17 +13,13 @@ class Migration_Create_init_schemadb extends CI_Migration
     {
         $this->dbforge->add_field(array(
             'id_answer' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
+                'type' => 'INT'
                 ),
             'user_id' => array(
-                'type' => 'INT',
-                'constraint' => 11
+                'type' => 'INT'
                 ),
             'question_id' => array(
-                'type' => 'INT',
-                'constraint' => 11
+                'type' => 'INT'
                 ),
             'description_answer' => array(
                 'type' => 'TEXT'
@@ -44,9 +40,7 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_category' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
+                'type' => 'INT'
                 ),
             'category_name' => array(
                 'type' => 'VARCHAR',
@@ -59,23 +53,18 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_comment' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
+                'type' => 'INT'
                 ),
             'user_id' => array(
-                'type' => 'INT',
-                'constraint' => 11
+                'type' => 'INT'
                 ),
             'question_id' => array(
                 'type' => 'INT',
-                'constraint' => 11,
                 'null' => TRUE,
                 'default' => NULL
                 ),
             'answer_id' => array(
                 'type' => 'INT',
-                'constraint' => 11,
                 'null' => TRUE,
                 'default' => NULL
                 ),
@@ -102,28 +91,23 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_question' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
+                'type' => 'INT'
                 ),
             'user_id' => array(
-                'type' => 'INT',
-                'constraint' => 11
+                'type' => 'INT'
                 ),
             'subject' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100
                 ),
             'category_id' => array(
-                'type' => 'INT',
-                'constraint' => 11
+                'type' => 'INT'
                 ),
             'description_question' => array(
                 'type' => 'TEXT'
                 ),
             'answer_id' => array(
                 'type' => 'INT',
-                'constraint' => 11,
                 'null' => TRUE,
                 'default' => NULL
                 ),
@@ -136,7 +120,6 @@ class Migration_Create_init_schemadb extends CI_Migration
                 ),
             'viewers' => array(
                 'type' => 'INT',
-                'constraint' => 11,
                 'default' => 0
                 ),
             'url_question' => array(
@@ -153,17 +136,13 @@ class Migration_Create_init_schemadb extends CI_Migration
         
         $this->dbforge->add_field(array(
             'id_qt' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
+                'type' => 'INT'
                 ),
             'question_id' => array(
-                'type' => 'INT',
-                'constraint' => 11
+                'type' => 'INT'
                 ),
             'tag_id' => array(
-                'type' => 'INT',
-                'constraint' => 11
+                'type' => 'INT'
                 )
             ));
         $this->dbforge->add_key('id_qt', TRUE);
@@ -174,9 +153,7 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_role' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
+                'type' => 'INT'
                 ),
             'role_name' => array(
                 'type' => 'VARCHAR',
@@ -188,7 +165,7 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id' => array(
-                'type' => 'INT',
+                'type' => 'VARCHAR',
                 'constraint' => 40
                 ),
             'ip_address' => array(
@@ -197,7 +174,6 @@ class Migration_Create_init_schemadb extends CI_Migration
                 ),
             'timestamp' => array(
                 'type' => 'INT',
-                'constraint' => 11,
                 'default' => 0,
                 'unsigned' => TRUE
                 ),
@@ -205,15 +181,13 @@ class Migration_Create_init_schemadb extends CI_Migration
                 'type' => 'BLOB'
                 )
             ));
-        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('timestamp');
         $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('session', FALSE, $engine);
 
         $this->dbforge->add_field(array(
             'id_tag' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
+                'type' => 'INT'
                 ),
             'tag_name' => array(
                 'type' => 'VARCHAR',
@@ -226,9 +200,7 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_user' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
+                'type' => 'INT'
                 ),
             'username' => array(
                 'type' => 'VARCHAR',
@@ -264,7 +236,6 @@ class Migration_Create_init_schemadb extends CI_Migration
                 ),
             'role_id' => array(
                 'type' => 'INT',
-                'constraint' => 11,
                 'default' => 2
                 ),
             'user_date' => array(
@@ -308,23 +279,18 @@ class Migration_Create_init_schemadb extends CI_Migration
         
         $this->dbforge->add_field(array(
             'id_vote' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
+                'type' => 'INT'
                 ),
             'user_id' => array(
-                'type' => 'INT',
-                'constraint' => 11
+                'type' => 'INT'
                 ),
             'question_id' => array(
                 'type' => 'INT',
-                'constraint' => 11,
                 'null' => TRUE,
                 'default' => NULL
                 ),
             'answer_id' => array(
                 'type' => 'INT',
-                'constraint' => 11,
                 'null' => TRUE,
                 'default' => NULL,
                 ),
@@ -350,11 +316,36 @@ class Migration_Create_init_schemadb extends CI_Migration
         $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('vote', FALSE, $engine);
 
+        $dbprefix = $this->db->dbprefix;
+
+        $this->db->query('ALTER TABLE `'.$dbprefix.'answer`
+            ADD CONSTRAINT `'.$dbprefix.'answer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `'.$dbprefix.'user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `'.$dbprefix.'answer_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `'.$dbprefix.'question` (`id_question`) ON DELETE CASCADE ON UPDATE CASCADE');
+        $this->db->query('ALTER TABLE `'.$dbprefix.'comment`
+            ADD CONSTRAINT `'.$dbprefix.'comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `'.$dbprefix.'user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `'.$dbprefix.'comment_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `'.$dbprefix.'question` (`id_question`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `'.$dbprefix.'comment_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `'.$dbprefix.'answer` (`id_answer`) ON DELETE CASCADE ON UPDATE CASCADE');
+        $this->db->query('ALTER TABLE `'.$dbprefix.'question`
+            ADD CONSTRAINT `'.$dbprefix.'question_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `'.$dbprefix.'user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `'.$dbprefix.'question_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `'.$dbprefix.'category` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `'.$dbprefix.'question_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `'.$dbprefix.'answer` (`id_answer`) ON DELETE CASCADE ON UPDATE CASCADE');
+        $this->db->query('ALTER TABLE `'.$dbprefix.'question_tag`
+            ADD CONSTRAINT `'.$dbprefix.'question_tag_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `'.$dbprefix.'question` (`id_question`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `'.$dbprefix.'question_tag_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `'.$dbprefix.'tag` (`id_tag`) ON DELETE CASCADE ON UPDATE CASCADE');
+        $this->db->query('ALTER TABLE `'.$dbprefix.'user`
+            ADD CONSTRAINT `'.$dbprefix.'user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `'.$dbprefix.'role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE');
+        $this->db->query('ALTER TABLE `'.$dbprefix.'vote`
+            ADD CONSTRAINT `'.$dbprefix.'vote_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `'.$dbprefix.'user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `'.$dbprefix.'vote_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `'.$dbprefix.'question` (`id_question`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `'.$dbprefix.'vote_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `'.$dbprefix.'answer` (`id_answer`) ON DELETE CASCADE ON UPDATE CASCADE');
+
         $role = array(
             array(
+                'id_role' => 1,
                 'role_name' => 'Administrator',
                 ),
             array(
+                'id_role' => 2,
                 'role_name' => 'User',
                 )
             );

@@ -69,6 +69,9 @@
                         <ul class="numeric-list list-ac">
                             <li>
                                 <strong class="no-margin-top" style="font-size: .675rem;"><?php echo $ciq->nama ?> (<a href="<?php echo base_url('user/' . $ciq->username); ?>"><?php echo $ciq->username ?></a>)</strong> <i style="font-size: .675rem;"><?php echo dateHourIcon($ciq->comment_date) ?></i>
+                                <?php if ($ciq->id_user == $this->qa_libs->id_user()): ?>
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/update_comment/'. $ciq->id_comment); ?>" class="button warning mini-button" style="padding-top: inherit;">Update</a>
+                                <?php endif ?>
                                 <hr class="bg-black">
                                 <div style="font-size: .775rem;">
                                     <?php echo $ciq->description_comment ?>
@@ -88,6 +91,9 @@
                             <?php foreach ($answer as $anw): ?>
                             <li>
                                 <strong class="no-margin-top"><?php echo $anw->nama ?> (<a href="<?php echo base_url('user/' . $anw->username); ?>"><?php echo $anw->username ?></a>)</strong> <i style="font-size: .675rem;"><?php echo dateHourIcon($anw->answer_date) ?></i>
+                                <?php if ($anw->id_user == $this->qa_libs->id_user()): ?>
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/update_answer/'. $anw->id_answer); ?>" class="button warning mini-button" style="padding-top: inherit;">Update</a>
+                                <?php endif ?>
                                 <?php if ($ask->id_user === $this->qa_libs->id_user()): ?>
                                     <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/answer/'. $anw->id_answer) ?>" class="cycle-button small-button" style="margin-top: -11px; margin-left: 5px;" data-role="hint" data-hint-mode="2" data-hint="Select this as answer" data-hint-position="top"><span class="mif-checkmark"></span></a>
                                 <?php endif ?>

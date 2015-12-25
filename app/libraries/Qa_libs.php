@@ -104,9 +104,17 @@ class Qa_libs
 
     function last_question()
     {
-        foreach ($this->ci->qa_model->firt_or_last('question', 'id_question DESC') as $q)
+        $question = $this->ci->qa_model->firt_or_last('question', 'id_question DESC');
+        if (!empty($question))
         {
-            return $q->id_question + 1;
+            foreach ($question as $q)
+            {
+                return $q->id_question + 1;
+            }
+        }
+        else
+        {
+            return 1;
         }
     }
 

@@ -171,6 +171,24 @@ class Qa_model extends CI_Model
         }
     }
 
+    function join_where2($table1, $table2, $join, $where1, $where2, $order)
+    {
+        $this->db->from($table1);
+        $this->db->join($table2, $join);
+        $this->db->where($where1);
+        $this->db->where($where2);
+        $this->db->order_by($order);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0)
+        {
+            return FALSE;
+        }
+        else
+        {
+            return $query->result();
+        }
+    }
+
     function join2($table1, $table2, $table3, $join1, $join2, $order)
     {
         $this->db->from($table1);

@@ -251,10 +251,10 @@ class Question extends CI_Publics
 									$check_exist = $this->qa_model->get_two('answer', array('id_answer' => $num), array('question_id' => $question->id_question));
 									if (!empty($check_exist))
 									{
-										$update_answer = array(
+										$update_question = array(
 											'answer_id' => $num
 											);
-										$this->qa_model->update('question', $update_answer, array('id_question' => $question->id_question));
+										$this->qa_model->update('question', $update_question, array('id_question' => $question->id_question));
 										redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
 									}
 									else
@@ -386,6 +386,58 @@ class Question extends CI_Publics
 									show_404();
 									return FALSE;
 								}
+							}
+						}
+						elseif ($action === 'update_answer')
+						{
+							$data['update_answer'] = $this->qa_model->join2_where2('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('id_answer' => $num), array('answer.user_id' => $this->qa_libs->id_user()), 'answer.id_answer');
+							if (!empty($data['update_answer']))
+							{
+								$this->form_validation->set_rules('description_answer', 'Description', 'trim|required|xss_clean');
+								$this->form_validation->set_error_delimiters('<p>', '</p>');
+								if ($this->form_validation->run() == TRUE)
+								{
+									$ua = array(
+										'description_answer' => $this->input->post('description_answer', TRUE),
+										);
+									$this->qa_model->update('answer', $ua, array('id_answer' => $num));
+									redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+								}
+								else
+								{
+									$this->_render('question/update_answer', $data);
+								}
+							}
+							else
+							{
+								show_404();
+								return FALSE;
+							}
+						}
+						elseif ($action === 'update_comment')
+						{
+							$data['update_comment'] = $this->qa_model->join_where2('comment', 'user', 'comment.user_id=user.id_user', array('id_comment' => $num), array('comment.user_id' => $this->qa_libs->id_user()), 'comment.id_comment');
+							if (!empty($data['update_comment']))
+							{
+								$this->form_validation->set_rules('description_comment', 'Description', 'trim|required|xss_clean');
+								$this->form_validation->set_error_delimiters('<p>', '</p>');
+								if ($this->form_validation->run() == TRUE)
+								{
+									$ua = array(
+										'description_comment' => $this->input->post('description_comment', TRUE),
+										);
+									$this->qa_model->update('comment', $ua, array('id_comment' => $num));
+									redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+								}
+								else
+								{
+									$this->_render('question/update_comment', $data);
+								}
+							}
+							else
+							{
+								show_404();
+								return FALSE;
 							}
 						}
 						else

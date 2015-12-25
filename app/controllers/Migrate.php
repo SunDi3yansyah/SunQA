@@ -22,7 +22,13 @@ class Migrate extends CI_Controller
 		else
 		{
 			echo '<p>Successfully install schema database '.$this->config->item('web_name').'</p>
-				  <code>Version : '.$this->migration->current().'</code>';
+				  <code>This App Version : '.$this->migration->current().'</code>
+				  <p><strong>First Account</strong></p>
+				  <ul>
+				  	<li>Username: root</li>
+				  	<li>Password: passwd</li>
+				  </ul>
+				  ';
 		}
 	}
 }
