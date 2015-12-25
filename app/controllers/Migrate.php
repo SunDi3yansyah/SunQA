@@ -21,7 +21,7 @@ class Migrate extends CI_Controller
 		}
 		else
 		{
-			echo '<h1>Successfully install schema database '.$this->config->item('web_name').'</h1><br>
+			echo '<p>Successfully install schema database '.$this->config->item('web_name').'</p>
 				  <code>Version : '.$this->migration->current().'</code>';
 		}
 	}

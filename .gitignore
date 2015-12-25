@@ -3,6 +3,7 @@ push
 commit
 app/config/development/config.php
 app/config/development/database.php
+app/config/qa.php
 app/logs/*.php
 TODO
 pwl.sql

@@ -28,7 +28,7 @@ Aplikasi ini dibuat untuk memenuhi matakuliah Pemrograman Web Lanjut. Saya disin
     `app/config/development/database.php.origin` to `app/config/development/database.php`
     - Copy file
     `app/config/qa.php.origin` to `app/config/qa.php`
-    (update this file that you want)
+    - Update this file that you want
 - Create database
 - Install schema database [http://localhost/migrate/install](http://localhost/migrate/install)
 
