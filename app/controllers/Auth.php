@@ -9,13 +9,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @copyright	Copyright (c) 2015 SunDi3yansyah
  */
 
-class Auth extends CI_Publics
+class Auth extends CI_Controller
 {
 	function __construct()
 	{
 		parent::__construct();
 		
-		$this->session->unset_userdata('current_url');
+		$this->load->library('session');
 	}
 
 	function sign_up()
@@ -55,7 +55,7 @@ class Auth extends CI_Publics
 				$this->email->from($this->config->item('webmaster_email'), $this->config->item('web_name'));
 				$this->email->reply_to($this->config->item('webmaster_email'), $this->config->item('web_name'));
 				$this->email->to($insert['email']);
-				$this->email->subject(sprintf('Activation - ', $this->config->item('web_name')));
+				$this->email->subject('Activation - '.$this->config->item('web_name').'');
 				$this->email->message('Untuk mengaktifkan akun anda silakan kunjungi alamat URL berikut '.base_url('auth/activated/'. $insert['activated_hash']).'');
 				$this->email->send();
 			}
@@ -159,7 +159,7 @@ class Auth extends CI_Publics
 							$this->email->from($this->config->item('webmaster_email'), $this->config->item('web_name'));
 							$this->email->reply_to($this->config->item('webmaster_email'), $this->config->item('web_name'));
 							$this->email->to($update['email']);
-							$this->email->subject(sprintf('Activation - ', $this->config->item('web_name')));
+							$this->email->subject('Activation - '.$this->config->item('web_name').'');
 							$this->email->message('Untuk mengaktifkan akun anda silakan kunjungi alamat URL berikut '.base_url('auth/forgot/'. $update['lost_password']).'');
 							$this->email->send();
 						}

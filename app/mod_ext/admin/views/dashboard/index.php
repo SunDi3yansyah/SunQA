@@ -296,10 +296,6 @@
                                     <td><?php echo $this->db->platform(); ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Gatway Interface</td>
-                                    <td><?php echo $_SERVER['GATEWAY_INTERFACE']; ?></td>
-                                </tr>
-                                <tr>
                                     <td>IP Server</td>
                                     <td><?php echo $_SERVER['SERVER_ADDR']; ?></td>
                                 </tr>

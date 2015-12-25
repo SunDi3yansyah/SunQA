@@ -9,13 +9,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @copyright	Copyright (c) 2015 SunDi3yansyah
  */
 
-class Log extends CI_Publics
+class Log extends CI_Controller
 {
 	function __construct()
 	{
 		parent::__construct();
 		
-		$this->session->unset_userdata('current_url');
+		$this->load->library('session');
 		$this->load->model('qa_model_login');
 	}
 
