@@ -13,7 +13,8 @@ class Migration_Create_init_schemadb extends CI_Migration
     {
         $this->dbforge->add_field(array(
             'id_answer' => array(
-                'type' => 'INT'
+                'type' => 'INT',
+                'auto_increment' => TRUE
                 ),
             'user_id' => array(
                 'type' => 'INT'
@@ -40,7 +41,8 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_category' => array(
-                'type' => 'INT'
+                'type' => 'INT',
+                'auto_increment' => TRUE
                 ),
             'category_name' => array(
                 'type' => 'VARCHAR',
@@ -53,7 +55,8 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_comment' => array(
-                'type' => 'INT'
+                'type' => 'INT',
+                'auto_increment' => TRUE
                 ),
             'user_id' => array(
                 'type' => 'INT'
@@ -91,7 +94,8 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_question' => array(
-                'type' => 'INT'
+                'type' => 'INT',
+                'auto_increment' => TRUE
                 ),
             'user_id' => array(
                 'type' => 'INT'
@@ -136,7 +140,8 @@ class Migration_Create_init_schemadb extends CI_Migration
         
         $this->dbforge->add_field(array(
             'id_qt' => array(
-                'type' => 'INT'
+                'type' => 'INT',
+                'auto_increment' => TRUE
                 ),
             'question_id' => array(
                 'type' => 'INT'
@@ -153,7 +158,8 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_role' => array(
-                'type' => 'INT'
+                'type' => 'INT',
+                'auto_increment' => TRUE
                 ),
             'role_name' => array(
                 'type' => 'VARCHAR',
@@ -187,7 +193,8 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_tag' => array(
-                'type' => 'INT'
+                'type' => 'INT',
+                'auto_increment' => TRUE
                 ),
             'tag_name' => array(
                 'type' => 'VARCHAR',
@@ -200,7 +207,8 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->dbforge->add_field(array(
             'id_user' => array(
-                'type' => 'INT'
+                'type' => 'INT',
+                'auto_increment' => TRUE
                 ),
             'username' => array(
                 'type' => 'VARCHAR',
@@ -279,7 +287,8 @@ class Migration_Create_init_schemadb extends CI_Migration
         
         $this->dbforge->add_field(array(
             'id_vote' => array(
-                'type' => 'INT'
+                'type' => 'INT',
+                'auto_increment' => TRUE
                 ),
             'user_id' => array(
                 'type' => 'INT'
@@ -341,11 +350,9 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $role = array(
             array(
-                'id_role' => 1,
                 'role_name' => 'Administrator',
                 ),
             array(
-                'id_role' => 2,
                 'role_name' => 'User',
                 )
             );
