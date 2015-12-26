@@ -16,7 +16,7 @@
                             <h3><?php echo $ask->nama ?></h3>
                             <a class="QuestionList-author" href="<?php echo base_url('user/' . $ask->username); ?>"><?php echo $ask->username ?></a>
                             <p><?php echo dateHourIcon($ask->question_date) ?></p>
-                            <a href="<?php echo base_url('category/' . uri_encode($ask->category_name)); ?>" class="button"><span class="mif-bookmark"></span> <?php echo $ask->category_name ?></a>
+                            <a href="<?php echo base_url('category/' . uri_encode($ask->category_name)); ?>" class="button"><span class="mif-bookmark fg-red"></span> <?php echo $ask->category_name ?></a>
                         </div>
                         <div class="fr vote_question">
                             <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/vq_up'); ?>" data-role="hint" data-hint-mode="2" data-hint="Vote|Select for vote UP" data-hint-position="top"><span class="mif-thumbs-up mif-ani-bounce"></span></a>
@@ -70,7 +70,8 @@
                             <li>
                                 <strong class="no-margin-top" style="font-size: .675rem;"><?php echo $ciq->nama ?> (<a href="<?php echo base_url('user/' . $ciq->username); ?>"><?php echo $ciq->username ?></a>)</strong> <i style="font-size: .675rem;"><?php echo dateHourIcon($ciq->comment_date) ?></i>
                                 <?php if ($ciq->id_user == $this->qa_libs->id_user()): ?>
-                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/update_comment/'. $ciq->id_comment); ?>" class="button warning mini-button" style="padding-top: inherit;">Update</a>
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/uc/'. $ciq->id_comment); ?>" class="tag warning" data-role="hint" data-hint-mode="2" data-hint="|Update" data-hint-position="top"><span class="mif-pencil"></span></a>
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/dc/'. $ciq->id_comment); ?>" class="tag alert" data-role="hint" data-hint-mode="2" data-hint="|Delete" data-hint-position="top"><span class="mif-cancel"></span></a>
                                 <?php endif ?>
                                 <hr class="bg-black">
                                 <div style="font-size: .775rem;">
@@ -80,6 +81,9 @@
                         </ul>
                     <?php endforeach ?>
                 <?php endif ?>
+                <div class="fc">
+                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) . '/cq/' . $ask->id_question); ?>" class="button success"><span class="mif-bubbles"></span> Comment this Question</a>
+                </div>
             </div>
         </div>
         <div class="example" data-text="Answers">
@@ -92,7 +96,8 @@
                             <li>
                                 <strong class="no-margin-top"><?php echo $anw->nama ?> (<a href="<?php echo base_url('user/' . $anw->username); ?>"><?php echo $anw->username ?></a>)</strong> <i style="font-size: .675rem;"><?php echo dateHourIcon($anw->answer_date) ?></i>
                                 <?php if ($anw->id_user == $this->qa_libs->id_user()): ?>
-                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/update_answer/'. $anw->id_answer); ?>" class="button warning mini-button" style="padding-top: inherit;">Update</a>
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/ua/'. $anw->id_answer); ?>" class="tag warning" data-role="hint" data-hint-mode="2" data-hint="|Update" data-hint-position="top"><span class="mif-pencil"></span></a>
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/da/'. $anw->id_answer); ?>" class="tag alert" data-role="hint" data-hint-mode="2" data-hint="|Delete" data-hint-position="top"><span class="mif-cancel"></span></a>
                                 <?php endif ?>
                                 <?php if ($ask->id_user === $this->qa_libs->id_user()): ?>
                                     <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/answer/'. $anw->id_answer) ?>" class="cycle-button small-button" style="margin-top: -11px; margin-left: 5px;" data-role="hint" data-hint-mode="2" data-hint="Select this as answer" data-hint-position="top"><span class="mif-checkmark"></span></a>
@@ -120,14 +125,21 @@
                                     <ul class="numeric-list default-bullet list-ac">
                                         <li>
                                             <strong class="no-margin-top" style="font-size: .675rem;"><?php echo $cia->nama ?> (<a href="<?php echo base_url('user/' . $cia->username); ?>"><?php echo $cia->username ?></a>)</strong>  <i style="font-size: .675rem;"><?php echo dateHourIcon($cia->comment_date) ?></i>
+                                            <?php if ($cia->id_user == $this->qa_libs->id_user()): ?>
+                                                <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/uc/'. $cia->id_comment); ?>" class="tag warning" data-role="hint" data-hint-mode="2" data-hint="|Update" data-hint-position="top"><span class="mif-pencil"></span></a>
+                                                <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/dc/'. $cia->id_comment); ?>" class="tag alert" data-role="hint" data-hint-mode="2" data-hint="|Delete" data-hint-position="top"><span class="mif-cancel"></span></a>
+                                            <?php endif ?>
                                             <hr class="bg-black">
                                             <div style="font-size: .775rem;">
-                                                <?php echo $cia->description_answer ?>
+                                                <?php echo $cia->description_comment ?>
                                             </div>
                                         </li>
                                     </ul>
                                     <?php endforeach ?>
                                 <?php endif ?>
+                                <div class="fc">
+                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) . '/ca/' . $anw->id_answer); ?>" class="button success"><span class="mif-bubbles"></span> Comment this Answer</a>
+                                </div>
                             </li>
                             <?php endforeach ?>
                         </ul>

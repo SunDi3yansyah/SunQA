@@ -388,7 +388,67 @@ class Question extends CI_Publics
 								}
 							}
 						}
-						elseif ($action === 'update_answer')
+						elseif ($action === 'cq')
+						{
+							$data['comment_question'] = $this->qa_model->join_where('question', 'user', 'question.user_id=user.id_user', array('id_question' => $num), 'question.id_question');
+							if (!empty($data['comment_question']))
+							{
+								$this->form_validation->set_rules('description_comment', 'Description', 'trim|required|xss_clean');
+								$this->form_validation->set_error_delimiters('<p>', '</p>');
+								if ($this->form_validation->run() == TRUE)
+								{
+									$cq = array(
+										'user_id' => $this->qa_libs->id_user(),
+										'question_id' => $num,
+										'comment_in' => 'Question',
+										'description_comment' => $this->input->post('description_comment', TRUE),
+										'comment_date' => date('Y-m-d H:i:s'),
+										);
+									$this->qa_model->insert('comment', $cq);
+									redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+								}
+								else
+								{
+									$this->_render('question/comment_question', $data);
+								}
+							}
+							else
+							{
+								show_404();
+								return FALSE;
+							}
+						}
+						elseif ($action === 'ca')
+						{
+							$data['comment_answer'] = $this->qa_model->join2_where('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('id_answer' => $num), 'answer.id_answer');
+							if (!empty($data['comment_answer']))
+							{
+								$this->form_validation->set_rules('description_comment', 'Description', 'trim|required|xss_clean');
+								$this->form_validation->set_error_delimiters('<p>', '</p>');
+								if ($this->form_validation->run() == TRUE)
+								{
+									$ca = array(
+										'user_id' => $this->qa_libs->id_user(),
+										'answer_id' => $num,
+										'comment_in' => 'Answer',
+										'description_comment' => $this->input->post('description_comment', TRUE),
+										'comment_date' => date('Y-m-d H:i:s'),
+										);
+									$this->qa_model->insert('comment', $ca);
+									redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+								}
+								else
+								{
+									$this->_render('question/comment_answer', $data);
+								}
+							}
+							else
+							{
+								show_404();
+								return FALSE;
+							}
+						}
+						elseif ($action === 'ua')
 						{
 							$data['update_answer'] = $this->qa_model->join2_where2('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('id_answer' => $num), array('answer.user_id' => $this->qa_libs->id_user()), 'answer.id_answer');
 							if (!empty($data['update_answer']))
@@ -399,6 +459,7 @@ class Question extends CI_Publics
 								{
 									$ua = array(
 										'description_answer' => $this->input->post('description_answer', TRUE),
+										'answer_update' => date('Y-m-d H:i:s'),
 										);
 									$this->qa_model->update('answer', $ua, array('id_answer' => $num));
 									redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
@@ -414,7 +475,7 @@ class Question extends CI_Publics
 								return FALSE;
 							}
 						}
-						elseif ($action === 'update_comment')
+						elseif ($action === 'uc')
 						{
 							$data['update_comment'] = $this->qa_model->join_where2('comment', 'user', 'comment.user_id=user.id_user', array('id_comment' => $num), array('comment.user_id' => $this->qa_libs->id_user()), 'comment.id_comment');
 							if (!empty($data['update_comment']))
@@ -423,16 +484,45 @@ class Question extends CI_Publics
 								$this->form_validation->set_error_delimiters('<p>', '</p>');
 								if ($this->form_validation->run() == TRUE)
 								{
-									$ua = array(
+									$uc = array(
 										'description_comment' => $this->input->post('description_comment', TRUE),
+										'comment_update' => date('Y-m-d H:i:s'),
 										);
-									$this->qa_model->update('comment', $ua, array('id_comment' => $num));
+									$this->qa_model->update('comment', $uc, array('id_comment' => $num));
 									redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
 								}
 								else
 								{
 									$this->_render('question/update_comment', $data);
 								}
+							}
+							else
+							{
+								show_404();
+								return FALSE;
+							}
+						}
+						elseif ($action === 'da')
+						{
+							$data['delete_answer'] = $this->qa_model->join2_where2('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('id_answer' => $num), array('answer.user_id' => $this->qa_libs->id_user()), 'answer.id_answer');
+							if (!empty($data['delete_answer']))
+							{
+								$this->qa_model->delete('answer', array('id_answer' => $num));
+								redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
+							}
+							else
+							{
+								show_404();
+								return FALSE;
+							}
+						}
+						elseif ($action === 'dc')
+						{
+							$data['delete_comment'] = $this->qa_model->join_where2('comment', 'user', 'comment.user_id=user.id_user', array('id_comment' => $num), array('comment.user_id' => $this->qa_libs->id_user()), 'comment.id_comment');
+							if (!empty($data['delete_comment']))
+							{
+								$this->qa_model->delete('comment', array('id_comment' => $num));
+								redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
 							}
 							else
 							{
