@@ -6,7 +6,6 @@ app/config/development/database.php
 app/config/qa.php
 app/logs/*.php
 TODO
-pwl.sql
 pwl
 design
 user_guide
