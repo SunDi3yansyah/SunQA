@@ -56,6 +56,8 @@ class CI_Privates extends CI_Controller
 	{
 		parent::__construct();
 
+		define('DBPREFIX', !empty($this->db->dbprefix)?$this->db->dbprefix:'');
+
 		$this->load->library('session');
 
 		if ($this->qa_libs->logged_in())

@@ -360,13 +360,13 @@ class Migration_Create_init_schemadb extends CI_Migration
 
         $this->load->library('phpass');
         $user = array(
-                'username' => 'root',
-                'password' => $this->phpass->hash_password('passwd'),
+                'username' => get_current_user(),
+                'password' => $this->phpass->hash_password(get_current_user()),
                 'activated' => '1',
-                'nama' => 'My Name is ROOT',
-                'email' => 'example@localhost',
-                'bio' => '',
-                'web' => 'localhost',
+                'nama' => get_current_user(),
+                'email' => get_current_user() . '@' . $_SERVER['SERVER_NAME'],
+                'bio' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, maiores!',
+                'web' => $_SERVER['SERVER_NAME'],
                 'lokasi' => date_default_timezone_get(),
                 'role_id' => '1',
                 'user_date' => date('Y-m-d H-i-s'),

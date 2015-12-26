@@ -19,6 +19,14 @@ class Log extends CI_Controller
 		$this->load->model('qa_model_login');
 	}
 
+	function _render($content, $data = NULL)
+	{
+		$data['head'] = $this->load->view('must/head', $data, TRUE);
+		$data['content'] = $this->load->view($content, $data, TRUE);
+		$data['foot'] = $this->load->view('must/foot', $data, TRUE);
+		$this->load->view('main', $data);
+    }
+
 	function in()
 	{
 		if ($this->qa_libs->logged_in())
@@ -107,12 +115,4 @@ class Log extends CI_Controller
 			return FALSE;
 		}		
 	}
-
-	function _render($content, $data = NULL)
-	{
-		$data['head'] = $this->load->view('must/head', $data, TRUE);
-		$data['content'] = $this->load->view($content, $data, TRUE);
-		$data['foot'] = $this->load->view('must/foot', $data, TRUE);
-		$this->load->view('main', $data);
-    }
 }

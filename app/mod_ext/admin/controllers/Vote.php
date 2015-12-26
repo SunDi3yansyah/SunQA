@@ -31,7 +31,7 @@ class Vote extends CI_Privates
         }
         else
         {
-            $table = 'pwl_vote';
+            $table = ''.DBPREFIX.'vote';
 
             $primaryKey = 'id_vote';
 
@@ -64,7 +64,7 @@ class Vote extends CI_Privates
                 ),
             );
 
-            $joinQuery = "FROM `pwl_vote` JOIN `pwl_user` ON `pwl_vote`.`user_id`=`pwl_user`.`id_user`";
+            $joinQuery = "FROM `".DBPREFIX."vote` JOIN `".DBPREFIX."user` ON `".DBPREFIX."vote`.`user_id`=`".DBPREFIX."user`.`id_user`";
 
             $sql_details = array(
                 'user' => $this->db->username,

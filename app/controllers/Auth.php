@@ -18,6 +18,14 @@ class Auth extends CI_Controller
 		$this->load->library('session');
 	}
 
+	function _render($content, $data = NULL)
+	{
+		$data['head'] = $this->load->view('must/head', $data, TRUE);
+		$data['content'] = $this->load->view($content, $data, TRUE);
+		$data['foot'] = $this->load->view('must/foot', $data, TRUE);
+		$this->load->view('main', $data);
+    }
+
 	function sign_up()
 	{
 		if ($this->qa_libs->logged_in())
@@ -47,10 +55,10 @@ class Auth extends CI_Controller
 					'activated_hash' => sha1(microtime()),
 					);
 				$this->qa_model->insert('user', $insert);
-				
+
 				$data = array('messages' => 'Registrasi sukses, silakan periksa alamat email anda.');
 				$this->_render('independent/messages', $data);
-				
+
 				$this->load->library('email');
 				$this->email->from($this->config->item('webmaster_email'), $this->config->item('web_name'));
 				$this->email->reply_to($this->config->item('webmaster_email'), $this->config->item('web_name'));

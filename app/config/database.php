@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => getenv('OPENSHIFT_MYSQL_DB_PASSWORD'),
 	'database' => getenv('OPENSHIFT_APP_NAME'),
 	'dbdriver' => 'mysqli',
-	'dbprefix' => 'pwl_',
+	'dbprefix' => 'qa_',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,

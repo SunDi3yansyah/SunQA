@@ -32,7 +32,7 @@ class User extends CI_Privates
         }
         else
         {
-            $table = 'pwl_user';
+            $table = ''.DBPREFIX.'user';
 
             $primaryKey = 'id_user';
 
@@ -52,7 +52,7 @@ class User extends CI_Privates
                 ),
             );
 
-            $joinQuery = "FROM `pwl_user` JOIN `pwl_role` ON `pwl_user`.`role_id`=`pwl_role`.`id_role`";
+            $joinQuery = "FROM `".DBPREFIX."user` JOIN `".DBPREFIX."role` ON `".DBPREFIX."user`.`role_id`=`".DBPREFIX."role`.`id_role`";
 
             $sql_details = array(
                 'user' => $this->db->username,
@@ -98,6 +98,13 @@ class User extends CI_Privates
                 'user_date' => date('Y-m-d H:i:s'),
                 );
             $this->qa_model->insert('user', $insert);
+            $this->load->library('email');
+            $this->email->from($this->config->item('webmaster_email'), $this->config->item('web_name'));
+            $this->email->reply_to($this->config->item('webmaster_email'), $this->config->item('web_name'));
+            $this->email->to($insert['email']);
+            $this->email->subject('Account on '.$this->config->item('web_name').'');
+            $this->email->message('Akun anda berhasil dibuat, silakan masuk dengan data berikut <br>Username : '.$insert['username'].' <br>Password : '.$insert['password'].'');
+            $this->email->send();
             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
         }
         else

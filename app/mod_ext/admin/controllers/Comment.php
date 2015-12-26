@@ -31,7 +31,7 @@ class Comment extends CI_Privates
         }
         else
         {
-            $table = 'pwl_comment';
+            $table = ''.DBPREFIX.'comment';
 
             $primaryKey = 'id_comment';
 
@@ -57,7 +57,7 @@ class Comment extends CI_Privates
                 ),
             );
 
-            $joinQuery = "FROM `pwl_comment` JOIN `pwl_user` ON `pwl_comment`.`user_id`=`pwl_user`.`id_user`";
+            $joinQuery = "FROM `".DBPREFIX."comment` JOIN `".DBPREFIX."user` ON `".DBPREFIX."comment`.`user_id`=`".DBPREFIX."user`.`id_user`";
 
             $sql_details = array(
                 'user' => $this->db->username,

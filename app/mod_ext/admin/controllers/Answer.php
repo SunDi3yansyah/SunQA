@@ -31,7 +31,7 @@ class Answer extends CI_Privates
         }
         else
         {
-            $table = 'pwl_answer';
+            $table = ''.DBPREFIX.'answer';
 
             $primaryKey = 'id_answer';
 
@@ -57,7 +57,7 @@ class Answer extends CI_Privates
                 ),
             );
 
-            $joinQuery = "FROM `pwl_answer` JOIN `pwl_user` ON `pwl_answer`.`user_id`=`pwl_user`.`id_user` JOIN `pwl_question` ON `pwl_answer`.`question_id`=`pwl_question`.`id_question`";
+            $joinQuery = "FROM `".DBPREFIX."answer` JOIN `".DBPREFIX."user` ON `".DBPREFIX."answer`.`user_id`=`".DBPREFIX."user`.`id_user` JOIN `".DBPREFIX."question` ON `".DBPREFIX."answer`.`question_id`=`".DBPREFIX."question`.`id_question`";
 
             $sql_details = array(
                 'user' => $this->db->username,

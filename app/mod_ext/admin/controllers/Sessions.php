@@ -31,7 +31,7 @@ class Sessions extends CI_Privates
         }
         else
         {
-            $table = 'pwl_session';
+            $table = ''.DBPREFIX.'session';
 
             $primaryKey = 'id';
 

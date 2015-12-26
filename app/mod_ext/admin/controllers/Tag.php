@@ -29,7 +29,7 @@ class Tag extends CI_Privates
         }
         else
         {
-            $table = 'pwl_tag';
+            $table = ''.DBPREFIX.'tag';
 
             $primaryKey = 'id_tag';
 

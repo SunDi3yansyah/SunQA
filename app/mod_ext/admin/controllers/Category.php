@@ -29,7 +29,7 @@ class Category extends CI_Privates
         }
         else
         {
-            $table = 'pwl_category';
+            $table = ''.DBPREFIX.'category';
 
             $primaryKey = 'id_category';
 

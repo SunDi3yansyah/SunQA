@@ -25,8 +25,8 @@ class Migrate extends CI_Controller
 				  <code>This App Version : '.$this->migration->current().'</code>
 				  <p><strong>First Account</strong></p>
 				  <ul>
-				  	<li>Username: root</li>
-				  	<li>Password: passwd</li>
+				  	<li>Username: '.get_current_user().'</li>
+				  	<li>Password: '.get_current_user().'</li>
 				  </ul>
 				  ';
 		}
