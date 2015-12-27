@@ -20,10 +20,23 @@ class CI_Publics extends CI_Controller
 
 		$this->load->library('session');
 
-		$array = array(
+		$sess = array(
 			'current_url' => $this->uri->uri_string(),
-		);
-		$this->session->set_userdata($array);
+			'platform' => $this->agent->platform(),
+			);
+		if (!empty($this->agent->is_browser()))
+		{
+			$sess['browser'] = $this->agent->browser();
+		}
+		if (!empty($this->agent->is_mobile()))
+		{
+			$sess['mobile'] = $this->agent->mobile();
+		}
+		if (!empty($this->agent->is_robot()))
+		{
+			$sess['robot'] = $this->agent->robot();
+		}
+		$this->session->set_userdata($sess);
 	}
 
 	function _render($content, $data = NULL)

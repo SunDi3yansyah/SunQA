@@ -1,5 +1,43 @@
+.warapper-border {
+  padding: .625rem 1.825rem .625rem 2.5rem;
+  border: 1px #ccc dashed;
+  position: relative;
+  margin: 0 0 .625rem 0;
+  background-color: #ffffff;
+}
+.warapper-border:before,
+.warapper-border:after {
+  display: table;
+  content: "";
+}
+.warapper-border:after {
+  clear: both;
+}
+.warapper-border:before {
+  position: absolute;
+  content: attr(data-text);
+  text-transform: lowercase;
+  left: 1.5rem;
+  top: 11.875rem;
+  color: gray;
+  display: block;
+  font-size: 1rem;
+  line-height: 1rem;
+  height: 1rem;
+  text-align: right;
+  white-space: nowrap;
+  direction: ltr;
+  width: 12.5rem;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transform-origin: 0 100%;
+          transform-origin: 0 100%;
+}
+
 .page-content {
     padding-top: 48px;
+
+    padding-bottom: 5em;
 }
 
 .color-list li {
@@ -108,7 +146,7 @@
 
 .QuestionList-category {
     margin: 0 0.1em;
-    padding: 0.3em 1em 0.6em;
+    padding: 0.1em 0.5em 0.2em;
     background: #999;
     font-size: 80%;
 }
@@ -187,14 +225,14 @@
 
 .footer {
     background-color: #EFEAE3;
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0px;
     width: 100%;
 }
 
-.footer-relative {
+/*.footer-relative {
     position: relative;
-}
+}*/
 
 .land-bar {
     padding-top: 3em;

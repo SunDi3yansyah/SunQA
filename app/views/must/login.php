@@ -5,6 +5,7 @@
 	    <ul class="app-bar-drop-container d-menu place-right" data-role="dropdown">
 	        <li><a href="<?php echo base_url('create'); ?>"><span class="mif-question"></span> New Question</a></li>
 	        <li class="divider"></li>
+	        <li><a href="<?php echo base_url('user/' . $user->username); ?>"><span class="mif-user-check"></span> My Profile</a></li>
 	        <li><a href="<?php echo base_url('auth/account'); ?>"><span class="mif-user"></span> Account</a></li>
 	        <li><a href="<?php echo base_url('log/out'); ?>" class="fg-magenta"><span class="mif-exit"></span> Logout</a></li>
 	        <?php if ($user->role_id == 1): ?>

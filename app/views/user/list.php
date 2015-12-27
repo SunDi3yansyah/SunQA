@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="example align-center" data-text="users - <?php echo $this->config->item('web_name'); ?>" style="margin: 50px 0;">
+            <div class="warapper-border align-center" data-text="users - <?php echo $this->config->item('web_name'); ?>" style="margin: 50px 0;">
                 <div class="grid">
                     <?php foreach ($user as $user): ?>
                     <div class="row cells6">

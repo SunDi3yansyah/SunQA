@@ -92,9 +92,13 @@
                     <section class="QuestionList">
                         <header class="QuestionList-header">
                             <img class="QuestionList-avatar" alt="" height="48" width="48" src="<?php echo pic_user($lq->image) ?>">
-                            <h3 class="QuestionList-title"><a href="<?php echo base_url('question/' . $lq->url_question) ?>"><?php echo $lq->subject ?></a></h3>
+                            <h3 class="QuestionList-title">
+                            <?php if (!empty($lq->answer_id)): ?>
+                                <button class="cycle-button success" style="margin-right: 10px;" data-role="hint" data-hint-mode="2" data-hint="Answered|" data-hint-position="top"><span class="mif-checkmark"></span></button>
+                            <?php endif ?>
+                            <a href="<?php echo base_url('question/' . $lq->url_question) ?>"><?php echo $lq->subject ?></a></h3>
                             <p class="QuestionList-meta">
-                                By <a class="QuestionList-author" href="<?php echo base_url('user/' . $lq->username); ?>"><?php echo $lq->nama ?></a> under <a class="QuestionList-category QuestionList-category-js" href="<?php echo base_url('category/'. uri_encode($lq->category_name)) ?>"><?php echo $lq->category_name ?></a> <?php echo dateHourIcon($lq->question_date) ?> <span class="mif-bubble icon"></span> <?php echo $this->qa_model->count_where('answer', array('question_id' => $lq->id_question)) ?> Comments
+                                By <a class="QuestionList-author" href="<?php echo base_url('user/' . $lq->username); ?>"><?php echo $lq->nama ?></a> under <a class="QuestionList-category QuestionList-category-js" href="<?php echo base_url('category/'. uri_encode($lq->category_name)) ?>"><?php echo $lq->category_name ?></a> <?php echo dateHourIcon($lq->question_date) ?> <span class="mif-bubble icon"></span> <?php echo $this->qa_model->count_where('answer', array('question_id' => $lq->id_question)) ?> Answers
                             </p>
                         </header>
                         <div class="QuestionList-description">

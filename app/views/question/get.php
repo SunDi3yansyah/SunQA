@@ -5,7 +5,7 @@
 <?php $this->load->view('must/menu'); ?>
     <div class="container page-content">
         <h1 class="title_qa"><?php echo $ask->subject ?></h1>
-        <div class="example" data-text="Question">
+        <div class="warapper-border" data-text="Question">
             <div class="grid">
                 <div class="row cells6">
                     <div class="cell">
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="example" data-text="Answers">
+        <div class="warapper-border" data-text="Answers">
             <div class="grid">
                 <div class="row">
                     <div class="cell">
@@ -100,7 +100,9 @@
                                     <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/da/'. $anw->id_answer); ?>" class="tag alert" data-role="hint" data-hint-mode="2" data-hint="|Delete" data-hint-position="top"><span class="mif-cancel"></span></a>
                                 <?php endif ?>
                                 <?php if ($ask->id_user === $this->qa_libs->id_user()): ?>
-                                    <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/answer/'. $anw->id_answer) ?>" class="cycle-button small-button" style="margin-top: -11px; margin-left: 5px;" data-role="hint" data-hint-mode="2" data-hint="Select this as answer" data-hint-position="top"><span class="mif-checkmark"></span></a>
+                                    <?php if ($ask->answer_id != $anw->id_answer): ?>
+                                        <a href="<?php echo base_url($this->uri->segment(1) .'/'. $this->uri->segment(2) .'/answer/'. $anw->id_answer) ?>" class="cycle-button small-button" style="margin-top: -11px; margin-left: 5px;" data-role="hint" data-hint-mode="2" data-hint="Select this as answer" data-hint-position="top"><span class="mif-checkmark"></span></a>
+                                    <?php endif ?>
                                 <?php endif ?>
                                 <div class="fr vote_answer">
                                     <?php if ($ask->answer_id === $anw->id_answer): ?>

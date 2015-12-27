@@ -23,7 +23,7 @@
                             <img class="QuestionList-avatar" alt="" height="48" width="48" src="<?php echo pic_user($q->image) ?>">
                             <h3 class="QuestionList-title"><a href="<?php echo base_url('question/' . $q->url_question) ?>"><?php echo $q->subject ?></a></h3>
                             <p class="QuestionList-meta">
-                                By <a class="QuestionList-author" href="<?php echo base_url('user/' . $q->username); ?>"><?php echo $q->nama ?></a> created <?php echo dateHourIcon($q->question_date) ?> <span class="mif-bubble icon"></span> <?php echo $this->qa_model->count_where('answer', array('question_id' => $q->id_question)) ?> Comments
+                                By <a class="QuestionList-author" href="<?php echo base_url('user/' . $q->username); ?>"><?php echo $q->nama ?></a> created <?php echo dateHourIcon($q->question_date) ?> <span class="mif-bubble icon"></span> <?php echo $this->qa_model->count_where('answer', array('question_id' => $q->id_question)) ?> Answers
                             </p>
                         </header>
                         <div class="QuestionList-description">

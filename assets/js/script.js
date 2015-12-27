@@ -14,15 +14,15 @@ $(document).ready(function()
 	    $(value).addClass(classes[Math.floor(Math.random() * length )] );
 	});
 
-	hContent = $(".page-content").outerHeight();
-	hWindow  = $(window).outerHeight();
-	if(hContent > hWindow)
-	{
-		$(".footer").addClass("footer-relative");
-	}
-	else
-	{
-		$(".page-content").removeClass("footer-relative");
-	}
+	// hContent = $(".page-content").outerHeight();
+	// hWindow  = $(window).outerHeight();
+	// if(hContent > hWindow)
+	// {
+	// 	$(".footer").addClass("footer-relative");
+	// }
+	// else
+	// {
+	// 	$(".page-content").removeClass("footer-relative");
+	// }
 
 });

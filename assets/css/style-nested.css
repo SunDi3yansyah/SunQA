@@ -1,0 +1,8 @@
+.QuestionList-title {
+    font-size: 1.25em !important;
+    margin: 5px 0px !important;
+}.QuestionList-meta {
+    color: #999 !important;
+    font-size: 90% !important;
+    margin: 10px 0 !important;
+}

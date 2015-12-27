@@ -7,7 +7,7 @@
 <?php $this->load->view('must/menu'); ?>
     <div class="container page-content">
         <h1 class="title_qa">Update Comment</h1>
-        <div class="example" data-text="Comment">
+        <div class="warapper-border" data-text="Comment">
             <div class="grid">
                 <div class="row cells6">
                     <div class="cell">
