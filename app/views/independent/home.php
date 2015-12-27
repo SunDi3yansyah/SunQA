@@ -1,4 +1,9 @@
 <title>Welcome to <?php echo $this->config->item('web_name'); ?></title>
+<style>
+.page-content {
+    padding-bottom: 0;
+}
+</style>
 </head>
 <body>
 <?php $this->load->view('must/menu'); ?>
