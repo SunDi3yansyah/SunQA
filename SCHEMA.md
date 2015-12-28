@@ -3,9 +3,9 @@
 #### Tables
 
 ```
-+------------------+
++-----------------------+
 | Tables_in_dbprefix    |
-+------------------+
++-----------------------+
 | dbprefix_answer       |
 | dbprefix_category     |
 | dbprefix_comment      |
@@ -17,7 +17,7 @@
 | dbprefix_tag          |
 | dbprefix_user         |
 | dbprefix_vote         |
-+------------------+
++-----------------------+
 ```
 
 #### Structure in Table
