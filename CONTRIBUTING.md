@@ -2,7 +2,6 @@
 
 - Fork repository ini.
 - Clone repository yang sudah kalian fork tersebut, caranya:
-
     ```
     git clone https://github.com/USERNAME/SunQA
     ```
