@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * @package		Question Answer (https://github.com/SunDi3yansyah/FinalProjectPWL)
+ * @package		Question Answer (https://github.com/SunDi3yansyah/SunQA)
  * @author		Cahyadi Triyansyah (https://sundi3yansyah.com)
  * @version		1.0
  * @license		MIT
