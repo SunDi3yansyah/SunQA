@@ -12,8 +12,9 @@ Aplikasi sistem Tanya Jawab (Question Answer) kurang lebih seperti Stackoverflow
 
 ### Install
 - Download:
-    - Bisa menggunakan download arsip via `zip` atau tarball.
+    - Bisa menggunakan download arsip via zip atau tarball.
     - Bisa menggunakan `git` dengan perintah `git clone`.
+    - Atau bisa juga menggunakan bower.
 - Perbarui konfigurasi dibawah ini:
     - Salin file
     `app/config/development/config.php.origin` menjadi `app/config/development/config.php`
