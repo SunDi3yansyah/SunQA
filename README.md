@@ -21,7 +21,8 @@ Aplikasi sistem Tanya Jawab (Question Answer) kurang lebih seperti Stackoverflow
     `app/config/qa.php.origin` to `app/config/qa.php`.
     - Atau anda cukup me-rename file tersebut.
     - Perbarui isi dari ketiga file diatas sesuaikan keinginan anda.
-- Buat Basis Data, sebagai contoh `qa` atau `QuestionAnswer`. Saya anggap anda sudah mengerti cara membuat basis data pada database server
+- Buat Basis Data, sebagai contoh `qa` atau `QuestionAnswer`. Saya anggap anda sudah mengerti cara membuat basis data pada database server.
+- Buat file `.htaccess` untuk menghapus url ([Removing the index.php file](http://www.codeigniter.com/user_guide/general/urls.html#removing-the-index-php-file))
 - Install schema Basis Data [http://localhost/migrate/install](http://localhost/migrate/install) atau lain sebagainya sesuaikan dengan virtualhost masing-masing.
 
 ### Structure Database
