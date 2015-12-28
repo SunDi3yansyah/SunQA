@@ -1,4 +1,4 @@
-<?php foreach ($this->qa_libs->user() as $user): ?>
+<?php foreach ($record as $user): ?>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">

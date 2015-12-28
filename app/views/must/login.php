@@ -9,7 +9,7 @@
 	        <li><a href="<?php echo base_url('auth/account'); ?>"><span class="mif-user"></span> Account</a></li>
 	        <li><a href="<?php echo base_url('log/out'); ?>" class="fg-magenta"><span class="mif-exit"></span> Logout</a></li>
 	        <?php if ($user->role_id == 1): ?>
-	        	<li><a href="<?php echo base_url('admin/dashboard'); ?>" class="fg-emerald"><span class="mif-security"></span> Admin</a></li>
+	        	<li><a href="<?php echo base_url('private/dashboard'); ?>" class="fg-emerald"><span class="mif-security"></span> Admin</a></li>
 	        <?php endif ?>
 	    </ul>
 </div>

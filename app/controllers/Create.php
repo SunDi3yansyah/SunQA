@@ -6,10 +6,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		Cahyadi Triyansyah (https://sundi3yansyah.com)
  * @version		1.0
  * @license		MIT
- * @copyright	Copyright (c) 2015 SunDi3yansyah
+ * @copyright		Copyright (c) 2015 SunDi3yansyah
  */
 
-class Create extends CI_Publics
+class Create extends QA_Publics
 {
 	function index()
 	{

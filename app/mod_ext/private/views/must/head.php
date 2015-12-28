@@ -48,10 +48,10 @@
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li>
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/account'); ?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/account'); ?>"><i class="fa fa-user fa-fw"></i> My Profile</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/account/settings'); ?>"><i class="fa fa-gear fa-fw"></i> Settings Account</a>
+                        <a href="<?php echo base_url(''.$this->uri->segment(1).'/user/update/' . $this->qa_libs->id_user()); ?>"><i class="fa fa-gear fa-fw"></i> Update Account</a>
                     </li>
                     <li class="divider"></li>
                     <li>

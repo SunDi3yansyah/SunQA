@@ -17,20 +17,23 @@ Cahyadi Triyansyah | 10.11.3735 | [![email](https://lh5.googleusercontent.com/-z
 Aplikasi ini dibuat untuk memenuhi matakuliah Pemrograman Web Lanjut. Saya disini membuat aplikasi sistem Tanya Jawab (Question Answer) kurang lebih seperti Stackoverflow atau sejenisnya. Dibangun dengan CodeIgniter versi 3 dan sudah ditambah konfigursi [deploy hooks](https://developers.openshift.com/en/managing-modifying-applications.html) sehingga membentuk sedemikian rupa. Aplikasi ini di testing / demo pada hosting [OpenShift](https://www.openshift.com/) Online (Server: AWS) yang bisa anda lihat di [https://pwl-cahyadi3yansyah.rhcloud.com](https://pwl-cahyadi3yansyah.rhcloud.com).
 
 ### Structure Database
-[Watch this file](schema.md)
+[Lihat skema Basis Data disini](schema.md)
 
 ### Install
-- Clone repository.
-- Update your configuration
-    - Copy file
-    `app/config/development/config.php.origin` to `app/config/development/config.php`
-    - Copy file
-    `app/config/development/database.php.origin` to `app/config/development/database.php`
-    - Copy file
-    `app/config/qa.php.origin` to `app/config/qa.php`
-    - Update this file that you want
-- Create database
-- Install schema database [http://localhost/migrate/install](http://localhost/migrate/install)
+- Download:
+    - Bisa menggunakan download arsip via `zip` atau tarball.
+    - Bisa menggunakan `git` dengan perintah `git clone`.
+- Perbarui konfigurasi dibawah ini:
+    - Salin file
+    `app/config/development/config.php.origin` menjadi `app/config/development/config.php`
+    - Salin file
+    `app/config/development/database.php.origin` menjadi `app/config/development/database.php`
+    - Salin file
+    `app/config/qa.php.origin` to `app/config/qa.php`.
+    - Atau anda cukup me-rename file tersebut.
+    - Perbarui isi dari ketiga file diatas sesuaikan keinginan anda.
+- Buat Basis Data, sebagai contoh `qa` atau `QuestionAnswer`. Saya anggap anda sudah mengerti cara membuat basis data pada database server
+- Install schema Basis Data [http://localhost/migrate/install](http://localhost/migrate/install) atau lain sebagainya sesuaikan dengan virtualhost masing-masing.
 
 ### License
 [![MIT License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)

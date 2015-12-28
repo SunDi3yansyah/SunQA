@@ -7,20 +7,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     MIT
  * @copyright   Copyright (c) 2015 SunDi3yansyah
  */
-class Comment extends CI_Privates
+class Answer extends QA_Privates
 {
 	function index()
 	{
         $data = array(
             'dataTables' => TRUE,
             'dtFields' => array(
-                'id_comment',
+                'id_answer',
                 'username',
-                'comment_in',
-                'comment_date',
+                'subject',
+                'answer_date',
                 ),
             );
-		$this->_render('comment/index', $data);
+		$this->_render('answer/index', $data);
 	}
 
 	function ajax()
@@ -31,24 +31,24 @@ class Comment extends CI_Privates
         }
         else
         {
-            $table = ''.DBPREFIX.'comment';
+            $table = ''.DBPREFIX.'answer';
 
-            $primaryKey = 'id_comment';
+            $primaryKey = 'id_answer';
 
             $columns = array(
-                array('db' => 'id_comment', 'dt' => 'id_comment'),
+                array('db' => 'id_answer', 'dt' => 'id_answer'),
                 array('db' => 'username', 'dt' => 'username'),
-                array('db' => 'comment_in', 'dt' => 'comment_in'),
+                array('db' => 'subject', 'dt' => 'subject'),
                 array(
-                    'db' => 'comment_date',
-                    'dt' => 'comment_date',
+                    'db' => 'answer_date',
+                    'dt' => 'answer_date',
                     'formatter' => function($date)
                     {
                         return dateHourIconPrivate($date);
                     }
                 ),
                 array(
-                    'db' => 'id_comment',
+                    'db' => 'id_answer',
                     'dt' => 'action',
                     'formatter' => function($id)
                     {
@@ -57,7 +57,7 @@ class Comment extends CI_Privates
                 ),
             );
 
-            $joinQuery = "FROM `".DBPREFIX."comment` JOIN `".DBPREFIX."user` ON `".DBPREFIX."comment`.`user_id`=`".DBPREFIX."user`.`id_user`";
+            $joinQuery = "FROM `".DBPREFIX."answer` JOIN `".DBPREFIX."user` ON `".DBPREFIX."answer`.`user_id`=`".DBPREFIX."user`.`id_user` JOIN `".DBPREFIX."question` ON `".DBPREFIX."answer`.`question_id`=`".DBPREFIX."question`.`id_question`";
 
             $sql_details = array(
                 'user' => $this->db->username,
@@ -76,29 +76,13 @@ class Comment extends CI_Privates
     {
         if (isset($str))
         {
-            $data = array(
-                'record' => $this->_get($str)
-                );
-            if (!empty($data['record']))
+            $data = $this->_get($str);
+            if (!empty($data))
             {
-                foreach ($data['record'] as $get)
+                $answer = $this->qa_model->join2_where('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('answer.id_answer' => $str), 'answer.id_answer');
+                foreach ($answer as $get)
                 {
-                    if ($get->comment_in == 'Question')
-                    {
-                        $data['record_join'] = $this->qa_model->join2_where('comment', 'user', 'question', 'comment.user_id=user.id_user', 'comment.question_id=question.id_question', array('comment.id_comment' => $str), 'comment.id_comment');
-                        foreach ($data['record_join'] as $row)
-                        {
-                            redirect('question/' . $row->url_question . '#comment-' . $row->id_comment);
-                        }
-                    }
-                    else
-                    {
-                        $data['record_join'] = $this->qa_model->join3_where('comment', 'user', 'answer', 'question', 'comment.user_id=user.id_user', 'comment.answer_id=answer.id_answer', 'answer.question_id=question.id_question', array('comment.id_comment' => $str), 'comment.id_comment');
-                        foreach ($data['record_join'] as $row)
-                        {
-                            redirect('question/' . $row->url_question . '#comment-' . $row->id_comment);
-                        }
-                    }
+                    redirect('question/' . $get->url_question);
                 }
             }
             else
@@ -123,31 +107,21 @@ class Comment extends CI_Privates
                 );
             if (!empty($data['record']))
             {
-                $this->form_validation->set_rules('description_comment', 'Description', 'trim|required|min_length[25]|max_length[5000]|xss_clean');
+                $this->form_validation->set_rules('description_answer', 'Description', 'trim|required|min_length[25]|max_length[5000]|xss_clean');
                 $this->form_validation->set_error_delimiters('', '<br>');
                 if ($this->form_validation->run() == TRUE)
                 {
                     $update = array(
-                        'description_comment' => $this->input->post('description_comment', TRUE),
+                        'description_answer' => $this->input->post('description_answer', TRUE),
+                        'answer_update' => date('Y-m-d H:i:s'),
                         );
-                    $this->qa_model->update('comment', $update, array('id_comment' => $str));
+                    $this->qa_model->update('answer', $update, array('id_answer' => $str));
                     redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
                 }
                 else
                 {
-                    foreach ($data['record'] as $get)
-                    {
-                        if ($get->comment_in === 'Question')
-                        {
-                            $data['record_join'] = $this->qa_model->join2_where('comment', 'user', 'question', 'comment.user_id=user.id_user', 'comment.question_id=question.id_question', array('comment.id_comment' => $str), 'comment.id_comment');
-                            $this->_render('comment/update', $data);
-                        }
-                        else
-                        {
-                            $data['record_join'] = $this->qa_model->join3_where('comment', 'user', 'answer', 'question', 'comment.user_id=user.id_user', 'comment.answer_id=answer.id_answer', 'answer.question_id=question.id_question', array('comment.id_comment' => $str), 'comment.id_comment');
-                            $this->_render('comment/update', $data);
-                        }
-                    }
+                    $data['record_join'] = $this->qa_model->join2_where('answer', 'user', 'question', 'answer.user_id=user.id_user', 'answer.question_id=question.id_question', array('answer.question_id' => $str), 'answer.question_id');
+                    $this->_render('answer/update', $data);
                 }
             }
             else
@@ -170,7 +144,7 @@ class Comment extends CI_Privates
             $data = $this->_get($str);
             if (!empty($data))
             {
-                $this->qa_model->delete('comment', array('id_comment' => $str));
+                $this->qa_model->delete('answer', array('id_answer' => $str));
                 redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
             }
             else
@@ -188,7 +162,7 @@ class Comment extends CI_Privates
 
     function _get($str)
     {
-        $var = $this->qa_model->get('comment', array('id_comment' => $str));
+        $var = $this->qa_model->get('answer', array('id_answer' => $str));
         return ($var == FALSE)?array():$var;
     }
 }

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		Cahyadi Triyansyah (https://sundi3yansyah.com)
  * @version		1.0
  * @license		MIT
- * @copyright	Copyright (c) 2015 SunDi3yansyah
+ * @copyright		Copyright (c) 2015 SunDi3yansyah
  */
 
 class Auth extends CI_Controller
@@ -216,7 +216,33 @@ class Auth extends CI_Controller
 					'web' => $this->input->post('web'),
 					'lokasi' => $this->input->post('lokasi'),
 					);
-				$this->qa_model->update('user', $update, array('id_user' => $this->qa_libs->id_user()));
+				if (!empty($_FILES['userfile']['tmp_name']))
+				{
+				    $config_upload = array(
+				        'upload_path'   => $this->config->item('pic_user'),
+				        'allowed_types' => 'jpg|jpeg|png|gif',
+				        'encrypt_name'  => TRUE,
+				    );
+				    $this->load->library('upload', $config_upload);
+				    if (!$this->upload->do_upload()) {
+				        $data['errors'] = $this->upload->display_errors('', '<br>');
+				        $this->_render('auth/settings', $data);
+				    } else {
+				    	foreach ($this->qa_libs->user() as $user)
+				    	{
+							if (!empty($user->image))
+							{
+							    unlink($this->config->item('pic_user') . $user->image);
+							}
+				    	}
+				        $update['image'] = $this->upload->data('file_name');
+				        $this->qa_model->update('user', $update, array('id_user' => $this->qa_libs->id_user()));
+				    }
+				}
+				else
+				{
+				    $this->qa_model->update('user', $update, array('id_user' => $this->qa_libs->id_user()));
+				}
 				redirect('auth/account');
 			}
 			else

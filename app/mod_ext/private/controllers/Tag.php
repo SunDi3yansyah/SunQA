@@ -7,18 +7,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     MIT
  * @copyright   Copyright (c) 2015 SunDi3yansyah
  */
-class Category extends CI_Privates
+class Tag extends QA_Privates
 {
 	function index()
 	{
         $data = array(
             'dataTables' => TRUE,
             'dtFields' => array(
-                'id_category',
-                'category_name',
+                'id_tag',
+                'tag_name',
                 ),
             );
-		$this->_render('category/index', $data);
+		$this->_render('tag/index', $data);
 	}
 
 	function ajax()
@@ -29,15 +29,15 @@ class Category extends CI_Privates
         }
         else
         {
-            $table = ''.DBPREFIX.'category';
+            $table = ''.DBPREFIX.'tag';
 
-            $primaryKey = 'id_category';
+            $primaryKey = 'id_tag';
 
             $columns = array(
-                array('db' => 'id_category', 'dt' => 'id_category'),
-                array('db' => 'category_name', 'dt' => 'category_name'),
+                array('db' => 'id_tag', 'dt' => 'id_tag'),
+                array('db' => 'tag_name', 'dt' => 'tag_name'),
                 array(
-                    'db' => 'id_category',
+                    'db' => 'id_tag',
                     'dt' => 'action',
                     'formatter' => function($id)
                     {
@@ -61,19 +61,19 @@ class Category extends CI_Privates
 
     function create()
     {
-        $this->form_validation->set_rules('category_name', 'Category', 'trim|required|min_length[2]|max_length[50]|xss_clean|is_unique[category.category_name]|callback__AlphaNumberSpace');
+        $this->form_validation->set_rules('tag_name', 'Tag', 'trim|required|min_length[2]|max_length[50]|xss_clean|is_unique[tag.tag_name]|callback__AlphaNumberSpace');
         $this->form_validation->set_error_delimiters('', '<br>');
         if ($this->form_validation->run() == TRUE)
         {
             $insert = array(
-                'category_name' => $this->input->post('category_name', TRUE),
+                'tag_name' => $this->input->post('tag_name', TRUE),
                 );
-            $this->qa_model->insert('category', $insert);
+            $this->qa_model->insert('tag', $insert);
             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
         }
         else
         {
-            $this->_render('category/create');
+            $this->_render('tag/create');
         }
     }
 
@@ -86,7 +86,7 @@ class Category extends CI_Privates
             {
                 foreach ($data as $get)
                 {
-                    redirect('category/' . uri_encode($get->category_name));
+                    redirect('tag/' . uri_encode($get->tag_name));
                 }
             }
             else
@@ -108,46 +108,46 @@ class Category extends CI_Privates
         {
             $data = array(
                 'record' => $this->_get($str),
-                'count_question' => $this->qa_model->count_where('question', array('category_id' => $str))
+                'count_question' => $this->qa_model->count_join_where('question_tag', 'question', 'question_tag.question_id=question.id_question', array('tag_id' => $str)),
                 );
             if (!empty($data['record']))
             {
-                $this->form_validation->set_rules('category_name', 'Category', 'trim|required|min_length[2]|max_length[50]|xss_clean');
+                $this->form_validation->set_rules('tag_name', 'Tag', 'trim|required|min_length[2]|max_length[50]|xss_clean|callback__AlphaNumberSpace');
                 $this->form_validation->set_error_delimiters('', '<br>');
                 if ($this->form_validation->run() == TRUE)
                 {
                     foreach ($data['record'] as $row)
                     {
-                        $category_name = array(
-                            'category_name' => $this->input->post('category_name', TRUE)
+                        $tag_name = array(
+                            'tag_name' => $this->input->post('tag_name', TRUE)
                             );
-                        $check = $this->qa_model->get('category', $category_name);
-                        if ($row->category_name === $category_name['category_name'])
+                        $check = $this->qa_model->get('tag', $tag_name);
+                        if ($row->tag_name === $tag_name['tag_name'])
                         {
                             $update = array(
-                                'category_name' => $this->input->post('category_name', TRUE),
+                                'tag_name' => $this->input->post('tag_name', TRUE),
                                 );
-                            $this->qa_model->update('category', $update, array('id_category' => $str));
+                            $this->qa_model->update('tag', $update, array('id_tag' => $str));
                             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
                         }
                         elseif ($check != FALSE)
                         {
-                            $data['errors'] = 'Error! Nama Category <b>'. $this->input->post('category_name', TRUE) .'</b> sudah ada sebelumnya dalam basis data.';
-                            $this->_render('category/update', $data);
+                            $data['errors'] = 'Error! Nama Tag <b>'. $this->input->post('tag_name', TRUE) .'</b> sudah ada sebelumnya dalam basis data.';
+                            $this->_render('tag/update', $data);
                         }
                         else
                         {
                             $update = array(
-                                'category_name' => $this->input->post('category_name', TRUE),
+                                'tag_name' => $this->input->post('tag_name', TRUE),
                                 );
-                            $this->qa_model->update('category', $update, array('id_category' => $str));
+                            $this->qa_model->update('tag', $update, array('id_tag' => $str));
                             redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
                         }
                     }
                 }
                 else
                 {
-                    $this->_render('category/update', $data);
+                    $this->_render('tag/update', $data);
                 }
             }
             else
@@ -170,7 +170,7 @@ class Category extends CI_Privates
             $data = $this->_get($str);
             if (!empty($data))
             {
-                $this->qa_model->delete('category', array('id_category' => $str));
+                $this->qa_model->delete('tag', array('id_tag' => $str));
                 redirect($this->uri->segment(1) .'/'. $this->uri->segment(2));
             }
             else
@@ -188,7 +188,7 @@ class Category extends CI_Privates
 
     function _get($str)
     {
-        $var = $this->qa_model->get('category', array('id_category' => $str));
+        $var = $this->qa_model->get('tag', array('id_tag' => $str));
         return ($var == FALSE)?array():$var;
     }
 }

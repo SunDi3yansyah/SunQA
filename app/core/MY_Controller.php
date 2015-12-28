@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 define('STATUS_ACTIVATED', '1');
 define('STATUS_NOT_ACTIVATED', '0');
 
-class CI_Publics extends CI_Controller
+class QA_Publics extends CI_Controller
 {
 	function __construct()
 	{
@@ -63,7 +63,7 @@ class CI_Publics extends CI_Controller
 	}
 }
 
-class CI_Privates extends CI_Controller
+class QA_Privates extends CI_Controller
 {
 	function __construct()
 	{

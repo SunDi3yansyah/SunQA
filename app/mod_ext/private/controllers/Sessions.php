@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     MIT
  * @copyright   Copyright (c) 2015 SunDi3yansyah
  */
-class Sessions extends CI_Privates
+class Sessions extends QA_Privates
 {
 	function index()
 	{

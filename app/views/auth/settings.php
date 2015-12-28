@@ -35,18 +35,23 @@
                                         </div>
                                         <br>
                                     <?php endif ?>
-                                    <?php echo form_open($this->uri->uri_string()); ?>
+                                    <?php echo form_open_multipart($this->uri->uri_string()); ?>
                                         <label for="subject">Nama</label>
-                                        <div class="input-control text full-size">
+                                        <div class="input-control text full-size" data-role="input">
                                             <?php echo form_input('nama', $user->nama, 'autocomplete="off"'); ?>
                                         </div>
                                         <label for="subject">Web</label>
-                                        <div class="input-control text full-size">
+                                        <div class="input-control text full-size" data-role="input">
                                             <?php echo form_input('web', $user->web, 'autocomplete="off"'); ?>
                                         </div>
                                         <label for="subject">Lokasi</label>
-                                        <div class="input-control text full-size">
+                                        <div class="input-control text full-size" data-role="input">
                                             <?php echo form_input('lokasi', $user->lokasi, 'autocomplete="off"'); ?>
+                                        </div>
+                                        <label for="subject">Picture</label>
+                                        <div class="input-control file full-size" data-role="input">
+                                            <?php echo form_upload('userfile'); ?>
+                                            <button class="button"><span class="mif-folder fg-blue"></span></button>
                                         </div>
                                         <label for="subject">Bio</label>
                                         <div class="input-control textarea full-size" data-role="input">

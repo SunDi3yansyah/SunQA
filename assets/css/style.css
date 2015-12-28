@@ -255,6 +255,7 @@
 .pic-user {
     height: 25px;
     border-radius: 50%;
+    width: 25px;
 }
 
 .capitalize {

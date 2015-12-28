@@ -19,7 +19,7 @@
                                 <?php echo validation_errors(); ?>
                             </div>
                         <?php endif ?>
-                            <?php echo form_open($this->uri->uri_string(), 'role="form"'); ?>
+                            <?php echo form_open_multipart($this->uri->uri_string(), 'role="form"'); ?>
                                 <div class="form-group">
                                     <label>Nama</label>
                                     <?php echo form_input('nama', $data->nama, 'class="form-control" autocomplete="off"') ?>
@@ -51,6 +51,10 @@
                                     <?php echo form_input('lokasi', $data->lokasi, 'class="form-control" autocomplete="off"') ?>
                                 </div>
                                 <div class="form-group">
+                                    <label>Picture</label>
+                                    <?php echo form_upload('userfile'); ?>
+                                </div>
+                                <div class="form-group">
                                     <label>Bio</label>
                                     <?php echo form_textarea('bio', $data->bio, 'class="form-control"'); ?>
                                 </div>
@@ -77,9 +81,9 @@
                             <div class="fc">
                                 <a href="<?php echo base_url('user/' . $data->username) ?>" target="_blank" class="btn btn-primary btn-lg">See <?php echo $this->uri->segment(2) ?></a>
                                 <hr>
-                                <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/username'); ?>" class="btn btn-outline btn-info">Change Username</a>
-                                <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/email'); ?>" class="btn btn-outline btn-info">Change Email</a>
-                                <a href="<?php echo base_url($this->uri->segment(1) . '/account/settings/passwd'); ?>" class="btn btn-outline btn-warning">Change Password</a>
+                                <a href="<?php echo base_url($this->uri->segment(1) . '/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/username'); ?>" class="btn btn-outline btn-info">Change Username</a>
+                                <a href="<?php echo base_url($this->uri->segment(1) . '/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/email'); ?>" class="btn btn-outline btn-info">Change Email</a>
+                                <a href="<?php echo base_url($this->uri->segment(1) . '/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4).'/passwd'); ?>" class="btn btn-outline btn-warning">Change Password</a>
                             </div>
                         </div>
                     </div>
