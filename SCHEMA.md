@@ -4,25 +4,25 @@
 
 ```
 +------------------+
-| Tables_in_pwl    |
+| Tables_in_dbprefix    |
 +------------------+
-| pwl_answer       |
-| pwl_category     |
-| pwl_comment      |
-| pwl_migrations   |
-| pwl_question     |
-| pwl_question_tag |
-| pwl_role         |
-| pwl_session      |
-| pwl_tag          |
-| pwl_user         |
-| pwl_vote         |
+| dbprefix_answer       |
+| dbprefix_category     |
+| dbprefix_comment      |
+| dbprefix_migrations   |
+| dbprefix_question     |
+| dbprefix_question_tag |
+| dbprefix_role         |
+| dbprefix_session      |
+| dbprefix_tag          |
+| dbprefix_user         |
+| dbprefix_vote         |
 +------------------+
 ```
 
 #### Structure in Table
 
-__pwl_answer__
+__dbprefix_answer__
 ```
 +--------------------+----------+------+-----+---------+----------------+
 | Field              | Type     | Null | Key | Default | Extra          |
@@ -36,7 +36,7 @@ __pwl_answer__
 +--------------------+----------+------+-----+---------+----------------+
 ```
 
-__pwl_category__
+__dbprefix_category__
 ```
 +---------------+-------------+------+-----+---------+----------------+
 | Field         | Type        | Null | Key | Default | Extra          |
@@ -46,7 +46,7 @@ __pwl_category__
 +---------------+-------------+------+-----+---------+----------------+
 ```
 
-__pwl_comment__
+__dbprefix_comment__
 ```
 +---------------------+---------------------------+------+-----+---------+----------------+
 | Field               | Type                      | Null | Key | Default | Extra          |
@@ -62,7 +62,7 @@ __pwl_comment__
 +---------------------+---------------------------+------+-----+---------+----------------+
 ```
 
-__pwl_migrations__
+__dbprefix_migrations__
 ```
 +---------+------------+------+-----+---------+-------+
 | Field   | Type       | Null | Key | Default | Extra |
@@ -71,7 +71,7 @@ __pwl_migrations__
 +---------+------------+------+-----+---------+-------+
 ```
 
-__pwl_question__
+__dbprefix_question__
 ```
 +----------------------+--------------+------+-----+---------+----------------+
 | Field                | Type         | Null | Key | Default | Extra          |
@@ -89,7 +89,7 @@ __pwl_question__
 +----------------------+--------------+------+-----+---------+----------------+
 ```
 
-__pwl_question_tag__
+__dbprefix_question_tag__
 ```
 +-------------+---------+------+-----+---------+----------------+
 | Field       | Type    | Null | Key | Default | Extra          |
@@ -100,7 +100,7 @@ __pwl_question_tag__
 +-------------+---------+------+-----+---------+----------------+
 ```
 
-__pwl_role__
+__dbprefix_role__
 ```
 +-----------+-------------+------+-----+---------+----------------+
 | Field     | Type        | Null | Key | Default | Extra          |
@@ -110,7 +110,7 @@ __pwl_role__
 +-----------+-------------+------+-----+---------+----------------+
 ```
 
-__pwl_session__
+__dbprefix_session__
 ```
 +------------+------------------+------+-----+---------+-------+
 | Field      | Type             | Null | Key | Default | Extra |
@@ -122,7 +122,7 @@ __pwl_session__
 +------------+------------------+------+-----+---------+-------+
 ```
 
-__pwl_tag__
+__dbprefix_tag__
 ```
 +----------+-------------+------+-----+---------+----------------+
 | Field    | Type        | Null | Key | Default | Extra          |
@@ -132,7 +132,7 @@ __pwl_tag__
 +----------+-------------+------+-----+---------+----------------+
 ```
 
-__pwl_user__
+__dbprefix_user__
 ```
 +----------------+--------------+------+-----+-------------------+-----------------------------+
 | Field          | Type         | Null | Key | Default           | Extra                       |
@@ -157,7 +157,7 @@ __pwl_user__
 +----------------+--------------+------+-----+-------------------+-----------------------------+
 ```
 
-__pwl_vote__
+__dbprefix_vote__
 ```
 +-------------+---------------------------+------+-----+---------+----------------+
 | Field       | Type                      | Null | Key | Default | Extra          |
