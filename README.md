@@ -2,10 +2,10 @@
 
 Aplikasi sistem Tanya Jawab (Question Answer) kurang lebih seperti Stackoverflow atau sejenisnya, dibangun dengan:
 
-    - CodeIgniter versi 3
-    - UI
-        - Metro UI CSS
-        - Twitter Bootstrap
+- CodeIgniter versi 3
+- UI
+    - Metro UI CSS
+    - Twitter Bootstrap
 
 ### Structure Database
 [Lihat skema Basis Data disini](schema.md)
