@@ -18,6 +18,11 @@ class QA_Publics extends CI_Controller
 	{
 		parent::__construct();
 
+		if (!$this->db->table_exists('session')) {
+			echo '<p>Migrate belum dijalankan, silakan install schema basis data dulu dengan mengakses halaman berikut <a href="/migrate/install">Migrate</a></p>';
+			exit;
+		}
+
 		$this->load->library('session');
 
 		$sess = array(

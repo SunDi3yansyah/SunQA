@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://' . getenv('OPENSHIFT_APP_DNS') . '/';
+$config['base_url'] = 'http://' . $_SERVER['SERVER_NAME'] . '/';
 
 /*
 |--------------------------------------------------------------------------
@@ -213,7 +213,7 @@ $config['directory_trigger'] = 'd';
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = getenv('CI_ENV') == 'development' ? 4 : 0;
+$config['log_threshold'] = 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +224,7 @@ $config['log_threshold'] = getenv('CI_ENV') == 'development' ? 4 : 0;
 | application/logs/ directory. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = getenv('OPENSHIFT_LOG_DIR');
+$config['log_path'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -283,7 +283,7 @@ $config['error_views_path'] = '';
 | application/cache/ directory.  Use a full server path with trailing slash.
 |
 */
-$config['cache_path'] = getenv('OPENSHIFT_DATA_DIR') . 'storage/framework/cache';
+$config['cache_path'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -314,7 +314,7 @@ $config['cache_query_string'] = FALSE;
 | http://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = getenv('CI_KEY');
+$config['encryption_key'] = 'QuestionAnswer';
 
 /*
 |--------------------------------------------------------------------------
@@ -510,7 +510,7 @@ $config['rewrite_short_tags'] = FALSE;
 | Comma-separated:	'10.0.1.200,192.168.5.0/24'
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
-$config['proxy_ips'] = getenv('OPENSHIFT_HAPROXY_IP') ?: '';
+$config['proxy_ips'] = '';
 
 /*
 |--------------------------------------------------------------------------

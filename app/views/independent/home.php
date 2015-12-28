@@ -1,9 +1,4 @@
 <title>Welcome to <?php echo $this->config->item('web_name'); ?></title>
-<style>
-.page-content {
-    padding-bottom: 0;
-}
-</style>
 </head>
 <body>
 <?php $this->load->view('must/menu'); ?>
@@ -68,19 +63,19 @@
                             <div class="cell no-phone">
                                 <div class="image-container bordered">
                                     <div class="frame">
-                                        <img src="<?php echo assets_img('qa.png'); ?>">
+                                        <img src="<?php echo assets_img('QAicon.png'); ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="cell colspan2" style="padding-left: 20px">
                                 <h1 class="">Whats is <?php echo $this->config->item('web_name'); ?></h1>
                                 <ol class="numeric-list square-marker">
-                                    <li>compatible with <strong>Angular<span class="fg-red">JS</span></strong> and <strong>Require<span class="fg-red">JS</span></strong></li>
-                                    <li>full code refactoring &amp; new components</li>
-                                    <li>declarative approach to the definition of components</li>
-                                    <li>framework itself monitors components, pressure via ajax</li>
-                                    <li>create cool page without knowledge of javascript</li>
-                                    <li>support classic approach to definition of components</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</li>
+                                    <li>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</li>
+                                    <li>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</li>
+                                    <li>consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</li>
+                                    <li>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</li>
+                                    <li>proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
                                 </ol>
                                 <p class="no-display">
                                 The main feature in version 3 is: a declarative approach to the definition and initialization of components, and the framework itself monitors components, pressure via ajax. When a declarative definition of all component parameters are set via data-* attributes, including methods and events of the component. This approach allows to further separate html and javascript code. Now that would determine which component do not need to know javascript :). It is still possible to determine which component directly via javascript.
@@ -123,41 +118,6 @@
                     <?php endforeach ?>
                 </div>
                 <?php endif ?>
-            </div>
-        </div>
-        <div class="bg-steel no-tablet-portrait no-phone">
-            <div class="container padding20 fg-white">
-                <div class="carousel bg-transparent" data-role="carousel" data-controls="false" data-markers="false" data-effect="fade" data-height="200">
-                    <div class="slide fg-white">
-                        <div class="place-left" style="margin-right: 20px">
-                            <img src="<?php echo assets_img('carousel/amikom.jpg'); ?>" style="height: 200px">
-                        </div>
-                        <h1>STMIK AMIKOM Yogyakarta</h1>
-                        <p style="line-height: 20px;">Sekolah Tinggi Manajemen Informatika dan Komputer AMIKOM Yogyakarta (selanjutnya disebut STMIK AMIKOM Yogyakarta) merupakan salah satu perguruan tinggi swasta yang berkedudukan di Yogyakarta di bawah naungan Yayasan AMIKOM Yogyakarta. STMIK AMIKOM Yogyakarta merupakan sebuah perguruan tinggi hasil pengembangan dari Akademi Manajemen Informatika dan Komputer "AMIKOM Yogyakarta".</p>
-                    </div>
-                    <div class="slide fg-white">
-                        <div class="place-left" style="margin-right: 20px">
-                            <img src="<?php echo assets_img('carousel/codeigniter.png'); ?>" style="height: 200px">
-                        </div>
-                        <h1>Framework CodeIgniter</h1>
-                        <p style="line-height: 20px;">CodeIgniter is loosely based on the popular Model-View-Controller development pattern. While controller classes are a necessary part of development under CodeIgniter, models and views are optional.</p>
-                    </div>
-                    <div class="slide fg-white">
-                        <div class="place-left" style="margin-right: 20px">
-                            <img src="<?php echo assets_img('carousel/github.png'); ?>" style="height: 200px">
-                        </div>
-                        <h1>GitHub, Inc.</h1>
-                        <p style="line-height: 20px;">Powerful collaboration, code review, and code management for open source and private projects. Public projects are always free.</p>
-                        <p style="line-height: 20px;">GitHub is how people build software. With a community of more than 12 million people, developers can discover, use, and contribute to over 30 million projects using a powerful collaborative development workflow.</p>
-                    </div>
-                    <div class="slide fg-white">
-                        <div class="place-left" style="margin-right: 20px">
-                            <img src="<?php echo assets_img('carousel/openshift.svg'); ?>" style="height: 200px">
-                        </div>
-                        <p style="line-height: 20px;">Next Generation application hosting platform that makes it easy to run your web applications in the cloud for free.</p>
-                        <p style="line-height: 20px;">Bring the power and flexibility of OpenShift 3 to your business through the managed public cloud.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

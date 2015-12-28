@@ -53,7 +53,15 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_ENV['CI_ENV']) ? $_ENV['CI_ENV'] : 'development');
+	if ($_SERVER['SERVER_ADDR'] === '127.0.0.1' || '::1')
+	{
+		define('ENVIRONMENT', 'development');
+	}
+	else
+	{
+		define('ENVIRONMENT', 'production');
+	}
+	
 
 /*
  *---------------------------------------------------------------
@@ -66,11 +74,11 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
+	case 'testing':
 		error_reporting(-1);
 		ini_set('display_errors', 1);
 	break;
 
-	case 'testing':
 	case 'production':
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))
