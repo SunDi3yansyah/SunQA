@@ -7,12 +7,6 @@ Aplikasi sistem Tanya Jawab (Question Answer) kurang lebih seperti Stackoverflow
     - Metro UI CSS
     - Twitter Bootstrap
 
-### Structure Database
-[SCHEMA.md](SCHEMA.md)
-
-### Contributing
-[CONTRIBUTING.md](CONTRIBUTING.md)
-
 ### Install
 - Download:
     - Bisa menggunakan download arsip via zip atau tarball.
@@ -29,6 +23,12 @@ Aplikasi sistem Tanya Jawab (Question Answer) kurang lebih seperti Stackoverflow
     - Perbarui isi dari ketiga file diatas sesuaikan keinginan anda.
 - Buat Basis Data, sebagai contoh `qa` atau `QuestionAnswer`. Saya anggap anda sudah mengerti cara membuat basis data pada database server
 - Install schema Basis Data [http://localhost/migrate/install](http://localhost/migrate/install) atau lain sebagainya sesuaikan dengan virtualhost masing-masing.
+
+### Structure Database
+[SCHEMA.md](SCHEMA.md)
+
+### Contributing
+[CONTRIBUTING.md](CONTRIBUTING.md)
 
 ### License
 [![MIT License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)
