@@ -8,7 +8,10 @@ Aplikasi sistem Tanya Jawab (Question Answer) kurang lebih seperti Stackoverflow
     - Twitter Bootstrap
 
 ### Structure Database
-[Lihat skema Basis Data disini](schema.md)
+[SCHEMA.md](SCHEMA.md)
+
+### Contributing
+[CONTRIBUTING.md](CONTRIBUTING.md)
 
 ### Install
 - Download:
