@@ -23,7 +23,7 @@ Aplikasi sistem Tanya Jawab (Question Answer) kurang lebih seperti Stackoverflow
     - Perbarui isi dari ketiga file diatas sesuaikan keinginan anda.
 - Buat Basis Data, sebagai contoh `qa` atau `QuestionAnswer`. Saya anggap anda sudah mengerti cara membuat Basis Data pada MySQL Server, tidak lupa untuk memperbarui kembali file `database.php` anda sesuai nama Basis Data yang telah dibuat.
 - Buat aturan Rewrite Rules untuk menghapus url untuk pengguna index.php
-    - Jika anda pengguna Apache bisa anda baca pada komentasi CodeIgniter ([Removing the index.php file](http://www.codeigniter.com/user_guide/general/urls.html#removing-the-index-php-file)).
+    - Jika anda pengguna Apache bisa anda baca pada dokumentasi CodeIgniter ([Removing the index.php file](http://www.codeigniter.com/user_guide/general/urls.html#removing-the-index-php-file)).
     - Jika anda pengguna NGINX bisa baca dokumentasinya [disini](https://www.nginx.com/resources/wiki/start/topics/recipes/codeigniter/).
     - Jika anda selain pengguna Web Server diatas, anda bisa mencarinya disetiap dokumentasi web server yang anda gunakan.
 - Install schema Basis Data [http://host/migrate/install](http://host/migrate/install) atau lain sebagainya sesuaikan dengan virtualhost masing-masing.
