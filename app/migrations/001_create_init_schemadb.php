@@ -11,6 +11,8 @@ class Migration_Create_init_schemadb extends CI_Migration
 {
     function up()
     {
+        $engine = array('ENGINE' => 'InnoDB');
+        
         $this->dbforge->add_field(array(
             'id_answer' => array(
                 'type' => 'INT',
@@ -36,7 +38,6 @@ class Migration_Create_init_schemadb extends CI_Migration
         $this->dbforge->add_key('id_answer', TRUE);
         $this->dbforge->add_key('user_id');
         $this->dbforge->add_key('question_id');
-        $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('answer', FALSE, $engine);
 
         $this->dbforge->add_field(array(
@@ -50,7 +51,6 @@ class Migration_Create_init_schemadb extends CI_Migration
                 ),
             ));
         $this->dbforge->add_key('id_category', TRUE);
-        $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('category', FALSE, $engine);
 
         $this->dbforge->add_field(array(
@@ -89,7 +89,6 @@ class Migration_Create_init_schemadb extends CI_Migration
         $this->dbforge->add_key('user_id');
         $this->dbforge->add_key('question_id');
         $this->dbforge->add_key('answer_id');
-        $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('comment', FALSE, $engine);
 
         $this->dbforge->add_field(array(
@@ -135,7 +134,6 @@ class Migration_Create_init_schemadb extends CI_Migration
         $this->dbforge->add_key('user_id');
         $this->dbforge->add_key('category_id');
         $this->dbforge->add_key('answer_id');
-        $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('question', FALSE, $engine);
         
         $this->dbforge->add_field(array(
@@ -153,7 +151,6 @@ class Migration_Create_init_schemadb extends CI_Migration
         $this->dbforge->add_key('id_qt', TRUE);
         $this->dbforge->add_key('question_id');
         $this->dbforge->add_key('tag_id');
-        $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('question_tag', FALSE, $engine);
 
         $this->dbforge->add_field(array(
@@ -188,7 +185,6 @@ class Migration_Create_init_schemadb extends CI_Migration
                 )
             ));
         $this->dbforge->add_key('timestamp');
-        $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('session', FALSE, $engine);
 
         $this->dbforge->add_field(array(
@@ -202,7 +198,6 @@ class Migration_Create_init_schemadb extends CI_Migration
                 )
             ));
         $this->dbforge->add_key('id_tag', TRUE);
-        $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('tag', FALSE, $engine);
 
         $this->dbforge->add_field(array(
@@ -282,7 +277,6 @@ class Migration_Create_init_schemadb extends CI_Migration
             ));
         $this->dbforge->add_key('id_user', TRUE);
         $this->dbforge->add_key('role_id');
-        $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('user', FALSE, $engine);
         
         $this->dbforge->add_field(array(
@@ -322,7 +316,6 @@ class Migration_Create_init_schemadb extends CI_Migration
         $this->dbforge->add_key('user_id');
         $this->dbforge->add_key('question_id');
         $this->dbforge->add_key('answer_id');
-        $engine = array('ENGINE' => 'InnoDB');
         $this->dbforge->create_table('vote', FALSE, $engine);
 
         $dbprefix = $this->db->dbprefix;
