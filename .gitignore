@@ -1,3 +1,4 @@
+*.sql
 push
 commit
 app/config/development/config.php
