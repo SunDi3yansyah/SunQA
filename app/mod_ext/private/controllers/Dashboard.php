@@ -49,7 +49,14 @@ class Dashboard extends QA_Privates
             $columns = array(
                 array('db' => 'id', 'dt' => 'id'),
                 array('db' => 'ip_address', 'dt' => 'ip_address'),
-                array('db' => 'timestamp', 'dt' => 'timestamp'),
+                array(
+                    'db' => 'timestamp',
+                    'dt' => 'timestamp',
+                    'formatter' => function($str)
+                    {
+                        return dateHourIconPrivate(date('Y-m-d H:i:s', $str));
+                    }
+                ),
                 array(
                     'db' => 'id',
                     'dt' => 'action',

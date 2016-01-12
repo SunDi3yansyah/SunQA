@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <?php echo form_textarea('description_question', $data->description_question, 'class="form-control"'); ?>
+                                    <?php echo form_textarea('description_question', $data->description_question, 'class="form-control" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"'); ?>
                                 </div>
                                 <?php echo form_submit(NULL, 'Submit', 'class="btn btn-success"'); ?>
                                 <?php echo form_reset(NULL, 'Reset', 'class="btn btn-warning"'); ?>

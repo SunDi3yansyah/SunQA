@@ -70,6 +70,7 @@ $(document).ready(function()
 <script src="<?php echo base_url($this->config->item('private_js') . 'morris.min.js'); ?>"></script>
 <script src="<?php echo base_url($this->uri->segment(1) . '/javascript/jsmorris_data'); ?>"></script>
 <?php endif ?>
+<script src="<?php echo base_url($this->config->item('private_js') . 'bootstrap3-wysihtml5.all.min.js'); ?>"></script>
 <script src="<?php echo base_url($this->config->item('private_js') . 'script.js'); ?>"></script>
 </body>
 </html>

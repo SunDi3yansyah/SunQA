@@ -20,6 +20,7 @@
 <link href="<?php echo base_url($this->config->item('private_css') . 'morris.css'); ?>" rel="stylesheet">
 <?php endif ?>
 <link href="<?php echo base_url($this->config->item('private_css') . 'font-awesome.min.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url($this->config->item('private_css') . 'bootstrap3-wysihtml5.min.css'); ?>" rel="stylesheet">
 <link href="<?php echo base_url($this->config->item('private_css') . 'style.css'); ?>" rel="stylesheet">
 <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

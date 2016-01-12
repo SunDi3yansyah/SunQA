@@ -36,4 +36,6 @@ $(function() {
         $(value).addClass(classes[Math.floor(Math.random() * length )] );
     });
 
+    $("textarea").wysihtml5();
+
 });

@@ -36,9 +36,9 @@
                 </div>
             </div>
             <div class="padding10">
-                <p class="bg-grayLighter padding10" style="line-height: 25px;">
+                <div class="bg-grayLighter padding10" style="line-height: 25px;">
                     <?php echo $ask->description_question ?>
-                </p>
+                </div>
                 <?php if (!empty($ask->question_update)): ?>
                     <small><i>Question last update on</i> <?php echo dateHourIcon($ask->question_update) ?></small>
                 <?php endif ?>
