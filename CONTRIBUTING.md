@@ -9,4 +9,4 @@
 - Commit perubahaan.
 - Kemudian baru di Push.
 - Buat Pull Request.
-- Happy waiting :dancer:.
+- Selamat menunggu :dancer:.
