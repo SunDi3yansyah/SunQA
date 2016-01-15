@@ -166,7 +166,7 @@ class Auth extends CI_Controller
 							$this->load->library('email');
 							$this->email->from($this->config->item('webmaster_email'), $this->config->item('web_name'));
 							$this->email->reply_to($this->config->item('webmaster_email'), $this->config->item('web_name'));
-							$this->email->to($update['email']);
+							$this->email->to($user->email);
 							$this->email->subject('Activation - '.$this->config->item('web_name').'');
 							$this->email->message('Untuk mengaktifkan akun anda silakan kunjungi alamat URL berikut '.base_url('auth/forgot/'. $update['lost_password']).'');
 							$this->email->send();
