@@ -37,7 +37,7 @@ class Log extends CI_Controller
 		else
 		{
 			$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|max_length[25]|xss_clean');
-			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[200]|xss_clean');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]|max_length[200]|xss_clean');
 			$this->form_validation->set_error_delimiters('<p>', '</p>');
 			if ($this->form_validation->run() == TRUE)
 			{
