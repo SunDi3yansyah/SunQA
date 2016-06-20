@@ -518,5 +518,5 @@ $config['proxy_ips'] = '';
 |--------------------------------------------------------------------------
 */
 $config['modules_locations'] = array(
-    APPPATH.'mod_ext/' => '../mod_ext/',
+    APPPATH.'extensions/' => '../extensions/',
 );
